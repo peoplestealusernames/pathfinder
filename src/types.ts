@@ -6,7 +6,7 @@ export const SwapTable: { [k in validState]: string } = {
     "checked": "blue",
     "qued": "cyan",
     "goal": "green",
-    "solved": "pink",
+    "solved": "yellow",
 }
 
 export const Walkable: { [k in validState]: boolean } = {
