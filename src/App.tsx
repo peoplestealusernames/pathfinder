@@ -82,7 +82,7 @@ function App() {
           onClick={() => {
             for (let i = 0; i < 10; i++) {
               let tile = Grid[getRandomInt(x)][getRandomInt(y)]
-              while (tile.state != "empty") {
+              while (tile.state !== "empty") {
                 tile = Grid[getRandomInt(x)][getRandomInt(y)]
               }
               tile.state = "wall"
@@ -94,7 +94,7 @@ function App() {
           onClick={() => {
             for (let i = 0; i < 100; i++) {
               let tile = Grid[getRandomInt(x)][getRandomInt(y)]
-              while (tile.state != "empty") {
+              while (tile.state !== "empty") {
                 tile = Grid[getRandomInt(x)][getRandomInt(y)]
               }
               tile.state = "wall"
@@ -121,7 +121,7 @@ function App() {
     if (!running) {
       //TODO: Stop timer for running
     }
-    while (Qued.length != 0) {
+    while (Qued.length !== 0) {
       Qued = StepPath(Grid, Qued)
     }
     SetQued(Qued); UpdateGridState()
