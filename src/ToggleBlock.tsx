@@ -18,14 +18,13 @@ export function ToggleBlock(props: { x: number, y: number, grid: [validState[][]
 
 
     function SetState(val: validState) {
-        console.log("new:" + val)
+        console.log(`Update {${x},${y}} is now ${val}`)
         GridParent[x][y] = val
         SetGrid(GridParent)
         SetStateChild(val)
     }
 
     function Press() {
-        console.log(State)
         if (State === "empty") {
             SetState("wall")
         }
