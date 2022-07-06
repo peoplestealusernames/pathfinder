@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
-import { ToggleBlock } from './ToggleBlock';
 import { ToggleGrid } from './ToggleGrid';
 import { Path, Tile, Vec2, Walkable } from './types';
 
 function App() {
-  const x = 5
-  const y = 5
+  const x = 50
+  const y = 50
+
+  let running = false;
+  let solution = false;
 
   let [Qued, SetQued] = useState<Path[]>(() => {
     let Qued1: Path[] = []
@@ -41,9 +43,16 @@ function App() {
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
       <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
         <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-          onClick={() => { SetQued(Generate(Grid, Qued)); UpdateGridState() }}
-        >Step path WIP</button>
-
+          onClick={() => { SetQued(StepPath(Grid, Qued)); UpdateGridState() }}
+        >Step path</button>
+        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          onClick={() => { RunPath() }}
+        >Run path</button>
+        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          onClick={() => { GeneratePath() }}
+        >Generate path</button>
+      </div>
+      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
         <button style={{ width: 100, alignSelf: "center", display: "flex" }}
           onClick={() => {
             let stri = ""
@@ -67,13 +76,59 @@ function App() {
           }}
         >Log Que</button>
       </div>
+
+      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          onClick={() => {
+            for (let i = 0; i < 10; i++) {
+              let tile = Grid[getRandomInt(x)][getRandomInt(y)]
+              while (tile.state != "empty") {
+                tile = Grid[getRandomInt(x)][getRandomInt(y)]
+              }
+              tile.state = "wall"
+            }
+            UpdateGridState()
+          }}
+        >10x walls</button>
+        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          onClick={() => {
+            for (let i = 0; i < 100; i++) {
+              let tile = Grid[getRandomInt(x)][getRandomInt(y)]
+              while (tile.state != "empty") {
+                tile = Grid[getRandomInt(x)][getRandomInt(y)]
+              }
+              tile.state = "wall"
+            }
+            UpdateGridState()
+          }}
+        >100x walls</button>
+      </div>
+
       <p>Path starts in top left and goes to bottem right</p>
       <ToggleGrid grid={Grid} update={UpdateGridState} />
     </div >
   );
+
+  function RunPath() {
+    if (!running) {
+      setInterval(() => {
+        Qued = StepPath(Grid, Qued)
+        SetQued(Qued); UpdateGridState()
+      }, 100)
+    }
+  }
+  function GeneratePath() {
+    if (!running) {
+      //TODO: Stop timer for running
+    }
+    while (Qued.length != 0) {
+      Qued = StepPath(Grid, Qued)
+    }
+    SetQued(Qued); UpdateGridState()
+  }
 }
 
-function Generate(grid: Tile[][], Qued: Path[]) {
+function StepPath(grid: Tile[][], Qued: Path[]) {
   let ret: Path[] = []
 
   console.log("Stepping pathfinder")
@@ -135,6 +190,10 @@ function GetTile(grid: Tile[][], pos: Vec2) {
       return grid[pos.x][pos.y]
 
   return null
+}
+
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * max);
 }
 
 export default App;

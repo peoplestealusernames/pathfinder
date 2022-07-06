@@ -10,6 +10,7 @@ export function ToggleBlock(props: { tile: Tile, update: any }) {
 
     useEffect(() => {
         SetStateChild(props.tile.state)
+        console.log("UPDATE")
     }, [props.tile.state])
 
 
