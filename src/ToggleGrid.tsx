@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { ToggleBlock } from "./ToggleBlock"
 import { Tile } from "./types"
 
@@ -5,7 +6,7 @@ export function ToggleGrid(props: { grid: Tile[][], update: any }) {
     //TODO: make styles (including height from here pass to toggle block)
 
     return (
-        <div key="abc" style={{ margin: "0px", padding: "0px" }}>
+        <div key={`Grid:${props.grid.length}x${props.grid[0].length}`} style={{ margin: "0px", padding: "0px" }}>
             {
                 props.grid.map((row, i) => {
                     let x = i

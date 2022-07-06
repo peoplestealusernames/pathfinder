@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { ToggleGrid } from './ToggleGrid';
 import { Path, Tile, Vec2, Walkable } from './types';
 
 function App() {
-  const x = 50
-  const y = 50
+  let [x, setX] = useState(5)
+  let [y, setY] = useState(5)
 
   let running = false;
   let solution = false;
@@ -19,7 +19,7 @@ function App() {
     return Qued1
   })
 
-  let [Grid, SetGrid] = useState<Tile[][]>(() => {
+  function fillGrid(x: number, y: number) {
     let grid: Tile[][] = []
 
     for (let i = 0; i < x; i++) {
@@ -32,15 +32,30 @@ function App() {
     grid[x - 1][y - 1].state = "goal"
 
     return grid
-  })
+  }
+
+  let [Grid, SetGrid] = useState<Tile[][]>(fillGrid(x, y))
 
   //TODO:PASS UPDATE FNC TO HTML
   function UpdateGridState() {
     SetGrid(Array.from(Grid))
   }
 
+  function ResetGrid() {
+    SetGrid(fillGrid(x, y))
+  }
+
+  useEffect(() => { ResetGrid() }, [x, y])
+
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+        <input type="number" value={x} onChange={(e: any) => { setX(e.target.value) }} style={{ width: 50 }} />
+        <input type="number" value={y} onChange={(e: any) => { setY(e.target.value) }} style={{ width: 50 }} />
+        <button style={{ width: 75, alignSelf: "center", display: "flex" }}
+          onClick={() => { ResetGrid() }}
+        >Reset</button>
+      </div>
       <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
         <button style={{ width: 100, alignSelf: "center", display: "flex" }}
           onClick={() => { SetQued(StepPath(Grid, Qued)); UpdateGridState() }}
@@ -104,7 +119,7 @@ function App() {
         >100x walls</button>
       </div>
 
-      <p>Path starts in top left and goes to bottem right</p>
+      <p style={{ margin: "2px" }}>Path starts in top left and goes to bottem right</p>
       <ToggleGrid grid={Grid} update={UpdateGridState} />
     </div >
   );
