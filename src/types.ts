@@ -1,17 +1,21 @@
-export type validState = "empty" | "checked" | "qued" | "wall"
+export type validState = "empty" | "checked" | "qued" | "wall" | "goal" | "solved"
 
 export const SwapTable: { [k in validState]: string } = {
     "empty": "grey",
     "wall": "red",
     "checked": "blue",
-    "qued": "cyan"
+    "qued": "cyan",
+    "goal": "green",
+    "solved": "pink",
 }
 
 export const Walkable: { [k in validState]: boolean } = {
     "empty": true,
     "wall": false,
     "checked": false, // An extra bonus of this is it wont path over itself
-    "qued": false
+    "qued": false,
+    "goal": true,
+    "solved": false,
 }
 
 export class Tile {

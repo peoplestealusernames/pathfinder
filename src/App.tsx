@@ -27,6 +27,7 @@ function App() {
       }
     }
 
+    grid[x - 1][y - 1].state = "goal"
 
     return grid
   })
@@ -68,7 +69,6 @@ function App() {
       </div>
       <p>Path starts in top left and goes to bottem right</p>
       <ToggleGrid grid={Grid} update={UpdateGridState} />
-      <ToggleBlock tile={Grid[0][0]} update={UpdateGridState} />
     </div >
   );
 }
@@ -78,11 +78,23 @@ function Generate(grid: Tile[][], Qued: Path[]) {
 
   console.log("Stepping pathfinder")
   for (const pos of Qued) {
-    ret.push(...CheckSurround(grid, pos))
+    const surroundings = CheckSurround(grid, pos)
+    if (Array.isArray(surroundings)) {
+      ret.push(...surroundings)
+    } else {
+      PathFound(grid, surroundings)
+      console.log("path found")
+    }
   }
 
   console.log(`Step done ${ret.length} paths`)
   return ret
+}
+
+function PathFound(grid: Tile[][], path: Path) {
+  for (const node of path.nodes) {
+    grid[node.x][node.y].state = "solved"
+  }
 }
 
 const Movement = [
@@ -103,6 +115,10 @@ function CheckSurround(grid: Tile[][], path: Path) {
     const tile = GetTile(grid, pos)
     if (tile)
       if (Walkable[tile?.state]) {
+        if (tile.state === "goal") {
+          path.add(pos)
+          return path
+        }
         let Branch = path.Branch()
         Branch.add(pos)
         ret.push(Branch)
