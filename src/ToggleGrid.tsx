@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { ToggleBlock } from "./ToggleBlock"
 import { Tile } from "./types"
 
@@ -14,14 +13,14 @@ export function ToggleGrid(props: { grid: Tile[][], update: any }) {
         }}>
             {
                 props.grid.map((row, i) => {
-                    let x = i
-                    return (<div key={`ButtonRow:${x}`} style={{
+                    let y = i
+                    return (<div key={`ButtonRow:${y}`} style={{
                         margin: "0px", padding: "0px", height: 20,
                         display: "flex", flexWrap: "nowrap", flexDirection: "row",
                         justifyContent: "center"
                     }}>
                         {
-                            row.map((tile, y) => {
+                            row.map((tile, x) => {
                                 return (<ToggleBlock key={`TButton:${x},${y}`} tile={tile} update={props.update} />)
                             })
                         }

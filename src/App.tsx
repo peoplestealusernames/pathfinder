@@ -22,14 +22,14 @@ function App() {
   function fillGrid(x: number, y: number) {
     let grid: Tile[][] = []
 
-    for (let i = 0; i < x; i++) {
+    for (let i = 0; i < y; i++) {
       grid[i] = []
-      for (let k = 0; k < y; k++) {
-        grid[i][k] = new Tile(i, k, "empty")
+      for (let k = 0; k < x; k++) {
+        grid[i][k] = new Tile(k, i, "empty")
       }
     }
 
-    grid[x - 1][y - 1].state = "goal"
+    grid[y - 1][x - 1].state = "goal"
 
     return grid
   }
