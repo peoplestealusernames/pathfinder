@@ -1,26 +1,22 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { SwapTable, validState } from "./types"
+import { useEffect, useState } from "react"
+import { SwapTable, Tile, validState } from "./types"
 
 
-export function ToggleBlock(props: { x: number, y: number, grid: [validState[][], Dispatch<SetStateAction<validState[][]>>] }) {
-    const x = props.x
-    const y = props.y
-    const SetGrid = props.grid[1]
+export function ToggleBlock(props: { tile: Tile, update: any }) {
+    const x = props.tile.x
+    const y = props.tile.y
 
-    let GridParent = props.grid[0]
-    let StateParent = GridParent[x][y]
-
-    let [State, SetStateChild] = useState(StateParent)
+    let [State, SetStateChild] = useState(props.tile.state)
 
     useEffect(() => {
-        SetStateChild(props.grid[0][x][y])
-    }, [props.grid[0][x][y]])
+        SetStateChild(props.tile.state)
+    }, [props.tile.state])
 
 
     function SetState(val: validState) {
         console.log(`Update {${x},${y}} is now ${val}`)
-        GridParent[x][y] = val
-        SetGrid(GridParent)
+        props.update()
+        props.tile.state = val
         SetStateChild(val)
     }
 
@@ -35,10 +31,10 @@ export function ToggleBlock(props: { x: number, y: number, grid: [validState[][]
 
     return (
         <button
-            key={`Button:${x},${y}`}
+            key={props.tile.state}
             onClick={Press}
             style={{
-                backgroundColor: SwapTable[props.grid[0][props.x][props.y]],
+                backgroundColor: SwapTable[State],
                 margin: 0,
                 border: 'solid',
                 borderWidth: '1px',
