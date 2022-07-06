@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { SwapTable, validState } from "./validStates"
+import { SwapTable, validState } from "./types"
 
 
 export function ToggleBlock(props: { x: number, y: number, grid: [validState[][], Dispatch<SetStateAction<validState[][]>>] }) {

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react"
 import { ToggleBlock } from "./ToggleBlock"
-import { validState } from "./validStates"
+import { validState } from "./types"
 
 export function ToggleGrid(props: { x: number, y: number, grid: [validState[][], Dispatch<SetStateAction<validState[][]>>] }) {
     //TODO: make styles (including height from here pass to toggle block)

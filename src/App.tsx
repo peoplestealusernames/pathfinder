@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { ToggleBlock } from './ToggleBlock'
 import { ToggleGrid } from './ToggleGrid';
-import { validState } from './validStates';
+import { validState } from './types';
 
 function App() {
   const x = 10
