@@ -49,77 +49,78 @@ function App() {
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-        <input type="number" value={x} onChange={(e: any) => { setX(e.target.value) }} style={{ width: 50 }} />
-        <input type="number" value={y} onChange={(e: any) => { setY(e.target.value) }} style={{ width: 50 }} />
-        <button style={{ width: 75, alignSelf: "center", display: "flex" }}
-          onClick={() => { ResetGrid() }}
-        >Reset</button>
-      </div>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-          onClick={() => { SetQued(StepPath(Grid, Qued)); UpdateGridState() }}
-        >Step path</button>
-        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-          onClick={() => { RunPath() }}
-        >Run path</button>
-        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-          onClick={() => { GeneratePath() }}
-        >Generate path</button>
-      </div>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-          onClick={() => {
-            let stri = ""
-            for (const row of Grid) {
-              for (const cell of row) {
-                stri += cell.state + ","
+      <div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", width: "100vw" }}>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+          <input type="number" value={x} onChange={(e: any) => { setX(e.target.value) }} style={{ width: 50 }} />
+          <input type="number" value={y} onChange={(e: any) => { setY(e.target.value) }} style={{ width: 50 }} />
+          <button style={{ width: 75, alignSelf: "center", display: "flex" }}
+            onClick={() => { ResetGrid() }}
+          >Reset</button>
+        </div>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+            onClick={() => { SetQued(StepPath(Grid, Qued)); UpdateGridState() }}
+          >Step path</button>
+          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+            onClick={() => { RunPath() }}
+          >Run path</button>
+          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+            onClick={() => { GeneratePath() }}
+          >Generate path</button>
+        </div>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+            onClick={() => {
+              let stri = ""
+              for (const row of Grid) {
+                for (const cell of row) {
+                  stri += cell.state + ","
+                }
+                stri += "\n"
               }
-              stri += "\n"
-            }
-            console.log(stri);
-          }}
-        >Log Data</button>
+              console.log(stri);
+            }}
+          >Log Data</button>
 
-        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-          onClick={() => {
-            let stri = ""
-            for (const Que of Qued) {
-              stri += JSON.stringify(Que.last())
-            }
-            console.log(stri);
-          }}
-        >Log Que</button>
-      </div>
-
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-          onClick={() => {
-            for (let i = 0; i < 10; i++) {
-              let tile = Grid[getRandomInt(x)][getRandomInt(y)]
-              while (tile.state !== "empty") {
-                tile = Grid[getRandomInt(x)][getRandomInt(y)]
+          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+            onClick={() => {
+              let stri = ""
+              for (const Que of Qued) {
+                stri += JSON.stringify(Que.last())
               }
-              tile.state = "wall"
-            }
-            UpdateGridState()
-          }}
-        >10x walls</button>
-        <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-          onClick={() => {
-            for (let i = 0; i < 100; i++) {
-              let tile = Grid[getRandomInt(x)][getRandomInt(y)]
-              while (tile.state !== "empty") {
-                tile = Grid[getRandomInt(x)][getRandomInt(y)]
-              }
-              tile.state = "wall"
-            }
-            UpdateGridState()
-          }}
-        >100x walls</button>
-      </div>
+              console.log(stri);
+            }}
+          >Log Que</button>
+        </div>
 
-      <p style={{ margin: "2px" }}>Path starts in top left and goes to bottem right</p>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+            onClick={() => {
+              for (let i = 0; i < 10; i++) {
+                let tile = Grid[getRandomInt(x)][getRandomInt(y)]
+                while (tile.state !== "empty") {
+                  tile = Grid[getRandomInt(x)][getRandomInt(y)]
+                }
+                tile.state = "wall"
+              }
+              UpdateGridState()
+            }}
+          >10x walls</button>
+          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+            onClick={() => {
+              for (let i = 0; i < 100; i++) {
+                let tile = Grid[getRandomInt(x)][getRandomInt(y)]
+                while (tile.state !== "empty") {
+                  tile = Grid[getRandomInt(x)][getRandomInt(y)]
+                }
+                tile.state = "wall"
+              }
+              UpdateGridState()
+            }}
+          >100x walls</button>
+        </div>
+        <p style={{ margin: "2px" }}>Path starts in top left and goes to bottem right</p>
+      </div>
       <ToggleGrid grid={Grid} update={UpdateGridState} />
     </div >
   );

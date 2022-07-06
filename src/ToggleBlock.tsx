@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import { CSSProperties, useEffect, useState } from "react"
 import { SwapTable, Tile, validState } from "./types"
 
 
-export function ToggleBlock(props: { tile: Tile, update: any }) {
+export function ToggleBlock(props: { tile: Tile, update: any, style?: CSSProperties }) {
     const x = props.tile.x
     const y = props.tile.y
 
@@ -38,7 +38,8 @@ export function ToggleBlock(props: { tile: Tile, update: any }) {
                 margin: 0,
                 border: 'solid',
                 borderWidth: '1px',
-                width: 20, height: 20
+                width: 20, height: 20,
+                ...props.style,
             }}
         />
     )
