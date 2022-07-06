@@ -1,14 +1,45 @@
-import { useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { SwapTable, validState } from "./validStates"
 
-export function ToggleBlock() {
 
-    let [On, SetOn] = useState(false)
+export function ToggleBlock(props: { x: number, y: number, grid: [validState[][], Dispatch<SetStateAction<validState[][]>>] }) {
+    const x = props.x
+    const y = props.y
+    const SetGrid = props.grid[1]
+
+    let GridParent = props.grid[0]
+    let StateParent = GridParent[x][y]
+
+    let [State, SetStateChild] = useState(StateParent)
+
+    useEffect(() => {
+        SetStateChild(props.grid[0][x][y])
+    }, [props.grid[0][x][y]])
+
+
+    function SetState(val: validState) {
+        console.log("new:" + val)
+        GridParent[x][y] = val
+        SetGrid(GridParent)
+        SetStateChild(val)
+    }
+
+    function Press() {
+        console.log(State)
+        if (State === "empty") {
+            SetState("wall")
+        }
+        if (State === "wall") {
+            SetState("empty")
+        }
+    }
 
     return (
         <button
-            onClick={() => { SetOn(!On); console.log(On) }}
+            key={`Button:${x},${y}`}
+            onClick={Press}
             style={{
-                backgroundColor: On ? "red" : "grey",
+                backgroundColor: SwapTable[props.grid[0][props.x][props.y]],
                 margin: 0,
                 border: 'solid',
                 borderWidth: '1px',
