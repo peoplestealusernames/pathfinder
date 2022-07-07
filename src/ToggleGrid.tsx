@@ -1,21 +1,18 @@
 import { useEffect } from "react"
-import { SwapTable, Tile } from "./types"
+import { CanvasGrid, UpdateCanvas } from "./canvas"
 
-export function ToggleGrid(props: { grid: Tile[][], update: any }) {
+export function ToggleGrid(props: { grid: CanvasGrid }) {
     //TODO: make styles (including height from here pass to toggle block)
 
     useEffect(() => {
-        UpdateCanvas(props.grid)
-        const elem = document.getElementById('GridCanvas')
+        const elem = document.getElementById('GridCanvas') as HTMLCanvasElement
         if (!elem)
             return
 
+        props.grid.addCanvas(elem)
+
         const elemLeft = elem.offsetLeft + elem.clientLeft
         const elemTop = elem.offsetTop + elem.clientTop
-        //@ts-ignore
-        const context = elem.getContext('2d') as CanvasRenderingContext2D
-
-        UpdateCanvas(props.grid)
 
         const mouseDown = (e: any) => {
             e.preventDefault()
@@ -25,22 +22,20 @@ export function ToggleGrid(props: { grid: Tile[][], update: any }) {
             const x = Math.floor(xp / 10)
             const y = Math.floor(yp / 10)
 
-            const tile = props.grid[y][x]
+            const tile = props.grid.get(x, y)
 
-            if (tile.state == "wall")
-                tile.state = "empty"
-            else if (tile.state == "empty")
-                tile.state = "wall"
+            if (tile == "wall")
+                props.grid.set(x, y, "empty")
+            else if (tile == "empty")
+                props.grid.set(x, y, "wall")
 
-            console.log(`Update: ${x},${y} is now ${tile.state}`);
-
-            props.update();
+            console.log(`Update: ${x},${y} is now ${tile}`);
         }
 
         elem.addEventListener("click", mouseDown)
 
         return (() => { elem.removeEventListener("click", mouseDown) })
-    }, [props.grid])
+    })
 
     return (
         <div key={`A`} style={{
@@ -51,47 +46,4 @@ export function ToggleGrid(props: { grid: Tile[][], update: any }) {
             <canvas style={{ display: "flow" }} id="GridCanvas" />
         </div>
     )
-}
-
-function UpdateCanvas(grid: Tile[][]) {
-    const elem = document.getElementById('GridCanvas') as any
-    if (!elem)
-        throw new Error("Cannot find canvas")
-
-    //TODO: scale to size
-    //TODO:math to make them aways square and always right size
-    const width = grid[0].length * 10
-    const height = grid.length * 10
-
-    elem.width = width
-    elem.height = height
-
-    const context = elem.getContext('2d') as CanvasRenderingContext2D
-
-    const img = new Image(width, height)
-    context.drawImage(img, 0, 0, img.width, img.height)
-    context.fillStyle = "black"
-    context.fillRect(0, 0, img.width, img.height)
-
-    for (const ys in grid) {
-        const y = parseInt(ys)
-        for (const xs in grid[y]) {
-            const x = parseInt(xs)
-            const tile = grid[y][x]
-
-
-            context.fillStyle = SwapTable[tile.state]
-            context.fillRect(x * 10 + 1, y * 10 + 1, 8, 8)
-        }
-    }
-}
-
-function UpdateSquare(grid: Tile[][], x: number, y: number) {
-    const elem = document.getElementById('GridCanvas') as any
-    if (!elem)
-        throw new Error("Cannot find canvas")
-
-    const context = elem.getContext('2d') as CanvasRenderingContext2D
-    context.fillStyle = SwapTable[grid[x][y].state]
-    context.fillRect(x * 10 + 1, y * 10 + 1, 8, 8)
 }

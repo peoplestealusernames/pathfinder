@@ -20,18 +20,6 @@ export const Walkable: { [k in validState]: boolean } = {
     "start": true,
 }
 
-export class Tile {
-    public state: validState
-    public x: number
-    public y: number
-
-    constructor(x: number, y: number, state: validState) {
-        this.state = state
-        this.x = x
-        this.y = y
-    }
-}
-
 export class Vec2 {
     public x: number
     public y: number
