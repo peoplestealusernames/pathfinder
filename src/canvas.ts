@@ -50,8 +50,6 @@ export class CanvasGrid {
         this.canvas.width = this.width * 10
         this.canvas.height = this.height * 10
 
-        console.log(JSON.stringify(this.width));
-
         this.context = this.canvas.getContext('2d') as CanvasRenderingContext2D
         const img = new Image(this.width * 10, this.height * 10)
         this.context.drawImage(img, 0, 0, img.width * 10, img.height * 10)
