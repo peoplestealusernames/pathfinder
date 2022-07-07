@@ -96,25 +96,15 @@ function App() {
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
           <button style={{ width: 100, alignSelf: "center", display: "flex" }}
             onClick={() => {
-              for (let i = 0; i < 10; i++) {
-                let tile = Grid[getRandomInt(x)][getRandomInt(y)]
-                while (tile.state !== "empty") {
-                  tile = Grid[getRandomInt(x)][getRandomInt(y)]
-                }
-                tile.state = "wall"
-              }
+              for (let i = 0; i < 10; i++)
+                SetRandomWall(Grid)
               UpdateGridState()
             }}
           >10x walls</button>
           <button style={{ width: 100, alignSelf: "center", display: "flex" }}
             onClick={() => {
-              for (let i = 0; i < 100; i++) {
-                let tile = Grid[getRandomInt(x)][getRandomInt(y)]
-                while (tile.state !== "empty") {
-                  tile = Grid[getRandomInt(x)][getRandomInt(y)]
-                }
-                tile.state = "wall"
-              }
+              for (let i = 0; i < 100; i++)
+                SetRandomWall(Grid)
               UpdateGridState()
             }}
           >100x walls</button>
@@ -142,6 +132,19 @@ function App() {
     }
     SetQued(Qued); UpdateGridState()
   }
+}
+
+function SetRandomWall(grid: Tile[][]) {
+  //TODO: prevent infi loop
+  let tile = RandomTile(grid)
+  while (tile.state != "empty") {
+    tile = RandomTile(grid)
+  }
+  tile.state = "wall"
+}
+
+function RandomTile(grid: Tile[][]) {
+  return grid[getRandomInt(grid.length)][getRandomInt(grid[0].length)]
 }
 
 function StepPath(grid: Tile[][], Qued: Path[]) {
