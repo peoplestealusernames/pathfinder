@@ -28,6 +28,7 @@ export function UpdateSquare(grid: validState[][], x: number, y: number) {
 
 export class CanvasGrid {
     //TODO: Canvas manager
+    //TODO: Move solution and solution finder to second layer canvas or grid
 
     private grid: validState[][] = []
 
@@ -113,5 +114,22 @@ export class CanvasGrid {
         this.context.fillStyle = SwapTable[state]
         this.context.fillRect(x * 10 + 1, y * 10 + 1, 8, 8)
         return true
+    }
+
+    foreach<T>(run: (x: number, y: number, tile?: validState) => T): T[] {
+        let ret: T[] = []
+
+        for (let y = 0; y < this.height; y++)
+            for (let x = 0; x < this.width; x++) {
+                const tile = this.get(x, y)
+                if (tile)
+                    try {
+                        ret.push(run(x, y, tile))
+                    } catch (e) {
+                        console.error(`Error at grid foreach ${x},${y}`, e)
+                    }
+            }
+
+        return ret
     }
 }
