@@ -168,7 +168,7 @@ function StepPath(grid: Tile[][], Qued: Path[]) {
 
 function PathFound(grid: Tile[][], path: Path) {
   for (const node of path.nodes) {
-    grid[node.x][node.y].state = "solved"
+    grid[node.y][node.x].state = "solved"
   }
 }
 
@@ -206,8 +206,8 @@ function CheckSurround(grid: Tile[][], path: Path) {
 
 function GetTile(grid: Tile[][], pos: Vec2) {
   if (grid[pos.x])
-    if (grid[pos.y])
-      return grid[pos.x][pos.y]
+    if (grid[pos.x][pos.y])
+      return grid[pos.y][pos.x]
 
   return null
 }
