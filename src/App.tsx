@@ -111,12 +111,15 @@ function App() {
 
 function SetRandomWall(grid: CanvasGrid) {
   let tile: validState | null = null
-  let x, y
+  let x = 0
+  let y = 0
+  //TODO: prevent infi loop
   while (tile !== "empty") {
     x = getRandomInt(grid.width)
     y = getRandomInt(grid.height)
     tile = grid.get(x, y)
   }
+  grid.set(x, y, "wall")
 }
 
 function StepPath(grid: CanvasGrid, Qued: Path[]) {
