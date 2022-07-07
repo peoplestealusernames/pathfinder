@@ -4,8 +4,8 @@ import { ToggleGrid } from './ToggleGrid';
 import { Path, Tile, Vec2, Walkable } from './types';
 
 function App() {
-  let [x, setX] = useState(5)
-  let [y, setY] = useState(5)
+  let [x, setX] = useState(75)
+  let [y, setY] = useState(25)
 
   let running = false;
   let solution = false;
@@ -110,7 +110,7 @@ function App() {
             }}
           >100x walls</button>
         </div>
-        <p style={{ margin: "2px" }}>Path starts in top left and goes to bottem right</p>
+        <p style={{ padding: "10px", margin: "0px" }}>Path starts in top left and goes to bottem right</p>
       </div>
       <ToggleGrid grid={Grid} update={UpdateGridState} />
     </div >

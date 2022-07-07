@@ -25,7 +25,7 @@ export function ToggleGrid(props: { grid: Tile[][], update: any }) {
             const x = Math.floor(xp / 10)
             const y = Math.floor(yp / 10)
 
-            const tile = props.grid[x][y]
+            const tile = props.grid[y][x]
 
             if (tile.state == "wall")
                 tile.state = "empty"
@@ -44,7 +44,7 @@ export function ToggleGrid(props: { grid: Tile[][], update: any }) {
 
     return (
         <div key={`A`} style={{
-            margin: "0px", padding: "0px",
+            margin: "0px", padding: "20px",
             display: "flex", flexWrap: "nowrap", flexDirection: "row",
             justifyContent: "center"
         }}>
@@ -60,8 +60,8 @@ function UpdateCanvas(grid: Tile[][]) {
 
     //TODO: scale to size
     //TODO:math to make them aways square and always right size
-    const width = grid.length * 10
-    const height = grid[0].length * 10
+    const width = grid[0].length * 10
+    const height = grid.length * 10
 
     elem.width = width
     elem.height = height
@@ -73,11 +73,11 @@ function UpdateCanvas(grid: Tile[][]) {
     context.fillStyle = "black"
     context.fillRect(0, 0, img.width, img.height)
 
-    for (const xs in grid) {
-        const x = parseInt(xs)
-        for (const ys in grid[x]) {
-            const y = parseInt(ys)
-            const tile = grid[x][y]
+    for (const ys in grid) {
+        const y = parseInt(ys)
+        for (const xs in grid[y]) {
+            const x = parseInt(xs)
+            const tile = grid[y][x]
 
 
             context.fillStyle = SwapTable[tile.state]
