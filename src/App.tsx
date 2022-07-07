@@ -30,6 +30,7 @@ function App() {
     }
 
     grid[y - 1][x - 1].state = "goal"
+    grid[0][0].state = "start"
 
     return grid
   }

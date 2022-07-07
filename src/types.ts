@@ -1,4 +1,4 @@
-export type validState = "empty" | "checked" | "qued" | "wall" | "goal" | "solved"
+export type validState = "empty" | "checked" | "qued" | "wall" | "goal" | "solved" | "start"
 
 export const SwapTable: { [k in validState]: string } = {
     "empty": "grey",
@@ -7,6 +7,7 @@ export const SwapTable: { [k in validState]: string } = {
     "qued": "cyan",
     "goal": "green",
     "solved": "yellow",
+    "start": "orange",
 }
 
 export const Walkable: { [k in validState]: boolean } = {
@@ -16,6 +17,7 @@ export const Walkable: { [k in validState]: boolean } = {
     "qued": false,
     "goal": true,
     "solved": false,
+    "start": true,
 }
 
 export class Tile {
