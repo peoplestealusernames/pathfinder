@@ -35,7 +35,7 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
         elem.addEventListener("click", mouseDown)
 
         return (() => { elem.removeEventListener("click", mouseDown) })
-    })
+    }, [props.grid])
 
     return (
         <div key={`A`} style={{

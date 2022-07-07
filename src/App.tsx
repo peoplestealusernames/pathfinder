@@ -22,7 +22,7 @@ function App() {
 
   let [Grid, SetGrid] = useState<CanvasGrid>(new CanvasGrid(x, y))
 
-  //useEffect(() => { //TODO: resize support }, [x, y])
+  useEffect(() => { SetGrid(new CanvasGrid(x, y)) }, [x, y])
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
