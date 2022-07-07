@@ -182,7 +182,7 @@ const Movement = [
 function CheckSurround(grid: Tile[][], path: Path) {
   let ret: Path[] = []
   const origin = path.last()
-  grid[origin.x][origin.y].state = "checked"
+  grid[origin.y][origin.x].state = "checked"
 
   for (const offset of Movement) {
 
@@ -205,8 +205,8 @@ function CheckSurround(grid: Tile[][], path: Path) {
 }
 
 function GetTile(grid: Tile[][], pos: Vec2) {
-  if (grid[pos.x])
-    if (grid[pos.x][pos.y])
+  if (grid[pos.y])
+    if (grid[pos.y][pos.x])
       return grid[pos.y][pos.x]
 
   return null
