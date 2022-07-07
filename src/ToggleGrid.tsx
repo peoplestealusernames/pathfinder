@@ -6,26 +6,41 @@ export function ToggleGrid(props: { grid: Tile[][], update: any }) {
 
     useEffect(() => {
         UpdateCanvas(props.grid)
-    }, [props.grid])
-
-    useEffect(() => {
-        const elem = document.getElementById('GridCanvas') as any
+        const elem = document.getElementById('GridCanvas')
         if (!elem)
             return
 
         const elemLeft = elem.offsetLeft + elem.clientLeft
         const elemTop = elem.offsetTop + elem.clientTop
+        //@ts-ignore
         const context = elem.getContext('2d') as CanvasRenderingContext2D
 
         UpdateCanvas(props.grid)
 
-        elem.addEventListener("click", (e: any) => {
-            const x = e.pageX - elemLeft
-            const y = e.pageY - elemTop
+        const mouseDown = (e: any) => {
+            e.preventDefault()
+            const xp = e.pageX - elemLeft
+            const yp = e.pageY - elemTop
 
-            console.log("CLICKED");
-        }, false)
-    })
+            const x = Math.floor(xp / 10)
+            const y = Math.floor(yp / 10)
+
+            const tile = props.grid[x][y]
+
+            if (tile.state == "wall")
+                tile.state = "empty"
+            else if (tile.state == "empty")
+                tile.state = "wall"
+
+            console.log(`Update: ${x},${y} is now ${tile.state}`);
+
+            props.update();
+        }
+
+        elem.addEventListener("click", mouseDown)
+
+        return (() => { elem.removeEventListener("click", mouseDown) })
+    }, [props.grid])
 
     return (
         <div key={`A`} style={{
@@ -53,8 +68,10 @@ function UpdateCanvas(grid: Tile[][]) {
 
     const context = elem.getContext('2d') as CanvasRenderingContext2D
 
-    const img = new Image()
+    const img = new Image(width, height)
     context.drawImage(img, 0, 0, img.width, img.height)
+    context.fillStyle = "black"
+    context.fillRect(0, 0, img.width, img.height)
 
     for (const xs in grid) {
         const x = parseInt(xs)
@@ -64,7 +81,17 @@ function UpdateCanvas(grid: Tile[][]) {
 
 
             context.fillStyle = SwapTable[tile.state]
-            context.fillRect(x * 10, y * 10, 10, 10)
+            context.fillRect(x * 10 + 1, y * 10 + 1, 8, 8)
         }
     }
+}
+
+function UpdateSquare(grid: Tile[][], x: number, y: number) {
+    const elem = document.getElementById('GridCanvas') as any
+    if (!elem)
+        throw new Error("Cannot find canvas")
+
+    const context = elem.getContext('2d') as CanvasRenderingContext2D
+    context.fillStyle = SwapTable[grid[x][y].state]
+    context.fillRect(x * 10 + 1, y * 10 + 1, 8, 8)
 }
