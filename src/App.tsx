@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { Buttons } from './Buttons/Buttons';
 import { CanvasGrid } from './canvas';
 import { NavGrid } from './navGrid';
 import { ToggleGrid } from './ToggleGrid';
@@ -7,109 +8,19 @@ import { Path, validState, Vec2, Walkable } from './types';
 
 
 function App() {
-  let [x, setX] = useState(75)
-  let [y, setY] = useState(25)
 
-  const Grid = new CanvasGrid(x, y)
+  const Grid = new CanvasGrid(5, 5)
   const Nav = new NavGrid(Grid)
-
-  useEffect(() => { Grid.setWidth(x) }, [x])
-  useEffect(() => { Grid.setHeight(y) }, [y])
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
-      <div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", width: "100vw" }}>
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-          <input type="number" value={x} onChange={(e: any) => { setX(e.target.value) }} style={{ width: 50 }} />
-          <input type="number" value={y} onChange={(e: any) => { setY(e.target.value) }} style={{ width: 50 }} />
-          <button style={{ alignSelf: "center", display: "flex" }}
-            onClick={() => { Grid.reset(); Nav.Reset() }}
-          >Reset</button>
-          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-            onClick={() => { Nav.Reset() }}
-          >Remove Path</button>
-        </div>
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-          <button style={{ alignSelf: "center", display: "flex" }}
-            onClick={() => { Nav.StepPath() }}
-          >Step path</button>
-          <button style={{ alignSelf: "center", display: "flex" }}
-            onClick={() => { Nav.TogglePath() }}
-          >Toggle pathfinder</button>
-          <button style={{ alignSelf: "center", display: "flex" }}
-            onClick={() => { Nav.GeneratePath() }}
-          >Generate path</button>
-        </div>
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-          <button style={{ alignSelf: "center", display: "flex" }}
-            onClick={() => {
-              let stri = ""
-              for (const row of Grid.getGrid()) {
-                for (const cell of row) {
-                  stri += cell + ","
-                }
-                stri += "\n"
-              }
-              console.log(stri);
-            }}
-          >Log Data</button>
-
-          <button style={{ alignSelf: "center", display: "flex" }}
-            onClick={() => {
-              let stri = ""
-              const Qued = Nav.GetQued()
-              if (Qued) {
-                for (const Que of Qued) {
-                  stri += JSON.stringify(Que.last())
-                }
-              } else {
-                stri += "Nothing qued"
-              }
-              console.log(stri);
-            }}
-          >Log Que</button>
-        </div>
-        <RandomWall grid={Grid} />
-        <p style={{ padding: "10px", margin: "0px" }}>Path starts in top left and goes to bottem right</p>
-      </div>
+      <Buttons grid={Grid} nav={Nav} />
+      <p style={{ padding: "10px", margin: "0px" }}>Path starts in top left and goes to bottem right</p>
       <ToggleGrid grid={Grid} />
     </div >
   );
 
 
-}
-
-function RandomWall(props: { grid: CanvasGrid }) {
-  let [WallCount, SetWallCount] = useState(1)
-
-  return (<div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-    <input type="number" value={WallCount} onChange={(e: any) => { SetWallCount(e.target.value) }}
-      style={{ width: 50, WebkitAppearance: "none", MozAppearance: "textfield", padding: 0, }} />
-    <button style={{ alignSelf: "center", display: "flex" }}
-      onClick={() => {
-        for (let i = 0; i < WallCount; i++)
-          SetRandomWall(props.grid)
-      }}
-    >
-      x walls
-    </button>
-  </div>)
-}
-
-function SetRandomWall(grid: CanvasGrid) {
-  let tile: validState | null = null
-  let x = 0
-  let y = 0
-  for (let loop = 0; tile !== "empty" && loop < 10; loop++) {
-    x = getRandomInt(grid.getWidth())
-    y = getRandomInt(grid.getHeight())
-    tile = grid.get(x, y)
-  }
-  grid.set(x, y, "wall")
-}
-
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
 }
 
 export default App;
