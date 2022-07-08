@@ -107,7 +107,7 @@ export class CanvasGrid {
         if (allowOne.includes(state)) {
             //@ts-ignore
             const prev = this[state]
-            if (prev[0] != x && prev[1] != y)
+            if (prev[0] !== x && prev[1] !== y)
                 this.set(prev[0], prev[1], "empty")
 
             //@ts-ignore

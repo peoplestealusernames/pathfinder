@@ -10,7 +10,6 @@ function App() {
   let [y, setY] = useState(25)
 
   let running = false;
-  let solution = false;
 
   let [Qued, SetQued] = useState<Path[]>(() => {
     //TODO: make que start around start node rather than on it ie 4 adj tiles
@@ -110,7 +109,7 @@ function App() {
         let result: boolean
         [result, Qued] = StepPath(Grid, Qued)
 
-        if (result == false) {
+        if (result === false) {
           SetQued(Qued);
         } else {
           //TODO: stop timer
@@ -126,7 +125,7 @@ function App() {
     while (Qued.length !== 0 && !result) {
       [result, Qued] = StepPath(Grid, Qued)
 
-      if (result == false) {
+      if (result === false) {
         SetQued(Qued);
       } else {
         //TODO: stop timer

@@ -22,9 +22,9 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
 
             const tile = props.grid.get(x, y)
 
-            if (tile == "wall")
+            if (tile === "wall")
                 props.grid.set(x, y, "empty")
-            else if (tile == "empty")
+            else if (tile === "empty")
                 props.grid.set(x, y, "wall")
 
             console.log(`Update: ${x},${y} is now ${tile}`);
