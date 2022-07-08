@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
       <Buttons grid={Grid} nav={Nav} />
-      <p style={{ padding: "10px", margin: "0px" }}>Path starts in top left and goes to bottem right</p>
+      <p style={{ padding: "10px", margin: "0px" }}>Pathfinding starts on the orange start square and goes to the green goal square.</p>
       <ToggleGrid grid={Grid} />
     </div >
   );

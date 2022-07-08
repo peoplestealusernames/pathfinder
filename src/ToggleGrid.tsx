@@ -48,7 +48,7 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
 
     return (
         <div key={`A`} style={{
-            margin: "0px", padding: "20px",
+            margin: "0px", padding: "15px",
             display: "flex", flexWrap: "nowrap", flexDirection: "row",
             justifyContent: "center"
         }}>
