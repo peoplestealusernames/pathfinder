@@ -20,6 +20,8 @@ export const Walkable: { [k in validState]: boolean } = {
     "start": true,
 }
 
+export const allowOne: validState[] = ["start", "goal"]
+
 export class Vec2 {
     public x: number
     public y: number

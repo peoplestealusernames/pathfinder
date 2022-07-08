@@ -1,4 +1,4 @@
-import { validState, SwapTable } from "./types"
+import { validState, SwapTable, allowOne } from "./types"
 
 export function UpdateCanvas(grid: validState[][]) {
     const elem = document.getElementById('GridCanvas') as any
@@ -128,11 +128,17 @@ export class CanvasGrid {
         this.context.fillStyle = SwapTable[state]
         this.context.fillRect(x * 10 + 1, y * 10 + 1, 8, 8)
 
-        if (state === "start")
-            this.start = [x, y]
-        else if (state === "goal")
-            this.goal = [x, y]
+        if (allowOne.includes(state)) {
+            //@ts-ignore
+            const prev = this[state]
+            if (prev[0] != x && prev[1] != y)
+                this.set(prev[0], prev[1], "empty")
 
+            //@ts-ignore
+            this[state] = [x, y]
+        }
+
+        this.grid[y][x] = state
         return true
     }
 
