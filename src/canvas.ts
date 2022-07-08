@@ -1,31 +1,5 @@
 import { validState, SwapTable, allowOne } from "./types"
 
-export function UpdateCanvas(grid: validState[][]) {
-    const elem = document.getElementById('GridCanvas') as any
-    if (!elem)
-        throw new Error("Cannot find canvas")
-
-    //TODO: scale to size
-    //TODO:math to make them aways square and always right size
-    const width = grid[0].length * 10
-    const height = grid.length * 10
-
-    elem.width = width
-    elem.height = height
-
-    const context = elem.getContext('2d') as CanvasRenderingContext2D
-}
-
-export function UpdateSquare(grid: validState[][], x: number, y: number) {
-    const elem = document.getElementById('GridCanvas') as any
-    if (!elem)
-        throw new Error("Cannot find canvas")
-
-    const context = elem.getContext('2d') as CanvasRenderingContext2D
-    context.fillStyle = SwapTable[grid[x][y]]
-    context.fillRect(x * 10 + 1, y * 10 + 1, 8, 8)
-}
-
 //TODO: Revamp (Grid, NavGrid and Renderer)
 // Grid -> NavGrid -> Renderer
 // Make NavGrid with all nav fnc

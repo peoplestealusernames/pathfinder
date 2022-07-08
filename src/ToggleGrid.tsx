@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { CanvasGrid, UpdateCanvas } from "./canvas"
+import { CanvasGrid } from "./canvas"
 
 export function ToggleGrid(props: { grid: CanvasGrid }) {
     useEffect(() => {
