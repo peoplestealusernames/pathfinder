@@ -44,6 +44,10 @@ function App() {
                 }
               })
               const path = new Path(); path.add(new Vec2(0, 0)); SetQued([path])
+              const start = Grid.getStart()
+              Grid.set(start[0], start[1], "start")
+              const goal = Grid.getGoal()
+              Grid.set(goal[0], goal[1], "goal")
             }}
           >Remove Path</button>
         </div>
@@ -164,8 +168,7 @@ function StepPath(grid: CanvasGrid, Qued: Path[]): [boolean, Path[]] {
 }
 
 function PathFound(grid: CanvasGrid, path: Path) {
-  const nodes = path.nodes.splice(1, path.nodes.length - 2)
-  for (const node of nodes) {
+  for (const node of path.nodes) {
     grid.set(node.x, node.y, "solved")
   }
 }
