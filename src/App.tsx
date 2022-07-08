@@ -23,6 +23,7 @@ function App() {
   })
 
   let [Grid, SetGrid] = useState<CanvasGrid>(new CanvasGrid(x, y))
+  let [WallCount, SetWallCount] = useState(1)
 
   useEffect(() => { SetGrid(new CanvasGrid(x, y)) }, [x, y])
 
@@ -81,20 +82,17 @@ function App() {
             }}
           >Log Que</button>
         </div>
-
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+          <input type="number" value={WallCount} onChange={(e: any) => { SetWallCount(e.target.value) }}
+            style={{ width: 50, WebkitAppearance: "none", MozAppearance: "textfield", padding: 0, }} />
           <button style={{ width: 100, alignSelf: "center", display: "flex" }}
             onClick={() => {
-              for (let i = 0; i < 10; i++)
+              for (let i = 0; i < WallCount; i++)
                 SetRandomWall(Grid)
             }}
-          >10x walls</button>
-          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-            onClick={() => {
-              for (let i = 0; i < 100; i++)
-                SetRandomWall(Grid)
-            }}
-          >100x walls</button>
+          >
+            x walls
+          </button>
         </div>
         <p style={{ padding: "10px", margin: "0px" }}>Path starts in top left and goes to bottem right</p>
       </div>
