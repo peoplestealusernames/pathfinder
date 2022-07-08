@@ -12,8 +12,8 @@ export class CanvasGrid {
 
     private grid: validState[][] = []
 
-    private start: [number, number] = [-1, -1] //Set in construct
-    private goal: [number, number] = [-1, -1] //Set in construct
+    private start: [number, number] = [-2, -2] //Set in construct
+    private goal: [number, number] = [-2, -2] //Set in construct
 
     readonly width: number
     readonly height: number
