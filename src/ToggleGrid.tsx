@@ -28,8 +28,6 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
                 props.grid.set(x, y, "empty", true)
             else if (tile === "empty")
                 props.grid.set(x, y, "wall", true)
-
-            console.log(`Update: ${x},${y} is now ${tile}`);
         }
 
         elem.addEventListener("click", mouseDown)
