@@ -4,6 +4,7 @@ import { CanvasGrid } from './canvas';
 import { ToggleGrid } from './ToggleGrid';
 import { Path, validState, Vec2, Walkable } from './types';
 
+
 function App() {
   let [x, setX] = useState(75)
   let [y, setY] = useState(25)
@@ -12,6 +13,7 @@ function App() {
   let solution = false;
 
   let [Qued, SetQued] = useState<Path[]>(() => {
+    //TODO: make que start around start node rather than on it ie 4 adj tiles
     let Qued1: Path[] = []
     const start = new Vec2(0, 0);
     Qued1[0] = new Path()
@@ -30,13 +32,23 @@ function App() {
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
           <input type="number" value={x} onChange={(e: any) => { setX(e.target.value) }} style={{ width: 50 }} />
           <input type="number" value={y} onChange={(e: any) => { setY(e.target.value) }} style={{ width: 50 }} />
-          <button style={{ width: 75, alignSelf: "center", display: "flex" }}
+          <button style={{ width: 50, alignSelf: "center", display: "flex" }}
             onClick={() => { Grid.reset(); const path = new Path(); path.add(new Vec2(0, 0)); SetQued([path]) }}
           >Reset</button>
+          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+            onClick={() => {
+              Grid.foreach((x: number, y: number, tile?: validState) => {
+                if (tile === "qued" || tile === "checked" || tile === "solved") {
+                  Grid.set(x, y, "empty")
+                }
+              })
+              const path = new Path(); path.add(new Vec2(0, 0)); SetQued([path])
+            }}
+          >Remove Path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
           <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-            onClick={() => { SetQued(StepPath(Grid, Qued)); }}
+            onClick={() => { const [result, paths] = StepPath(Grid, Qued); if (!result) { SetQued(paths) } }}
           >Step path</button>
           <button style={{ width: 100, alignSelf: "center", display: "flex" }}
             onClick={() => { RunPath() }}
@@ -93,8 +105,14 @@ function App() {
   function RunPath() {
     if (!running) {
       setInterval(() => {
-        Qued = StepPath(Grid, Qued)
-        SetQued(Qued);
+        let result: boolean
+        [result, Qued] = StepPath(Grid, Qued)
+
+        if (result == false) {
+          SetQued(Qued);
+        } else {
+          //TODO: stop timer
+        }
       }, 100)
     }
   }
@@ -102,8 +120,15 @@ function App() {
     if (!running) {
       //TODO: Stop timer for running
     }
-    while (Qued.length !== 0) {
-      Qued = StepPath(Grid, Qued)
+    let result = false
+    while (Qued.length !== 0 && !result) {
+      [result, Qued] = StepPath(Grid, Qued)
+
+      if (result == false) {
+        SetQued(Qued);
+      } else {
+        //TODO: stop timer
+      }
     }
     SetQued(Qued);
   }
@@ -122,26 +147,28 @@ function SetRandomWall(grid: CanvasGrid) {
   grid.set(x, y, "wall")
 }
 
-function StepPath(grid: CanvasGrid, Qued: Path[]) {
+function StepPath(grid: CanvasGrid, Qued: Path[]): [boolean, Path[]] {
   let ret: Path[] = []
 
   console.log("Stepping pathfinder")
   for (const pos of Qued) {
-    const surroundings = CheckSurround(grid, pos)
-    if (Array.isArray(surroundings)) {
+    const [solved, surroundings] = CheckSurround(grid, pos)
+    if (!solved) {
       ret.push(...surroundings)
     } else {
-      PathFound(grid, surroundings)
+      PathFound(grid, surroundings[0])
       console.log("path found")
+      return [true, surroundings]
     }
   }
 
   console.log(`Step done ${ret.length} paths`)
-  return ret
+  return [false, ret]
 }
 
 function PathFound(grid: CanvasGrid, path: Path) {
-  for (const node of path.nodes) {
+  const nodes = path.nodes.splice(1, path.nodes.length - 2)
+  for (const node of nodes) {
     grid.set(node.x, node.y, "solved")
   }
 }
@@ -153,9 +180,16 @@ const Movement = [
   new Vec2([-1, 0])
 ]
 
-function CheckSurround(grid: CanvasGrid, path: Path) {
+function CheckSurround(grid: CanvasGrid, path: Path): [boolean, Path[]] {
   let ret: Path[] = []
   const origin = path.last()
+
+  let tile = grid.get(origin.x, origin.y)
+
+  if (tile !== "empty") {
+    console.log(tile)
+  }
+
   grid.set(origin.x, origin.y, "checked")
 
   for (const offset of Movement) {
@@ -166,7 +200,7 @@ function CheckSurround(grid: CanvasGrid, path: Path) {
       if (Walkable[tile]) {
         if (tile === "goal") {
           path.add(pos)
-          return path
+          return [true, [path]]
         }
         let Branch = path.Branch()
         Branch.add(pos)
@@ -175,7 +209,7 @@ function CheckSurround(grid: CanvasGrid, path: Path) {
       }
   }
 
-  return ret
+  return [false, ret]
 }
 
 function getRandomInt(max: number) {
