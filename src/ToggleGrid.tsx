@@ -41,9 +41,12 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
             props.grid.set(x, y, selected, true)
         }
 
+        //TODO: drag
         elem.addEventListener("click", mouseDown)
 
-        return (() => { elem.removeEventListener("click", mouseDown) })
+        return (() => {
+            elem.removeEventListener("click", mouseDown)
+        })
     })
 
     return (
