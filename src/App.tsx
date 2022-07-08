@@ -27,7 +27,7 @@ function App() {
             onClick={() => { Grid.reset(); Nav.Reset() }}
           >Reset</button>
           <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-            onClick={Nav.Reset}
+            onClick={() => { Nav.Reset() }}
           >Remove Path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
