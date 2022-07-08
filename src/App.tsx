@@ -13,8 +13,6 @@ function App() {
   const Grid = new CanvasGrid(x, y)
   const Nav = new NavGrid(Grid)
 
-  let [WallCount, SetWallCount] = useState(1)
-
   useEffect(() => { Grid.setWidth(x) }, [x])
   useEffect(() => { Grid.setHeight(y) }, [y])
 
@@ -71,18 +69,7 @@ function App() {
             }}
           >Log Que</button>
         </div>
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-          <input type="number" value={WallCount} onChange={(e: any) => { SetWallCount(e.target.value) }}
-            style={{ width: 50, WebkitAppearance: "none", MozAppearance: "textfield", padding: 0, }} />
-          <button style={{ alignSelf: "center", display: "flex" }}
-            onClick={() => {
-              for (let i = 0; i < WallCount; i++)
-                SetRandomWall(Grid)
-            }}
-          >
-            x walls
-          </button>
-        </div>
+        <RandomWall grid={Grid} />
         <p style={{ padding: "10px", margin: "0px" }}>Path starts in top left and goes to bottem right</p>
       </div>
       <ToggleGrid grid={Grid} />
@@ -90,6 +77,23 @@ function App() {
   );
 
 
+}
+
+function RandomWall(props: { grid: CanvasGrid }) {
+  let [WallCount, SetWallCount] = useState(1)
+
+  return (<div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+    <input type="number" value={WallCount} onChange={(e: any) => { SetWallCount(e.target.value) }}
+      style={{ width: 50, WebkitAppearance: "none", MozAppearance: "textfield", padding: 0, }} />
+    <button style={{ alignSelf: "center", display: "flex" }}
+      onClick={() => {
+        for (let i = 0; i < WallCount; i++)
+          SetRandomWall(props.grid)
+      }}
+    >
+      x walls
+    </button>
+  </div>)
 }
 
 function SetRandomWall(grid: CanvasGrid) {
