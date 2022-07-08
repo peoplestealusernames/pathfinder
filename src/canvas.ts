@@ -26,11 +26,13 @@ export function UpdateSquare(grid: validState[][], x: number, y: number) {
     context.fillRect(x * 10 + 1, y * 10 + 1, 8, 8)
 }
 
+//TODO: Revamp (Grid, NavGrid and Renderer)
+// Grid -> NavGrid -> Renderer
+// Make NavGrid with all nav fnc
+// Make canvas manger aka renderer
+// scaling management to fit screen
+
 export class CanvasGrid {
-    //TODO: Canvas manager
-    //TODO: scaling math
-    //TODO: Move solution and solution finder to second layer canvas or grid
-    //TODO: Move que into solution/pathfinding layer
 
     private grid: validState[][] = []
 
