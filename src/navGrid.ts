@@ -51,8 +51,9 @@ export class NavGrid {
         if (!this.Qued)
             this.Qued = this.GetGridStart()
 
-        while (this.Qued.length !== 0 && !this.solved) {
-            this.StepPath(false)
+        let solved = false
+        while (this.Qued.length !== 0 && !solved) {
+            [solved] = this.StepPath(false)
         }
     }
 
@@ -80,7 +81,7 @@ export class NavGrid {
         this.timer = undefined
     }
 
-    StepPath(log = true) {
+    StepPath(log = true): [boolean, Path[]] {
         let ret: Path[] = []
 
         if (!this.Qued)
