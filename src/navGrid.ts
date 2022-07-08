@@ -52,7 +52,7 @@ export class NavGrid {
             this.Qued = this.GetGridStart()
 
         while (this.Qued.length !== 0 && !this.solved) {
-            this.StepPath()
+            this.StepPath(false)
         }
     }
 
@@ -80,26 +80,28 @@ export class NavGrid {
         this.timer = undefined
     }
 
-    StepPath() {
+    StepPath(log = false) {
         let ret: Path[] = []
 
         if (!this.Qued)
             this.Qued = this.GetGridStart()
 
-        console.log(`Stepping pathfinder ${this.Qued.length} paths qued`)
+        if (log)
+            console.log(`Stepping pathfinder ${this.Qued.length} paths qued`)
         for (const pos of this.Qued) {
             const [solved, surroundings] = this.CheckSurround(this.grid, pos)
             if (!solved) {
                 ret.push(...surroundings)
             } else {
                 this.PathFound(surroundings[0])
-                console.log("path found")
+                console.log("solution found")
                 return [true, surroundings]
             }
         }
 
         this.Qued = ret
-        console.log(`Step done ${ret.length} paths`)
+        if (log)
+            console.log(`Step done ${ret.length} paths`)
         return [false, ret]
     }
 
