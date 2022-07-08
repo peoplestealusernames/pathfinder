@@ -107,10 +107,11 @@ export class CanvasGrid {
     }
 
     get(x: number, y: number) {
-        if (this.grid[y])
-            if (this.grid[y][x])
-                return this.grid[y][x]
-
+        if (this.grid[y]) {
+            const tile = this.grid[y][x]
+            if (tile)
+                return tile
+        }
         return null
     }
 
