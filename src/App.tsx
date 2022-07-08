@@ -24,7 +24,7 @@ function App() {
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
           <input type="number" value={x} onChange={(e: any) => { setX(e.target.value) }} style={{ width: 50 }} />
           <input type="number" value={y} onChange={(e: any) => { setY(e.target.value) }} style={{ width: 50 }} />
-          <button style={{ width: 50, alignSelf: "center", display: "flex" }}
+          <button style={{ alignSelf: "center", display: "flex" }}
             onClick={() => { Grid.reset(); Nav.Reset() }}
           >Reset</button>
           <button style={{ width: 100, alignSelf: "center", display: "flex" }}
@@ -32,18 +32,18 @@ function App() {
           >Remove Path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          <button style={{ alignSelf: "center", display: "flex" }}
             onClick={() => { Nav.StepPath() }}
           >Step path</button>
-          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          <button style={{ alignSelf: "center", display: "flex" }}
             onClick={() => { Nav.RunPath() }}
           >Run path</button>
-          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          <button style={{ alignSelf: "center", display: "flex" }}
             onClick={() => { Nav.GeneratePath() }}
           >Generate path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          <button style={{ alignSelf: "center", display: "flex" }}
             onClick={() => {
               let stri = ""
               for (const row of Grid.getGrid()) {
@@ -56,7 +56,7 @@ function App() {
             }}
           >Log Data</button>
 
-          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          <button style={{ alignSelf: "center", display: "flex" }}
             onClick={() => {
               let stri = ""
               const Qued = Nav.GetQued()
@@ -74,7 +74,7 @@ function App() {
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
           <input type="number" value={WallCount} onChange={(e: any) => { SetWallCount(e.target.value) }}
             style={{ width: 50, WebkitAppearance: "none", MozAppearance: "textfield", padding: 0, }} />
-          <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+          <button style={{ alignSelf: "center", display: "flex" }}
             onClick={() => {
               for (let i = 0; i < WallCount; i++)
                 SetRandomWall(Grid)
