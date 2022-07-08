@@ -80,7 +80,7 @@ export class NavGrid {
         this.timer = undefined
     }
 
-    StepPath(log = false) {
+    StepPath(log = true) {
         let ret: Path[] = []
 
         if (!this.Qued)
@@ -94,7 +94,8 @@ export class NavGrid {
                 ret.push(...surroundings)
             } else {
                 this.PathFound(surroundings[0])
-                console.log("solution found")
+                if (log)
+                    console.log("solution found")
                 return [true, surroundings]
             }
         }
@@ -110,10 +111,6 @@ export class NavGrid {
         const origin = path.last()
 
         let tile = grid.get(origin.x, origin.y)
-
-        if (tile !== "empty") {
-            console.log(origin, tile)
-        }
 
         grid.set(origin.x, origin.y, "checked")
 
