@@ -136,8 +136,7 @@ function SetRandomWall(grid: CanvasGrid) {
   let tile: validState | null = null
   let x = 0
   let y = 0
-  //TODO: prevent infi loop
-  while (tile !== "empty") {
+  for (let loop = 0; tile !== "empty" && loop < 10; loop++) {
     x = getRandomInt(grid.width)
     y = getRandomInt(grid.height)
     tile = grid.get(x, y)
