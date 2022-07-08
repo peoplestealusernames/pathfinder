@@ -7,6 +7,8 @@ import { validState, SwapTable, allowOne } from "./types"
 // scaling management to fit screen
 
 export class CanvasGrid {
+    //TODO: on new start
+    //TODO: on new goal
 
     private grid: validState[][] = []
 
