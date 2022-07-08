@@ -1,12 +1,12 @@
 import { CanvasGrid } from "./canvas";
-import { Path, validState, Vec2, Walkable } from "./types";
+import { Path, validState, Walkable } from "./types";
 
 //TODO: Take as input ToNavGrid
 const Movement = [
-    new Vec2([0, 1]),
-    new Vec2([1, 0]),
-    new Vec2([0, -1]),
-    new Vec2([-1, 0])
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0]
 ]
 
 export class NavGrid {
@@ -28,7 +28,7 @@ export class NavGrid {
     }
 
     GetGridStart() {
-        return [new Path([new Vec2(...this.grid.getStart())])]
+        return [new Path([this.grid.getStart()])]
     }
 
     Reset() {
@@ -111,12 +111,12 @@ export class NavGrid {
         let ret: Path[] = []
         const origin = path.last()
 
-        grid.set(origin.x, origin.y, "checked")
+        grid.set(origin[0], origin[1], "checked")
 
         for (const offset of Movement) {
 
-            const pos = origin.add(offset)
-            const tile = grid.get(pos.x, pos.y)
+            const pos: [number, number] = [origin[0] + offset[0], origin[1] + offset[1]]
+            const tile = grid.get(pos[0], pos[1])
             if (tile)
                 if (Walkable[tile]) {
                     if (tile === "goal") {
@@ -126,7 +126,7 @@ export class NavGrid {
                     let Branch = path.Branch()
                     Branch.add(pos)
                     ret.push(Branch)
-                    grid.set(pos.x, pos.y, "qued")
+                    grid.set(pos[0], pos[1], "qued")
                 }
         }
 
@@ -135,7 +135,7 @@ export class NavGrid {
 
     PathFound(path: Path) {
         for (const node of path.nodes) {
-            this.grid.set(node.x, node.y, "solved")
+            this.grid.set(node[0], node[1], "solved")
         }
     }
 }

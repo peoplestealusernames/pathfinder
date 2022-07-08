@@ -32,43 +32,18 @@ export const Walkable: { [k in validState]: boolean } = {
 
 export const allowOne: validState[] = ["start", "goal"]
 
-export class Vec2 {
-    public x: number
-    public y: number
-
-    constructor(vec2: [number, number])
-    constructor(x: number, y: number)
-    public constructor(...params: any[]) {
-        if (params.length === 2) {
-            this.x = params[0]
-            this.y = params[1]
-        } else {
-            this.x = params[0][0]
-            this.y = params[0][1]
-        }
-    }
-
-    public add(b: Vec2): Vec2 {
-        return new Vec2(this.x + b.x, this.y + b.y)
-    }
-
-    public subtract(b: Vec2): Vec2 {
-        return new Vec2(this.x - b.x, this.y - b.y)
-    }
-}
-
 export class Path {
-    nodes: Vec2[] = []
+    nodes: [number, number][] = []
 
     constructor()
-    constructor(nodes: Vec2[])
+    constructor(nodes: [number, number][])
     constructor(...args: any[]) {
         if (args[0]) {
             this.nodes = args[0]
         }
     }
 
-    add(node: Vec2) {
+    add(node: [number, number]) {
         this.nodes.push(node)
     }
 

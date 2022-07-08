@@ -4,7 +4,7 @@ import { Buttons } from './Buttons/Buttons';
 import { CanvasGrid } from './canvas';
 import { NavGrid } from './navGrid';
 import { ToggleGrid } from './ToggleGrid';
-import { Path, validState, Vec2, Walkable } from './types';
+import { Path, validState, Walkable } from './types';
 
 
 function App() {
