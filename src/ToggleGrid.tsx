@@ -9,11 +9,12 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
 
         props.grid.addCanvas(elem)
 
-        const elemLeft = elem.offsetLeft + elem.clientLeft
-        const elemTop = elem.offsetTop + elem.clientTop
 
         const mouseDown = (e: any) => {
             e.preventDefault()
+
+            const elemLeft = elem.offsetLeft + elem.clientLeft
+            const elemTop = elem.offsetTop + elem.clientTop
             const xp = e.pageX - elemLeft
             const yp = e.pageY - elemTop
 
@@ -34,7 +35,7 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
         elem.addEventListener("click", mouseDown)
 
         return (() => { elem.removeEventListener("click", mouseDown) })
-    }, [props.grid])
+    })
 
     return (
         <div key={`A`} style={{
