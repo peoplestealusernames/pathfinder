@@ -9,7 +9,7 @@ import { Path, validState, Vec2, Walkable } from './types';
 
 function App() {
 
-  const Grid = new CanvasGrid(5, 5)
+  const Grid = new CanvasGrid(75, 25)
   const Nav = new NavGrid(Grid)
 
   return (
