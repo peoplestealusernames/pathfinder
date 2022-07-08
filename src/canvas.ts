@@ -32,6 +32,9 @@ export class CanvasGrid {
 
     private grid: validState[][] = []
 
+    private start: [number, number] = [-1, -1] //Set in construct
+    private goal: [number, number] = [-1, -1] //Set in construct
+
     readonly width: number
     readonly height: number
 
@@ -70,10 +73,18 @@ export class CanvasGrid {
             }
         }
 
-        this.grid[this.height - 1][this.width - 1] = "goal"
-        this.grid[0][0] = "start"
+        this.set(0, 0, "start")
+        this.set(this.width - 1, this.height - 1, "goal")
 
         this.reRender()
+    }
+
+    getStart() {
+        return this.start
+    }
+
+    getGoal() {
+        return this.goal
     }
 
     getGrid() {
@@ -113,6 +124,12 @@ export class CanvasGrid {
             return false
         this.context.fillStyle = SwapTable[state]
         this.context.fillRect(x * 10 + 1, y * 10 + 1, 8, 8)
+
+        if (state === "start")
+            this.start = [x, y]
+        else if (state === "goal")
+            this.goal = [x, y]
+
         return true
     }
 
