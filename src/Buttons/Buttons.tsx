@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
 import { CanvasGrid } from "../canvas";
 import { NavGrid } from "../navGrid";
+import { ChangeDim } from "./ChangeDim";
 import { RandomWall } from "./RandomWall";
 
 export function Buttons(props: { grid: CanvasGrid, nav: NavGrid }) {
-    let [x, setX] = useState(75)
-    let [y, setY] = useState(25)
-    useEffect(() => { props.grid.setWidth(x) }, [x])
-    useEffect(() => { props.grid.setHeight(y) }, [y])
-
     return (<div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", width: "100vw" }}>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-            <input type="number" value={x} onChange={(e: any) => { setX(e.target.value) }} style={{ width: 50 }} />
-            <input type="number" value={y} onChange={(e: any) => { setY(e.target.value) }} style={{ width: 50 }} />
+            <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={props.grid.setWidth.bind(props.grid)} />
+            <ChangeDim key="ChangeY" inputType="number" initValue={props.grid.getHeight()} setter={props.grid.setHeight.bind(props.grid)} />
             <button style={{ alignSelf: "center", display: "flex" }}
                 onClick={() => { props.grid.reset(); props.nav.Reset() }}
             >Reset</button>
