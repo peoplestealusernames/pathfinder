@@ -48,17 +48,25 @@ export class Vec2 {
 }
 
 export class Path {
-    public nodes: Vec2[] = []
+    nodes: Vec2[] = []
 
-    public add(node: Vec2) {
+    constructor()
+    constructor(nodes: Vec2[])
+    constructor(...args: any[]) {
+        if (args[0]) {
+            this.nodes = args[0]
+        }
+    }
+
+    add(node: Vec2) {
         this.nodes.push(node)
     }
 
-    public last() {
+    last() {
         return this.nodes[this.nodes.length - 1]
     }
 
-    public Branch() {
+    Branch() {
         let P = new Path()
         for (const node of this.nodes)
             P.add(node)
