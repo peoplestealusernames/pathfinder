@@ -27,8 +27,20 @@ export class NavGrid {
         else return this.Qued
     }
 
-    GetGridStart() {
-        return [new Path([this.grid.getStart()])]
+    GetQueStart() {
+        const start = this.grid.getStart()
+        let ret: Path[] = []
+
+        for (const offset of Movement) {
+            const pos: [number, number] = [start[0] + offset[0], start[1] + offset[1]]
+            const tile = this.grid.get(pos[0], pos[1])
+
+            if (tile)
+                if (Walkable[tile])
+                    ret.push(new Path([pos]))
+        }
+
+        return ret
     }
 
     Reset() {
@@ -49,7 +61,7 @@ export class NavGrid {
         this.StopRunPath()
 
         if (!this.Qued)
-            this.Qued = this.GetGridStart()
+            this.Qued = this.GetQueStart()
 
         let solved = false
         while (this.Qued.length !== 0 && !solved) {
@@ -90,7 +102,7 @@ export class NavGrid {
             out = (stri: string) => { console.log(stri) }
 
         if (!this.Qued)
-            this.Qued = this.GetGridStart()
+            this.Qued = this.GetQueStart()
 
         out(`Stepping pathfinder ${this.Qued.length} paths qued`)
 
@@ -119,9 +131,9 @@ export class NavGrid {
         grid.set(origin[0], origin[1], "checked")
 
         for (const offset of Movement) {
-
             const pos: [number, number] = [origin[0] + offset[0], origin[1] + offset[1]]
             const tile = grid.get(pos[0], pos[1])
+
             if (tile)
                 if (Walkable[tile]) {
                     if (tile === "goal") {

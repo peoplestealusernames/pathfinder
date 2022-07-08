@@ -27,7 +27,7 @@ export const Walkable: { [k in validState]: boolean } = {
     "qued": false,
     "goal": true,
     "solved": false,
-    "start": true,
+    "start": false,
 }
 
 export const allowOne: validState[] = ["start", "goal"]
