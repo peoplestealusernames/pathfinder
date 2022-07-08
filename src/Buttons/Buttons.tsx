@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { CanvasGrid } from "../canvas";
 import { NavGrid } from "../navGrid";
 import { ChangeDim } from "./ChangeDim";
