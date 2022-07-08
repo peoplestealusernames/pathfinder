@@ -10,6 +10,7 @@ const Movement = [
 ]
 
 export class NavGrid {
+    //TODO: nav agent for diffrent types of path finding
     readonly grid: CanvasGrid
 
     private solved = false //TODO: make only modifyable from class but readable out
