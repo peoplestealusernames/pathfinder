@@ -10,8 +10,8 @@ function App() {
   let [x, setX] = useState(75)
   let [y, setY] = useState(25)
 
-  let [Grid, SetGrid] = useState<CanvasGrid>(new CanvasGrid(x, y))
-  let [Nav, SetNav] = useState<NavGrid>(new NavGrid(Grid))
+  const Grid = new CanvasGrid(x, y)
+  const Nav = new NavGrid(Grid)
 
   let [WallCount, SetWallCount] = useState(1)
 
