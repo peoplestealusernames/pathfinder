@@ -114,7 +114,7 @@ export class CanvasGrid {
         return null
     }
 
-    set(x: number, y: number, state: validState) {
+    set(x: number, y: number, state: validState, log = false) {
         if (this.get(x, y) === null)
             return false
 
@@ -133,8 +133,10 @@ export class CanvasGrid {
 
             //@ts-ignore
             this[state] = [x, y]
-            console.log(state, x, y);
         }
+
+        if (log)
+            console.log(`Update:{${x},${y}} is ${state}`);
 
         this.grid[y][x] = state
         return true

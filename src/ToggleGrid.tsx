@@ -24,9 +24,9 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
 
             //TODO: allow any place (start wall ect) from menu
             if (tile === "wall")
-                props.grid.set(x, y, "empty")
+                props.grid.set(x, y, "empty", true)
             else if (tile === "empty")
-                props.grid.set(x, y, "wall")
+                props.grid.set(x, y, "wall", true)
 
             console.log(`Update: ${x},${y} is now ${tile}`);
         }
