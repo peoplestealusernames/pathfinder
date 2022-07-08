@@ -114,6 +114,7 @@ export class CanvasGrid {
 
             //@ts-ignore
             this[state] = [x, y]
+            console.log(state, x, y);
         }
 
         this.grid[y][x] = state
