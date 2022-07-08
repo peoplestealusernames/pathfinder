@@ -1,11 +1,5 @@
 import { validState, SwapTable, allowOne } from "./types"
 
-//TODO: Revamp (Grid, NavGrid and Renderer)
-// Grid -> NavGrid -> Renderer
-// Make NavGrid with all nav fnc
-// Make canvas manger aka renderer
-// scaling management to fit screen
-
 export class CanvasGrid {
     //TODO: on new start
     //TODO: on new goal

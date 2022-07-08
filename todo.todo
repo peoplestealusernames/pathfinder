@@ -1,0 +1,8 @@
+//TODO: Revamp (Grid, NavGrid and Renderer)
+// Grid -> NavGrid -> Renderer
+// Make NavGrid with all nav fnc
+// Make canvas manger aka renderer
+// scaling management to fit screen
+
+//TODO: Revamp (nodes)
+// Replace grid with nodes making a web linking to eachother
