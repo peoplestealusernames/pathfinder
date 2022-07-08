@@ -110,8 +110,6 @@ export class NavGrid {
         let ret: Path[] = []
         const origin = path.last()
 
-        let tile = grid.get(origin.x, origin.y)
-
         grid.set(origin.x, origin.y, "checked")
 
         for (const offset of Movement) {
