@@ -10,6 +10,16 @@ export const SwapTable: { [k in validState]: string } = {
     "start": "orange",
 }
 
+export const Replaceable: { [k in validState]: boolean } = {
+    "empty": true,
+    "wall": true,
+    "checked": false,
+    "qued": false,
+    "goal": false,
+    "solved": false,
+    "start": false,
+}
+
 export const Walkable: { [k in validState]: boolean } = {
     "empty": true,
     "wall": false,

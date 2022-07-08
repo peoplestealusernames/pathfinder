@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { CanvasGrid } from "./canvas"
+import { Replaceable, validState } from "./types"
 
 export function ToggleGrid(props: { grid: CanvasGrid }) {
     useEffect(() => {
@@ -23,11 +24,21 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
 
             const tile = props.grid.get(x, y)
 
-            //TODO: allow any place (start wall ect) from menu
-            if (tile === "wall")
-                props.grid.set(x, y, "empty", true)
-            else if (tile === "empty")
-                props.grid.set(x, y, "wall", true)
+            if (!tile)
+                throw new Error(`Tile not found at ${x},${y}`)
+
+            if (!Replaceable[tile])
+                throw new Error(`Tile at ${x},${y}(${tile}) is not replaceable`)
+
+            const selector = document.getElementById("Block selector") as HTMLDivElement
+            if (!selector)
+                throw new Error("No selector div")
+
+            const selected = selector.getAttribute("data-value") as validState
+            if (!selected)
+                throw new Error("No selected value")
+
+            props.grid.set(x, y, selected, true)
         }
 
         elem.addEventListener("click", mouseDown)

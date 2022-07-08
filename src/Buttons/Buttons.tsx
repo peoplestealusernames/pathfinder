@@ -2,6 +2,7 @@ import { CanvasGrid } from "../canvas";
 import { NavGrid } from "../navGrid";
 import { ChangeDim } from "./ChangeDim";
 import { RandomWall } from "./RandomWall";
+import { SelectTile } from "./SelectTile";
 
 export function Buttons(props: { grid: CanvasGrid, nav: NavGrid }) {
     return (<div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", width: "100vw" }}>
@@ -55,6 +56,7 @@ export function Buttons(props: { grid: CanvasGrid, nav: NavGrid }) {
                 }}
             >Log Que</button>
         </div>
+        <SelectTile />
         <RandomWall grid={props.grid} />
     </div>)
 }
