@@ -28,6 +28,7 @@ export function UpdateSquare(grid: validState[][], x: number, y: number) {
 
 export class CanvasGrid {
     //TODO: Canvas manager
+    //TODO: scaling math
     //TODO: Move solution and solution finder to second layer canvas or grid
     //TODO: Move que into solution/pathfinding layer
 

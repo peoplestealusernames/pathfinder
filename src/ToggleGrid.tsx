@@ -2,8 +2,6 @@ import { useEffect } from "react"
 import { CanvasGrid, UpdateCanvas } from "./canvas"
 
 export function ToggleGrid(props: { grid: CanvasGrid }) {
-    //TODO: make styles (including height from here pass to toggle block)
-
     useEffect(() => {
         const elem = document.getElementById('GridCanvas') as HTMLCanvasElement
         if (!elem)
