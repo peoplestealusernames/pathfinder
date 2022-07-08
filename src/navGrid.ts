@@ -37,7 +37,7 @@ export class NavGrid {
 
             if (tile)
                 if (Walkable[tile])
-                    ret.push(new Path([pos]))
+                    ret.push(new Path([start, pos]))
         }
 
         return ret
