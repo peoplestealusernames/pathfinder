@@ -15,8 +15,8 @@ export class CanvasGrid {
     private start: [number, number] = [-2, -2] //Set in construct
     private goal: [number, number] = [-2, -2] //Set in construct
 
-    readonly width: number
-    readonly height: number
+    private width: number
+    private height: number
 
     private context?: CanvasRenderingContext2D
     private canvas?: HTMLCanvasElement
@@ -28,17 +28,28 @@ export class CanvasGrid {
         this.reset()
     }
 
+    getWidth() {
+        return this.width
+    }
+
+    getHeight() {
+        return this.height
+    }
+
+    //TODO: checker on seter to make sure it's valid
+    setWidth(width: number) {
+        this.width = width
+        this.reset()
+    }
+
+    setHeight(height: number) {
+        this.height = height
+        this.reset()
+    }
+
     addCanvas(canvas: HTMLCanvasElement) {
         this.canvas = canvas
-
-        this.canvas.width = this.width * 10
-        this.canvas.height = this.height * 10
-
         this.context = this.canvas.getContext('2d') as CanvasRenderingContext2D
-        const img = new Image(this.width * 10, this.height * 10)
-        this.context.drawImage(img, 0, 0, img.width * 10, img.height * 10)
-        this.context.fillStyle = "black"
-        this.context.fillRect(0, 0, img.width * 10, img.height * 10)
 
         this.reRender()
     }
@@ -72,8 +83,16 @@ export class CanvasGrid {
     }
 
     reRender() {
-        if (!this.context)
+        if (!this.context || !this.canvas)
             return false
+
+        this.canvas.width = this.width * 10
+        this.canvas.height = this.height * 10
+
+        const img = new Image(this.width * 10, this.height * 10)
+        this.context.drawImage(img, 0, 0, img.width * 10, img.height * 10)
+        this.context.fillStyle = "black"
+        this.context.fillRect(0, 0, img.width * 10, img.height * 10)
 
         for (const ys in this.grid) {
             const y = parseInt(ys)

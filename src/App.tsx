@@ -15,7 +15,8 @@ function App() {
 
   let [WallCount, SetWallCount] = useState(1)
 
-  useEffect(() => { SetGrid(new CanvasGrid(x, y)) }, [x, y])
+  useEffect(() => { Grid.setWidth(x) }, [x])
+  useEffect(() => { Grid.setHeight(y) }, [y])
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
@@ -96,8 +97,8 @@ function SetRandomWall(grid: CanvasGrid) {
   let x = 0
   let y = 0
   for (let loop = 0; tile !== "empty" && loop < 10; loop++) {
-    x = getRandomInt(grid.width)
-    y = getRandomInt(grid.height)
+    x = getRandomInt(grid.getWidth())
+    y = getRandomInt(grid.getHeight())
     tile = grid.get(x, y)
   }
   grid.set(x, y, "wall")
