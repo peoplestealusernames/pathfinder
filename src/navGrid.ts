@@ -86,7 +86,7 @@ export class NavGrid {
             if (!solved) {
                 ret.push(...surroundings)
             } else {
-                this.PathFound(this.grid, surroundings[0])
+                this.PathFound(surroundings[0])
                 console.log("path found")
                 return [true, surroundings]
             }
@@ -129,9 +129,9 @@ export class NavGrid {
         return [false, ret]
     }
 
-    PathFound(grid: CanvasGrid, path: Path) {
+    PathFound(path: Path) {
         for (const node of path.nodes) {
-            grid.set(node.x, node.y, "solved")
+            this.grid.set(node.x, node.y, "solved")
         }
     }
 }
