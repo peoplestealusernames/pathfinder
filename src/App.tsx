@@ -36,8 +36,8 @@ function App() {
             onClick={() => { Nav.StepPath() }}
           >Step path</button>
           <button style={{ alignSelf: "center", display: "flex" }}
-            onClick={() => { Nav.RunPath() }}
-          >Run path</button>
+            onClick={() => { Nav.TogglePath() }}
+          >Toggle pathfinder</button>
           <button style={{ alignSelf: "center", display: "flex" }}
             onClick={() => { Nav.GeneratePath() }}
           >Generate path</button>

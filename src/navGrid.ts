@@ -56,9 +56,15 @@ export class NavGrid {
         }
     }
 
+    TogglePath() {
+        if (this.timer)
+            this.StopRunPath()
+        else
+            this.RunPath()
+    }
+
     RunPath() {
         if (!this.timer) {
-            clearInterval(this.timer)
             this.timer = setInterval(() => {
                 this.StepPath()
 
