@@ -6,6 +6,7 @@
 
 //TODO: Revamp (nodes)
 // Replace grid with nodes making a web linking to eachother
+// custom ids
 
 //TODO: Scale when scaling
 // Options:
@@ -14,3 +15,16 @@
 // Dont move but save (save the old grid and grab in new cell during reset)
 
 //TODO: fix cords 0,0 is top left not bottem left
+
+//TODO: maze
+// multiple generators
+// generators options
+// walk function
+ 
+//TODO: preformance
+// change ques and asyncs
+// block changes
+// multithreads?
+// less memory usage and array creation
+// mark cells as processed by a custom id
+// when generators are running add console log to say its still processing after x iteration
