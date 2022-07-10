@@ -3,10 +3,10 @@ import { Path, validState, Walkable } from "./types";
 
 //TODO: Take as input ToNavGrid
 const Movement: [number, number][] = [
-    [0, 2],
-    [2, 0],
-    [0, -2],
-    [-2, 0]
+    [0, 1],
+    [1, 0],
+    [0, -1],
+    [-1, 0]
 ]
 
 export class NavGrid {
