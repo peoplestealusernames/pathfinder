@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { CanvasGrid } from "../canvas"
+import { getRandomInt } from "../misc"
 import { validState } from "../types"
 
 export function RandomWall(props: { grid: CanvasGrid }) {
@@ -29,8 +30,4 @@ function SetRandomWall(grid: CanvasGrid) {
         tile = grid.get(x, y)
     }
     grid.set(x, y, "wall")
-}
-
-function getRandomInt(max: number) {
-    return Math.floor(Math.random() * max);
 }
