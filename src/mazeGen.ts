@@ -9,6 +9,8 @@ const Movement: [number, number][] = [
 ]
 
 export function mazeGen(grid: CanvasGrid) {
+    //TODO: fix bug where sometimes goal is deleted
+
     grid.reset("wall")
 
     let Stack: [number, number][] = [grid.getStart()]
