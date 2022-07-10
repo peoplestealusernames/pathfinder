@@ -61,11 +61,11 @@ export class CanvasGrid {
         this.reRender()
     }
 
-    getStart() {
+    getStart(): [number, number] {
         return this.start
     }
 
-    getGoal() {
+    getGoal(): [number, number] {
         return this.goal
     }
 
