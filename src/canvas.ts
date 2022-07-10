@@ -45,13 +45,13 @@ export class CanvasGrid {
         this.reRender()
     }
 
-    reset() {
+    reset(setTo: validState = "empty") {
         this.grid = []
 
         for (let i = 0; i < this.height; i++) {
             this.grid[i] = []
             for (let k = 0; k < this.width; k++) {
-                this.grid[i][k] = "empty"
+                this.grid[i][k] = setTo
             }
         }
 
