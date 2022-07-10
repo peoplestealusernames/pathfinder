@@ -1,6 +1,5 @@
 import { CanvasGrid } from "./canvas";
-import { getRandomInt, sleep } from "./misc";
-import { Path, Walkable } from "./types";
+import { getRandomInt } from "./misc";
 
 const Movement: [number, number][] = [
     [0, 2],

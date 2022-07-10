@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import { Buttons } from './Buttons/Buttons';
 import { CanvasGrid } from './canvas';
 import { NavGrid } from './navGrid';
 import { ToggleGrid } from './ToggleGrid';
-import { Path, validState, Walkable } from './types';
 
 
 function App() {
