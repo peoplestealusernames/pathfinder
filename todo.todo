@@ -12,3 +12,5 @@
 // When scale is changed scale all tiles to scale
 // Move to scale without adding more tiles
 // Dont move but save (save the old grid and grab in new cell during reset)
+
+//TODO: fix cords 0,0 is top left not bottem left
