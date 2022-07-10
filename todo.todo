@@ -6,3 +6,9 @@
 
 //TODO: Revamp (nodes)
 // Replace grid with nodes making a web linking to eachother
+
+//TODO: Scale when scaling
+// Options:
+// When scale is changed scale all tiles to scale
+// Move to scale without adding more tiles
+// Dont move but save (save the old grid and grab in new cell during reset)
