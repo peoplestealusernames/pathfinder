@@ -1,4 +1,5 @@
 import { CanvasGrid } from "../canvas";
+import { mazeGen } from "../mazeGen";
 import { NavGrid } from "../navGrid";
 import { ChangeDim } from "./ChangeDim";
 import { RandomWall } from "./RandomWall";
@@ -55,6 +56,10 @@ export function Buttons(props: { grid: CanvasGrid, nav: NavGrid }) {
                     console.log(stri);
                 }}
             >Log Que</button>
+
+            <button style={{ alignSelf: "center", display: "flex" }}
+                onClick={() => { mazeGen(props.grid) }}
+            >Gen Maze!</button>
         </div>
         <SelectTile />
         <RandomWall grid={props.grid} />
