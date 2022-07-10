@@ -2,11 +2,11 @@ import { CanvasGrid } from "./canvas";
 import { Path, validState, Walkable } from "./types";
 
 //TODO: Take as input ToNavGrid
-const Movement = [
-    [0, 1],
-    [1, 0],
-    [0, -1],
-    [-1, 0]
+const Movement: [number, number][] = [
+    [0, 2],
+    [2, 0],
+    [0, -2],
+    [-2, 0]
 ]
 
 export class NavGrid {
