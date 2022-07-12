@@ -129,7 +129,6 @@ export class CanvasGrid {
         if (log)
             console.log(`Update:{${x},${y}} is ${state}`);
 
-        this.grid[y][x] = state
         return true
     }
 
