@@ -30,8 +30,6 @@ export const Walkable: { [k in validState]: boolean } = {
     "start": false,
 }
 
-export const allowOne: validState[] = ["start", "goal"]
-
 export class Path {
     nodes: [number, number][] = []
 
