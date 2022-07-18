@@ -118,6 +118,7 @@ export class NavGrid {
             if (!solved) {
                 ret.push(...surroundings)
             } else {
+                this.solved = true
                 this.PathFound(surroundings[0])
                 out("solution found")
 
