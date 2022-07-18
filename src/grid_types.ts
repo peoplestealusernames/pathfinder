@@ -1,5 +1,3 @@
-import EventEmitter from "events"
-
 export class Grid2d<T> {
     private grid: T[][] = []
 
