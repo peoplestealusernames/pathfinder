@@ -7,6 +7,9 @@
 //TODO: Revamp (nodes)
 // Replace grid with nodes making a web linking to eachother
 // custom ids
+// events maybe?
+//  custom baises for a default in and a clac in
+//  custom bais for changeing direction
 
 //TODO: Scale when scaling
 // Options:
@@ -28,3 +31,9 @@
 // less memory usage and array creation
 // mark cells as processed by a custom id
 // when generators are running add console log to say its still processing after x iteration
+
+//TODO: options
+// auto regen path
+// path finders
+// maze algorithm
+// 2d vs 3d
