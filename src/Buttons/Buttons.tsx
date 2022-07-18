@@ -1,6 +1,6 @@
 import { CanvasGrid } from "../canvas";
-import { mazeGen } from "../mazeGen";
-import { NavGrid } from "../navGrid";
+import { mazeGen } from "../2d/mazeGen";
+import { NavGrid } from "../2d/navGrid";
 import { ChangeDim } from "./ChangeDim";
 import { RandomWall } from "./RandomWall";
 import { SelectTile } from "./SelectTile";

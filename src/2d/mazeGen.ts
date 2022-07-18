@@ -1,5 +1,5 @@
-import { CanvasGrid } from "./canvas";
-import { getRandomInt } from "./misc";
+import { CanvasGrid } from "../canvas";
+import { getRandomInt } from "../backend/misc";
 
 const Movement: [number, number][] = [
     [0, 2],

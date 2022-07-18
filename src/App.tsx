@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Buttons } from './Buttons/Buttons';
 import { CanvasGrid } from './canvas';
-import { NavGrid } from './navGrid';
+import { NavGrid } from './2d/navGrid';
 import { ToggleGrid } from './ToggleGrid';
 
 

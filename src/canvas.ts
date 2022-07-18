@@ -1,5 +1,5 @@
-import { Grid2d } from "./grid_types"
-import { validState, SwapTable } from "./types"
+import { Grid2d } from "./2d/grid_types"
+import { validState, SwapTable } from "./backend/types"
 
 export class CanvasGrid extends Grid2d<validState>{
     private start: [number, number] = [-2, -2] //Set in construct

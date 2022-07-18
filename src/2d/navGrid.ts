@@ -1,5 +1,5 @@
-import { CanvasGrid } from "./canvas";
-import { Path, validState, Walkable } from "./types";
+import { CanvasGrid } from "../canvas";
+import { Path, validState, Walkable } from "../backend/types";
 
 //TODO: Take as input ToNavGrid
 const Movement: [number, number][] = [

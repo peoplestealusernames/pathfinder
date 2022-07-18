@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { CanvasGrid } from "../canvas"
-import { getRandomInt } from "../misc"
-import { validState } from "../types"
+import { getRandomInt } from "../backend/misc"
+import { validState } from "../backend/types"
 
 export function RandomWall(props: { grid: CanvasGrid }) {
     let [WallCount, SetWallCount] = useState(1)

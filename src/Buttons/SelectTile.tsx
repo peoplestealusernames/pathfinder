@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { validState } from "../types"
+import { validState } from "../backend/types"
 
 export function SelectTile() {
     let [selected, setSelected] = useState<validState>("empty")

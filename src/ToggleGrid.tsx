@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { CanvasGrid } from "./canvas"
-import { Replaceable, validState } from "./types"
+import { Replaceable, validState } from "./backend/types"
 
 export function ToggleGrid(props: { grid: CanvasGrid }) {
     useEffect(() => {
