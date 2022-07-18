@@ -11,7 +11,7 @@ export function Buttons(props: { grid: CanvasGrid, nav: NavGrid }) {
             <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={props.grid.setWidth.bind(props.grid)} />
             <ChangeDim key="ChangeY" inputType="number" initValue={props.grid.getHeight()} setter={props.grid.setHeight.bind(props.grid)} />
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.grid.reset(); props.nav.Reset() }}
+                onClick={() => { props.nav.Reset(); props.grid.reset(); }}
             >Reset</button>
             <button style={{ width: 100, alignSelf: "center", display: "flex" }}
                 onClick={() => { props.nav.Reset() }}

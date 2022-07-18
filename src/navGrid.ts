@@ -9,6 +9,7 @@ const Movement: [number, number][] = [
     [-1, 0]
 ]
 
+//TODO: fix bug where grid update doesnt cause nav reset
 export class NavGrid {
     //TODO: nav agent for diffrent types of path finding
     readonly grid: CanvasGrid
@@ -51,6 +52,7 @@ export class NavGrid {
         })
         delete (this.Qued)
 
+        this.solved = false
         const start = this.grid.getStart()
         this.grid.set(start[0], start[1], "start")
         const goal = this.grid.getGoal()
@@ -96,6 +98,11 @@ export class NavGrid {
         let ret: Path[] = []
 
         let out = (stri: string) => { }
+
+        if (this.solved) {
+            out("already solved")
+            return [true, []]
+        }
 
         if (log)
             out = (stri: string) => { console.log(stri) }
