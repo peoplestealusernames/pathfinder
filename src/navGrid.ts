@@ -52,6 +52,7 @@ export class NavGrid {
         })
         delete (this.Qued)
 
+        this.StopRunPath()
         this.solved = false
         const start = this.grid.getStart()
         this.grid.set(start[0], start[1], "start")
