@@ -68,10 +68,18 @@ export class Grid2d<T> {
 
     set(x: number, y: number, state: T, log = false): boolean {
         //TODO: logging
-        if (this.get(x, y) === null)
+        if (this.get(x, y) === null) {
+            if (log) {
+                console.log(`Error:{${x},${y}} is null (out of range?)`)
+            }
             return false
+        }
 
         this.grid[y][x] = state
+        if (log) {
+            console.log(`Update:{${x},${y}} is ${state}`)
+        }
+
         return true
     }
 
