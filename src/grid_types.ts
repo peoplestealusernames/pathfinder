@@ -91,4 +91,12 @@ export class Grid2d<T> {
 
         return ret
     }
+
+    unpack(): T[] {
+        let ret: T[] = []
+        for (const rows of this.grid) {
+            ret.push(...rows)
+        }
+        return ret
+    }
 }
