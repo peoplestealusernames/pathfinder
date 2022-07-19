@@ -30,34 +30,6 @@ export function Buttons(props: { grid: CanvasGrid, nav: NavGrid }) {
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => {
-                    let stri = ""
-                    for (const row of props.grid.getGrid()) {
-                        for (const cell of row) {
-                            stri += cell + ","
-                        }
-                        stri += "\n"
-                    }
-                    console.log(stri);
-                }}
-            >Log Data</button>
-
-            <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => {
-                    let stri = ""
-                    const Qued = props.nav.GetQued()
-                    if (Qued) {
-                        for (const Que of Qued) {
-                            stri += JSON.stringify(Que.last())
-                        }
-                    } else {
-                        stri += "Nothing qued"
-                    }
-                    console.log(stri);
-                }}
-            >Log Que</button>
-
-            <button style={{ alignSelf: "center", display: "flex" }}
                 onClick={() => { mazeGen(props.grid) }}
             >Gen Maze!</button>
         </div>
