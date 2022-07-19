@@ -46,10 +46,6 @@ export class Grid2d<T> {
         }
     }
 
-    getGrid(): T[][] {
-        return Array.from(this.grid)
-    }
-
     get(x: number, y: number): T | null {
         if (this.grid[y])
             if (this.grid[y][x])
