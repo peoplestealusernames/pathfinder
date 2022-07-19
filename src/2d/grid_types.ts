@@ -37,24 +37,37 @@ export class Grid2d<T> {
 
     reset(setTo: T = this.defaultState): void {
         this.grid = []
-        for (let y = 0; y < this.width; y++)
-            for (let x = 0; x < this.height; x++)
+        for (let y = 0; y < this.height; y++)
+            for (let x = 0; x < this.width; x++)
                 this.grid[this.toI(x, y)] = setTo
     }
 
+    outOfBounds(x: number, y: number) {
+        return (x < 0 || y < 0 || x >= this.width || y >= this.height)
+    }
+
     toI(x: number, y: number): number {
-        return x + y * (this.height - 1)
+        return x + y * (this.width)
     }
 
     get(x: number, y: number): T | null {
+        if (this.outOfBounds(x, y))
+            return null
         const id = this.toI(x, y)
-        if (this.grid[id])
-            return this.grid[id]
+        console.log(x, y, id, this.grid[id])
 
-        return null
+        return this.grid[id]
+
+    }
+
+    test() {
+        for (let y = 0; y < 5; y++)
+            for (let x = 0; x < 15; x++)
+                console.log(x, y, x + y * (15))
     }
 
     set(x: number, y: number, state: T, log = false): boolean {
+        log = true
         if (this.get(x, y) === null) {
             if (log) {
                 console.log(`Error:{${x},${y}} is null (out of range?)`)
