@@ -1,5 +1,5 @@
 export class Grid2d<T> {
-    private grid: T[][] = []
+    private grid: T[] = []
 
     private width: number
     private height: number
@@ -13,7 +13,7 @@ export class Grid2d<T> {
 
         this.defaultState = defaultState
 
-        this.clear()
+        this.reset()
     }
 
     getWidth(): number {
@@ -27,43 +27,34 @@ export class Grid2d<T> {
     //TODO: checker on seter to make sure it's valid
     setWidth(width: number): void {
         this.width = width
-        this.clear()
+        this.reset()
     }
 
     setHeight(height: number): void {
         this.height = height
-        this.clear()
+        this.reset()
     }
 
-    clear(setTo: T = this.defaultState): void {
+    reset(setTo: T = this.defaultState): void {
         this.grid = []
+        for (let y = 0; y < this.width; y++)
+            for (let x = 0; x < this.height; x++)
+                this.grid[this.toI(x, y)] = setTo
+    }
 
-        for (let i = 0; i < this.height; i++) {
-            this.grid[i] = []
-            for (let k = 0; k < this.width; k++) {
-                this.grid[i][k] = setTo
-            }
-        }
+    toI(x: number, y: number): number {
+        return x + y * (this.height - 1)
     }
 
     get(x: number, y: number): T | null {
-        if (this.grid[y])
-            if (this.grid[y][x])
-                return this.grid[y][x]
+        const id = this.toI(x, y)
+        if (this.grid[id])
+            return this.grid[id]
 
         return null
     }
 
-    reset(state = this.defaultState) {
-        this.foreach(
-            (x: number, y: number) => {
-                this.set(x, y, state)
-            }
-        )
-    }
-
     set(x: number, y: number, state: T, log = false): boolean {
-        //TODO: logging
         if (this.get(x, y) === null) {
             if (log) {
                 console.log(`Error:{${x},${y}} is null (out of range?)`)
@@ -71,7 +62,7 @@ export class Grid2d<T> {
             return false
         }
 
-        this.grid[y][x] = state
+        this.grid[this.toI(x, y)] = state
         if (log) {
             console.log(`Update:{${x},${y}} is ${state}`)
         }
@@ -97,10 +88,6 @@ export class Grid2d<T> {
     }
 
     unpack(): T[] {
-        let ret: T[] = []
-        for (const rows of this.grid) {
-            ret.push(...rows)
-        }
-        return ret
+        return this.grid
     }
 }

@@ -11,7 +11,7 @@ export class CanvasGrid extends Grid2d<validState>{
     constructor(width: number, height: number) {
         super(width, height, "empty")
 
-        this.placeSF()
+        this.reset()
     }
 
     addCanvas(canvas: HTMLCanvasElement) {
@@ -58,11 +58,15 @@ export class CanvasGrid extends Grid2d<validState>{
 
     set(x: number, y: number, state: validState, log = false): boolean {
         if (state == "goal") {
-            this.set(...this.getGoal(), "empty")
+            const goal = this.getGoal()
+            if (goal)
+                this.set(...goal, "empty")
             this.goal = [x, y]
         }
         if (state == "start") {
-            this.set(...this.getStart(), "empty")
+            const start = this.getGoal()
+            if (start)
+                this.set(...start, "empty")
             this.start = [x, y]
         }
 
