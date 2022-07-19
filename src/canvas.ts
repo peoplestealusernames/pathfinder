@@ -79,6 +79,7 @@ export class CanvasGrid extends Grid2d<validState>{
     reset(state?: validState) {
         super.reset(state)
         this.placeSF()
+        this.reRender()
     }
 
     placeSF() {
