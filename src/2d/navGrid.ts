@@ -81,9 +81,9 @@ export class NavGrid {
     RunPath() {
         if (!this.timer) {
             this.timer = setInterval(() => {
-                this.StepPath()
+                const [solved, qued] = this.StepPath()
 
-                if (this.solved) {
+                if (solved || qued.length == 0) {
                     this.StopRunPath()
                 }
             }, 100)
