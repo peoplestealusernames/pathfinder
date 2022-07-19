@@ -54,20 +54,12 @@ export class Grid2d<T> {
         if (this.outOfBounds(x, y))
             return null
         const id = this.toI(x, y)
-        console.log(x, y, id, this.grid[id])
 
         return this.grid[id]
 
     }
 
-    test() {
-        for (let y = 0; y < 5; y++)
-            for (let x = 0; x < 15; x++)
-                console.log(x, y, x + y * (15))
-    }
-
     set(x: number, y: number, state: T, log = false): boolean {
-        log = true
         if (this.get(x, y) === null) {
             if (log) {
                 console.log(`Error:{${x},${y}} is null (out of range?)`)
