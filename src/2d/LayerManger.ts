@@ -1,7 +1,6 @@
 import { Grid2d } from "./grid_types"
 import { navState, baseState, allStates, keyLike } from "../backend/types"
 import { trueEqual } from "../backend/misc"
-import { CallbackClass } from "../backend/callbackClass"
 
 export class LayerManger {
     private width = 5
@@ -14,8 +13,6 @@ export class LayerManger {
 
     private goal: [number, number] = [-2, -2]
     private start: [number, number] = [-2, -2]
-
-    readonly update = new CallbackClass((x, y, tile) => { })
 
     moveStart(x: number, y: number) {
         if (this.BaseGrid.get(...this.start) === "start")
