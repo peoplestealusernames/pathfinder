@@ -1,5 +1,5 @@
 import { Grid2d } from "./grid_types"
-import { navState, baseState, allStates, keyLike } from "../backend/types"
+import { navState, baseState, keyLike } from "../backend/types"
 import { trueEqual } from "../backend/misc"
 
 export class LayerManger {

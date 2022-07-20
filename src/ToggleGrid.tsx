@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
-import { allStates, baseState, Replaceable } from "./backend/types"
+import { allStates, Replaceable } from "./backend/types"
 
 export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager }) {
     useEffect(() => {

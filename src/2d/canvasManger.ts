@@ -1,4 +1,4 @@
-import { allStates, keyLike, SwapTable } from "../backend/types"
+import { allStates, SwapTable } from "../backend/types"
 import { LayerManger } from "./LayerManger"
 
 
