@@ -76,8 +76,8 @@ export class LayerManger {
     //TODO:foreach layer
 
     reset() {
-        this.BaseGrid.reset()
-        this.NavGrid.reset()
+        this.BaseGrid.clear()
+        this.NavGrid.clear()
         this.placeSF()
     }
 

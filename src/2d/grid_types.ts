@@ -54,11 +54,19 @@ export class Grid2d<T> {
         this.reset()
     }
 
-    reset(setTo: T = this.defaultState): void {
+    private reset(defaultState: T = this.defaultState): void {
+        this.defaultState = defaultState
         this.grid = []
         for (let y = 0; y < this.height; y++)
             for (let x = 0; x < this.width; x++)
-                this.grid[this.toI(x, y)] = setTo
+                this.grid[this.toI(x, y)] = this.defaultState
+    }
+
+    clear(setTo: T = this.defaultState): void {
+        this.foreach((x, y, state) => {
+            if (state !== setTo)
+                this.set(x, y, setTo)
+        })
     }
 
     outOfBounds(x: number, y: number) {
