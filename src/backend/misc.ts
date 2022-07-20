@@ -33,3 +33,7 @@ export function trueEqual(obj: any, obj2: any) {
 
     return true
 }
+
+export function outOfBounds(x: number, y: number, width: number, height: number) {
+    return x < 0 || y < 0 || x >= width || y >= height
+}

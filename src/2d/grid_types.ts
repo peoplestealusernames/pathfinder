@@ -1,4 +1,4 @@
-import { removeItem } from "../backend/misc"
+import { outOfBounds, removeItem } from "../backend/misc"
 
 type FNC<T> = (x: number, y: number, state: T) => void
 
@@ -69,16 +69,12 @@ export class Grid2d<T> {
         })
     }
 
-    outOfBounds(x: number, y: number) {
-        return (x < 0 || y < 0 || x >= this.width || y >= this.height)
-    }
-
     toI(x: number, y: number): number {
         return x + y * (this.width)
     }
 
     get(x: number, y: number): T | false {
-        if (this.outOfBounds(x, y))
+        if (outOfBounds(x, y, this.getWidth(), this.getHeight()))
             return false
         const id = this.toI(x, y)
 
