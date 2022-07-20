@@ -17,3 +17,19 @@ export function removeItem<K>(Array: K[], item: K): K[] {
     }
     return Array
 }
+
+export function trueEqual(obj: any, obj2: any) {
+    if (typeof obj !== typeof obj2)
+        return false
+
+    if (typeof obj !== "object")
+        return obj === obj2
+    else
+        for (const iterator in obj) {
+            if (!trueEqual(obj[iterator], obj2[iterator])) {
+                return false
+            }
+        }
+
+    return true
+}

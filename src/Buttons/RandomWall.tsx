@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { CanvasGrid } from "../canvas"
+import { LayerManger } from "../2d/LayerManger"
 import { getRandomInt } from "../backend/misc"
-import { validState } from "../backend/types"
+import { allStates } from "../backend/types"
 
-export function RandomWall(props: { grid: CanvasGrid }) {
+export function RandomWall(props: { grid: LayerManger }) {
     let [WallCount, SetWallCount] = useState(1)
 
     return (<div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
@@ -20,14 +20,14 @@ export function RandomWall(props: { grid: CanvasGrid }) {
     </div>)
 }
 
-function SetRandomWall(grid: CanvasGrid) {
-    let tile: validState | null = null
+function SetRandomWall(grid: LayerManger) {
+    let tile: allStates | false = "empty"
     let x = 0
     let y = 0
-    for (let loop = 0; tile !== "empty" && loop < 10; loop++) {
+    for (let loop = 0; tile !== null && loop < 10; loop++) {
         x = getRandomInt(grid.getWidth())
         y = getRandomInt(grid.getHeight())
-        tile = grid.get(x, y)
+        tile = grid.getTop(x, y)
     }
-    grid.set(x, y, "wall")
+    grid.BaseGrid.set(x, y, "wall")
 }

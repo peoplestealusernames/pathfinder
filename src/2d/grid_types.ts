@@ -1,10 +1,16 @@
+import { removeItem } from "../backend/misc"
+
+type FNC<T> = (x: number, y: number, state: T) => void
+
 export class Grid2d<T> {
     private grid: T[] = []
 
+    private defaultState: T
+
+    private updateCallbacks: FNC<T>[] = []
+
     private width: number
     private height: number
-
-    private defaultState: T
 
     constructor(width: number, height: number, defaultState: T) {
         //TODO: size checking
@@ -16,6 +22,13 @@ export class Grid2d<T> {
         this.reset()
     }
 
+    addCallback(callback: FNC<T>) {
+        this.updateCallbacks.push(callback)
+    }
+    removeCallback(callback: FNC<T>) {
+        removeItem(this.updateCallbacks, callback)
+    }
+
     getWidth(): number {
         return this.width
     }
@@ -25,13 +38,19 @@ export class Grid2d<T> {
     }
 
     //TODO: checker on seter to make sure it's valid
-    setWidth(width: number): void {
+    setWidth(width: number) {
         this.width = width
         this.reset()
     }
 
-    setHeight(height: number): void {
+    setHeight(height: number) {
         this.height = height
+        this.reset()
+    }
+
+    setSize(width: number, height: number) {
+        this.height = height
+        this.width = width
         this.reset()
     }
 
@@ -50,9 +69,9 @@ export class Grid2d<T> {
         return x + y * (this.width)
     }
 
-    get(x: number, y: number): T | null {
+    get(x: number, y: number): T | false {
         if (this.outOfBounds(x, y))
-            return null
+            return false
         const id = this.toI(x, y)
 
         return this.grid[id]
@@ -60,9 +79,9 @@ export class Grid2d<T> {
     }
 
     set(x: number, y: number, state: T, log = false): boolean {
-        if (this.get(x, y) === null) {
+        if (this.get(x, y) === false) {
             if (log) {
-                console.log(`Error:{${x},${y}} is null (out of range?)`)
+                console.log(`Error:{${x},${y}} is out of range`)
             }
             return false
         }
@@ -72,6 +91,9 @@ export class Grid2d<T> {
             console.log(`Update:{${x},${y}} is ${state}`)
         }
 
+        for (const callback of this.updateCallbacks) {
+            callback(x, y, state)
+        }
         return true
     }
 

@@ -1,5 +1,5 @@
-import { CanvasGrid } from "../canvas";
-import { Path, validState, Walkable } from "../backend/types";
+import { LayerManger } from "./LayerManger";
+import { navState, Path, Walkable } from "../backend/types";
 
 //TODO: Take as input ToNavGrid
 const Movement: [number, number][] = [
@@ -12,13 +12,13 @@ const Movement: [number, number][] = [
 //TODO: fix bug where grid update doesnt cause nav reset
 export class NavGrid {
     //TODO: nav agent for diffrent types of path finding
-    readonly grid: CanvasGrid
+    readonly grid: LayerManger
 
     private solved = false //TODO: make only modifyable from class but readable out
     private Qued?: Path[]
     private timer?: NodeJS.Timer;
 
-    constructor(grid: CanvasGrid) {
+    constructor(grid: LayerManger) {
         this.grid = grid
     }
 
@@ -34,7 +34,7 @@ export class NavGrid {
 
         for (const offset of Movement) {
             const pos: [number, number] = [start[0] + offset[0], start[1] + offset[1]]
-            const tile = this.grid.get(pos[0], pos[1])
+            const tile = this.grid.getTop(pos[0], pos[1])
 
             if (tile)
                 if (Walkable[tile])
@@ -45,19 +45,15 @@ export class NavGrid {
     }
 
     Reset() {
-        this.grid.foreach((x: number, y: number, tile?: validState) => {
+        this.grid.NavGrid.foreach((x: number, y: number, tile?: navState) => {
             if (tile === "qued" || tile === "checked" || tile === "solved") {
-                this.grid.set(x, y, "empty")
+                this.grid.NavGrid.set(x, y, undefined)
             }
         })
         delete (this.Qued)
 
         this.StopRunPath()
         this.solved = false
-        const start = this.grid.getStart()
-        this.grid.set(start[0], start[1], "start")
-        const goal = this.grid.getGoal()
-        this.grid.set(goal[0], goal[1], "goal")
     }
 
     GeneratePath() {
@@ -114,7 +110,7 @@ export class NavGrid {
         out(`Stepping pathfinder ${this.Qued.length} paths qued`)
 
         for (const pos of this.Qued) {
-            const [solved, surroundings] = this.CheckSurround(this.grid, pos)
+            const [solved, surroundings] = this.CheckSurround(pos)
             if (!solved) {
                 ret.push(...surroundings)
             } else {
@@ -132,15 +128,15 @@ export class NavGrid {
         return [false, ret]
     }
 
-    CheckSurround(grid: CanvasGrid, path: Path): [boolean, Path[]] {
+    CheckSurround(path: Path): [boolean, Path[]] {
         let ret: Path[] = []
         const origin = path.last()
 
-        grid.set(origin[0], origin[1], "checked")
+        this.grid.NavGrid.set(origin[0], origin[1], "checked")
 
         for (const offset of Movement) {
             const pos: [number, number] = [origin[0] + offset[0], origin[1] + offset[1]]
-            const tile = grid.get(pos[0], pos[1])
+            const tile = this.grid.getTop(pos[0], pos[1])
 
             if (tile)
                 if (Walkable[tile]) {
@@ -151,7 +147,7 @@ export class NavGrid {
                     let Branch = path.Branch()
                     Branch.add(pos)
                     ret.push(Branch)
-                    grid.set(pos[0], pos[1], "qued")
+                    this.grid.NavGrid.set(pos[0], pos[1], "qued")
                 }
         }
 
@@ -160,7 +156,7 @@ export class NavGrid {
 
     PathFound(path: Path) {
         for (const node of path.nodes) {
-            this.grid.set(node[0], node[1], "solved")
+            this.grid.NavGrid.set(node[0], node[1], "solved")
         }
     }
 }

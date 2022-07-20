@@ -1,14 +1,15 @@
 import { useEffect } from "react"
-import { CanvasGrid } from "./canvas"
-import { Replaceable, validState } from "./backend/types"
+import { CanvasManager } from "./2d/canvasManger"
+import { LayerManger } from "./2d/LayerManger"
+import { allStates, baseState, Replaceable } from "./backend/types"
 
-export function ToggleGrid(props: { grid: CanvasGrid }) {
+export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager }) {
     useEffect(() => {
         const elem = document.getElementById('GridCanvas') as HTMLCanvasElement
         if (!elem)
             return
 
-        props.grid.addCanvas(elem)
+        props.canvasMang.addCanvas(elem)
 
 
         const mouseDown = (e: any) => {
@@ -22,9 +23,9 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
             const x = Math.floor(xp / 10)
             const y = Math.floor(yp / 10)
 
-            const tile = props.grid.get(x, y)
+            const tile = props.grid.getTop(x, y)
 
-            if (!tile)
+            if (tile === false)
                 throw new Error(`Tile not found at ${x},${y}`)
 
             if (!Replaceable[tile])
@@ -34,11 +35,18 @@ export function ToggleGrid(props: { grid: CanvasGrid }) {
             if (!selector)
                 throw new Error("No selector div")
 
-            const selected = selector.getAttribute("data-value") as validState
+            const selected = selector.getAttribute("data-value") as allStates
             if (!selected)
                 throw new Error("No selected value")
 
-            props.grid.set(x, y, selected, true)
+            if (selected === "wall")
+                props.grid.BaseGrid.set(x, y, selected, true)
+            else if (selected === "empty")
+                props.grid.BaseGrid.set(x, y, undefined, true)
+            else if (selected === "goal")
+                props.grid.moveGoal(x, y)
+            else if (selected === "start")
+                props.grid.moveStart(x, y)
         }
 
         //TODO: drag

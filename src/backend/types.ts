@@ -1,6 +1,10 @@
-export type validState = "empty" | "checked" | "qued" | "wall" | "goal" | "solved" | "start"
+export type baseState = "wall" | "start" | "goal" | undefined //TODO: bias points
+export type navState = "qued" | "checked" | "solved" | undefined
 
-export const SwapTable: { [k in validState]: string } = {
+export type allStates = baseState | navState | "empty"
+export type keyLike = Exclude<allStates, undefined>
+
+export const SwapTable: { [key in keyLike]: string } = {
     "empty": "grey",
     "wall": "red",
     "checked": "blue",
@@ -10,7 +14,7 @@ export const SwapTable: { [k in validState]: string } = {
     "start": "orange",
 }
 
-export const Replaceable: { [k in validState]: boolean } = {
+export const Replaceable: { [k in keyLike]: boolean } = {
     "empty": true,
     "wall": true,
     "checked": false,
@@ -20,7 +24,7 @@ export const Replaceable: { [k in validState]: boolean } = {
     "start": false,
 }
 
-export const Walkable: { [k in validState]: boolean } = {
+export const Walkable: { [k in keyLike]: boolean } = {
     "empty": true,
     "wall": false,
     "checked": false, // An extra bonus of this is it wont path over itself
