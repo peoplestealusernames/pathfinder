@@ -61,11 +61,17 @@ export class Grid2d<T> {
                 this.grid[this.toI(x, y)] = this.defaultState
     }
 
-    clear(setTo: T = this.defaultState): void {
+    clear(setTo: T = this.defaultState, makeDefault = false): void {
         this.foreach((x, y, state) => {
             if (state !== setTo)
                 this.set(x, y, setTo)
         })
+        if (makeDefault)
+            this.defaultState = setTo
+    }
+
+    getDefault() {
+        return this.defaultState
     }
 
     toI(x: number, y: number): number {
