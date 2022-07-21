@@ -1,5 +1,8 @@
-export type baseState = "wall" | "start" | "goal" | undefined //TODO: bias points
-export type navState = "qued" | "checked" | "solved" | undefined
+export const baseArray = ["wall", "start", "goal"] as const
+export const navArray = ["qued", "checked", "solved"] as const
+
+export type baseState = (typeof baseArray[number] | undefined)
+export type navState = (typeof navArray[number] | undefined)
 
 export type allStates = baseState | navState | "empty"
 export type keyLike = Exclude<allStates, undefined>
