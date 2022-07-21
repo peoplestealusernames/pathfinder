@@ -11,7 +11,10 @@ const Movement: [number, number][] = [
 export function mazeGen(grid: LayerManger) {
     //TODO: fix bug where sometimes goal is deleted
 
+    //TODO: incorperate in LayerManager
+    grid.NavGrid.clear()
     grid.BaseGrid.clear("wall")
+    grid.placeSF()
 
     let Stack: [number, number][] = [grid.getStart()]
 
