@@ -54,8 +54,7 @@ export class Grid2d<T> {
         this.reset()
     }
 
-    private reset(defaultState: T = this.defaultState): void {
-        this.defaultState = defaultState
+    private reset(): void {
         this.grid = []
         for (let y = 0; y < this.height; y++)
             for (let x = 0; x < this.width; x++)
