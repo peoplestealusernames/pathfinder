@@ -12,7 +12,7 @@ export function Buttons(props: { grid: LayerManger, nav: NavGrid }) {
             <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={(width: number) => { props.grid.setWidth(width) }} />
             <ChangeDim key="ChangeY" inputType="number" initValue={props.grid.getHeight()} setter={(height: number) => { props.grid.setHeight(height) }} />
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.nav.Reset(); props.grid.reset(); }}
+                onClick={() => { props.nav.Reset(); props.grid.clear(); }}
             >Reset</button>
             <button style={{ width: 100, alignSelf: "center", display: "flex" }}
                 onClick={() => { props.nav.Reset() }}
