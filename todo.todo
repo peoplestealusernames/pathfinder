@@ -41,3 +41,6 @@
 //TODO: custom weight add tool
 //TODO: details about thinking of it as a path of least weight
 //TODO: make sure double pushes are not happening where obj will exist twice on array
+
+//TODO: teleporters jumps and fun stuff
+//TODO: graphical moving
