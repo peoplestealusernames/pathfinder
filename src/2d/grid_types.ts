@@ -107,7 +107,7 @@ export class Grid2d<T> {
         for (let y = 0; y < this.height; y++)
             for (let x = 0; x < this.width; x++) {
                 const tile = this.get(x, y)
-                if (tile)
+                if (tile !== false)
                     try {
                         ret.push(run(x, y, tile))
                     } catch (e) {
