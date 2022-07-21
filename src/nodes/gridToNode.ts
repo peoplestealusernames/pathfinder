@@ -11,7 +11,6 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
 
     grid.foreach(
         (x, y, state) => {
-            console.log(state);
 
             if (state !== undefined)
                 if (!(state in Walkable))
@@ -19,9 +18,6 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
                 //@ts-ignore
                 else if (!Walkable[state])
                     return
-
-            console.log("AYE");
-
 
             const aNode = new Node<xy>(1, { x, y })
             Ret.set(x, y, aNode)
