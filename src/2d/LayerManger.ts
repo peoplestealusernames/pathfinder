@@ -80,10 +80,6 @@ export class LayerManger {
 
     getTop(x: number, y: number): keyLike | false {
         const pos = [x, y]
-        if (trueEqual(this.start, pos))
-            return "start"
-        if (trueEqual(this.goal, pos))
-            return "goal"
 
         for (const layer of this.order) {
             const tile = layer.get(x, y)
