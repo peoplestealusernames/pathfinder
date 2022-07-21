@@ -15,8 +15,7 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
             if (state !== undefined)
                 if (!(state in Walkable))
                     return
-                //@ts-ignore
-                else if (!Walkable[state])
+                else if (!Walkable[state as keyLike])
                     return
 
             const aNode = new Node<xy>(1, { x, y })
