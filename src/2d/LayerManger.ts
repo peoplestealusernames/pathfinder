@@ -14,18 +14,13 @@ export class LayerManger {
     private goal: [number, number] = [-2, -2]
     private start: [number, number] = [-2, -2]
 
-    moveStart(x: number, y: number) {
-        if (this.BaseGrid.get(...this.start) === "start")
-            this.BaseGrid.set(...this.start, undefined, true)
-        this.BaseGrid.set(x, y, "start", true)
-        this.start = [x, y]
-    }
+    move(x: number, y: number, state: "goal" | "start") {
+        const current = this.BaseGrid.get(...this[state])
+        if (current === state)
+            this.BaseGrid.set(...this[state], undefined, true)
 
-    moveGoal(x: number, y: number) {
-        if (this.BaseGrid.get(...this.goal) === "goal")
-            this.BaseGrid.set(...this.goal, undefined)
-        this.BaseGrid.set(x, y, "goal")
-        this.goal = [x, y]
+        this.BaseGrid.set(x, y, state, true)
+        this[state] = [x, y]
     }
 
     getStart() {
@@ -79,8 +74,8 @@ export class LayerManger {
     }
 
     placeSF() {
-        this.moveStart(0, 0)
-        this.moveGoal(this.width - 1, this.height - 1)
+        this.move(0, 0, "start")
+        this.move(this.width - 1, this.height - 1, "goal")
     }
 
     getTop(x: number, y: number): keyLike | false {

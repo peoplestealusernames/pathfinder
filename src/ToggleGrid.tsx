@@ -44,9 +44,9 @@ export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager
             else if (selected === "empty")
                 props.grid.BaseGrid.set(x, y, undefined, true)
             else if (selected === "goal")
-                props.grid.moveGoal(x, y)
+                props.grid.move(x, y, "goal")
             else if (selected === "start")
-                props.grid.moveStart(x, y)
+                props.grid.move(x, y, "start")
         }
 
         //TODO: drag
