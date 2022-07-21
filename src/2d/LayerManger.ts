@@ -79,8 +79,6 @@ export class LayerManger {
     }
 
     getTop(x: number, y: number): keyLike | false {
-        const pos = [x, y]
-
         if (outOfBounds(x, y, this.width, this.height))
             return false
 
