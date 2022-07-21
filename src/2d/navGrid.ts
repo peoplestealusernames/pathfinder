@@ -95,14 +95,13 @@ export class NavGrid {
         let ret: Path[] = []
 
         let out = (stri: string) => { }
+        if (log)
+            out = (stri: string) => { console.log(stri) }
 
         if (this.solved) {
             out("already solved")
             return [true, []]
         }
-
-        if (log)
-            out = (stri: string) => { console.log(stri) }
 
         if (!this.Qued)
             this.Qued = this.GetQueStart()
