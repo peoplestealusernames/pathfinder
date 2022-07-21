@@ -1,5 +1,6 @@
 import { LayerManger } from "./LayerManger";
-import { navState, Path, Walkable } from "../backend/types";
+import { navState, Path } from "../backend/types";
+import { isWalkable } from "../backend/misc";
 
 //TODO: Take as input ToNavGrid
 const Movement: [number, number][] = [
@@ -36,9 +37,8 @@ export class NavGrid {
             const pos: [number, number] = [start[0] + offset[0], start[1] + offset[1]]
             const tile = this.grid.getTop(pos[0], pos[1])
 
-            if (tile)
-                if (Walkable[tile])
-                    ret.push(new Path([start, pos]))
+            if (isWalkable(tile))
+                ret.push(new Path([start, pos]))
         }
 
         return ret
@@ -137,17 +137,16 @@ export class NavGrid {
             const pos: [number, number] = [origin[0] + offset[0], origin[1] + offset[1]]
             const tile = this.grid.getTop(pos[0], pos[1])
 
-            if (tile)
-                if (Walkable[tile]) {
-                    if (tile === "goal") {
-                        path.add(pos)
-                        return [true, [path]]
-                    }
-                    let Branch = path.Branch()
-                    Branch.add(pos)
-                    ret.push(Branch)
-                    this.grid.NavGrid.set(pos[0], pos[1], "qued")
+            if (isWalkable(tile)) {
+                if (tile === "goal") {
+                    path.add(pos)
+                    return [true, [path]]
                 }
+                let Branch = path.Branch()
+                Branch.add(pos)
+                ret.push(Branch)
+                this.grid.NavGrid.set(pos[0], pos[1], "qued")
+            }
         }
 
         return [false, ret]

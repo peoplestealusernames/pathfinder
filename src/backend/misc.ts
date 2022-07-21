@@ -1,3 +1,4 @@
+import { allStates, keyLike, Walkable } from "./types";
 
 export function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
@@ -36,4 +37,15 @@ export function trueEqual(obj: any, obj2: any) {
 
 export function outOfBounds(x: number, y: number, width: number, height: number) {
     return x < 0 || y < 0 || x >= width || y >= height
+}
+
+export function isWalkable<T extends allStates | false>(tile: T): boolean {
+    if (tile in Walkable)
+        if (Walkable[tile as keyLike])
+            return true
+
+    if (tile === undefined)
+        return true
+
+    return false
 }

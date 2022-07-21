@@ -1,5 +1,6 @@
 import { Grid2d } from "../2d/grid_types";
-import { baseState, keyLike, Walkable } from "../backend/types";
+import { isWalkable } from "../backend/misc";
+import { baseState } from "../backend/types";
 import { Node } from "./NodeClasses";
 
 //TODO: room and maze simplifiers
@@ -11,12 +12,10 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
 
     grid.foreach(
         (x, y, state) => {
+            console.log(state, isWalkable(state));
 
-            if (state !== undefined)
-                if (!(state in Walkable))
-                    return
-                else if (!Walkable[state as keyLike])
-                    return
+            if (!isWalkable(state))
+                return
 
             const aNode = new Node<xy>(1, { x, y })
             Ret.set(x, y, aNode)
