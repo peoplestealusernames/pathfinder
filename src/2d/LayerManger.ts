@@ -1,6 +1,6 @@
 import { Grid2d } from "./grid_types"
 import { navState, baseState, keyLike } from "../backend/types"
-import { trueEqual } from "../backend/misc"
+import { outOfBounds, trueEqual } from "../backend/misc"
 
 export class LayerManger {
     private width = 5
@@ -80,6 +80,9 @@ export class LayerManger {
 
     getTop(x: number, y: number): keyLike | false {
         const pos = [x, y]
+
+        if (outOfBounds(x, y, this.width, this.height))
+            return false
 
         for (const layer of this.order) {
             const tile = layer.get(x, y)
