@@ -34,7 +34,7 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
                 const tile = Ret.get(pos[0], pos[1])
 
                 if (tile) {
-                    state.addNeighbors(tile)
+                    state.addChilds(tile)
                 }
             }
         }
