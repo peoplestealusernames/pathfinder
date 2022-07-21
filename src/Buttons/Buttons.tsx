@@ -1,6 +1,7 @@
 import { LayerManger } from "../2d/LayerManger";
 import { mazeGen } from "../2d/mazeGen";
 import { NavGrid } from "../2d/navGrid";
+import { GridToNode2d } from "../nodes/gridToNode";
 import { ChangeDim } from "./ChangeDim";
 import { RandomWall } from "./RandomWall";
 import { SelectTile } from "./SelectTile";
@@ -32,6 +33,9 @@ export function Buttons(props: { grid: LayerManger, nav: NavGrid }) {
             <button style={{ alignSelf: "center", display: "flex" }}
                 onClick={() => { mazeGen(props.grid) }}
             >Gen Maze!</button>
+            <button style={{ alignSelf: "center", display: "flex" }}
+                onClick={() => { GridToNode2d(props.grid.BaseGrid, [[1, 0], [0, 1], [-1, 0], [0, -1]]) }}
+            >Gen Nodes (test)</button>
         </div>
         <SelectTile />
         <RandomWall grid={props.grid} />
