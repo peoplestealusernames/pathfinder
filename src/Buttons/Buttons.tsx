@@ -1,3 +1,4 @@
+import { CanvasManager } from "../2d/canvasManger";
 import { LayerManger } from "../2d/LayerManger";
 import { mazeGen } from "../2d/mazeGen";
 import { NavGrid } from "../2d/navGrid";
@@ -6,11 +7,11 @@ import { ChangeDim } from "./ChangeDim";
 import { RandomWall } from "./RandomWall";
 import { SelectTile } from "./SelectTile";
 
-export function Buttons(props: { grid: LayerManger, nav: NavGrid }) {
+export function Buttons(props: { grid: LayerManger, nav: NavGrid, canvas: CanvasManager }) {
     return (<div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", width: "100vw" }}>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-            <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={(width: number) => { props.grid.setWidth(width) }} />
-            <ChangeDim key="ChangeY" inputType="number" initValue={props.grid.getHeight()} setter={(height: number) => { props.grid.setHeight(height) }} />
+            <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={(width: number) => { props.grid.setWidth(width); props.canvas.reRender() }} />
+            <ChangeDim key="ChangeY" inputType="number" initValue={props.grid.getHeight()} setter={(height: number) => { props.grid.setHeight(height); props.canvas.reRender() }} />
             <button style={{ alignSelf: "center", display: "flex" }}
                 onClick={() => { props.nav.Reset(); props.grid.clear(); }}
             >Reset</button>
