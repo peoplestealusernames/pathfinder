@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
-import { allStates, Replaceable } from "./backend/types"
+import { Replaceable, Selectable, SelectableFnc } from "./backend/types"
 
 export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager }) {
     useEffect(() => {
@@ -35,18 +35,13 @@ export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager
             if (!selector)
                 throw new Error("No selector div")
 
-            const selected = selector.getAttribute("data-value") as allStates
+            const selected = selector.getAttribute("data-value") as Selectable
             if (!selected)
                 throw new Error("No selected value")
 
-            if (selected === "wall")
-                props.grid.BaseGrid.set(x, y, selected, true)
-            else if (selected === "empty")
-                props.grid.BaseGrid.set(x, y, undefined, true)
-            else if (selected === "goal")
-                props.grid.move(x, y, "goal")
-            else if (selected === "start")
-                props.grid.move(x, y, "start")
+            if (SelectableFnc[selected]) {
+                SelectableFnc[selected](x, y, props.grid)
+            }
         }
 
         //TODO: drag

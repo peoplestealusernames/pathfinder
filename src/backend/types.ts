@@ -1,3 +1,5 @@
+import { LayerManger } from "../2d/LayerManger"
+
 export const baseArray = ["wall", "start", "goal"] as const
 export const navArray = ["qued", "checked", "solved"] as const
 export const SelectableArray = ["empty", "wall", "start", "goal"] as const
@@ -38,6 +40,13 @@ export const Walkable: { [k in keyLike]: boolean } = {
     "goal": true,
     "solved": false,
     "start": false,
+}
+
+export const SelectableFnc: { [k in Selectable]: (x: number, y: number, grid: LayerManger) => void } = {
+    "wall": (x, y, grid) => { grid.BaseGrid.set(x, y, "wall", true) },
+    "empty": (x, y, grid) => { grid.BaseGrid.set(x, y, undefined, true) },
+    "start": (x, y, grid) => { grid.move(x, y, "start") },
+    "goal": (x, y, grid) => { grid.move(x, y, "goal") },
 }
 
 export class Path {
