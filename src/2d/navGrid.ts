@@ -1,6 +1,7 @@
 import { LayerManger } from "./LayerManger";
 import { navState, Path } from "../backend/types";
 import { isWalkable } from "../backend/misc";
+import { StepFloodFill } from "../pathfinders/floodfill";
 
 //TODO: Take as input ToNavGrid
 const Movement: [number, number][] = [
@@ -92,8 +93,6 @@ export class NavGrid {
     }
 
     StepPath(log = true): [boolean, Path[]] {
-        let ret: Path[] = []
-
         let out = (stri: string) => { }
         if (log)
             out = (stri: string) => { console.log(stri) }
@@ -108,48 +107,13 @@ export class NavGrid {
 
         out(`Stepping pathfinder ${this.Qued.length} paths qued`)
 
-        for (const pos of this.Qued) {
-            const [solved, surroundings] = this.CheckSurround(pos)
-            if (!solved) {
-                ret.push(...surroundings)
-            } else {
-                this.solved = true
-                this.PathFound(surroundings[0])
-                out("solution found")
+        //TODO: grab from class
+        const [solved, qued] = StepFloodFill(this.Qued, this.grid)
+        this.solved = solved
+        this.Qued = qued
+        out(`Step done ${qued.length} paths`)
 
-                return [true, surroundings]
-            }
-        }
-
-        this.Qued = ret
-        out(`Step done ${ret.length} paths`)
-
-        return [false, ret]
-    }
-
-    CheckSurround(path: Path): [boolean, Path[]] {
-        let ret: Path[] = []
-        const origin = path.last()
-
-        this.grid.NavGrid.set(origin[0], origin[1], "checked")
-
-        for (const offset of Movement) {
-            const pos: [number, number] = [origin[0] + offset[0], origin[1] + offset[1]]
-            const tile = this.grid.getTop(pos[0], pos[1])
-
-            if (isWalkable(tile)) {
-                if (tile === "goal") {
-                    path.add(pos)
-                    return [true, [path]]
-                }
-                let Branch = path.Branch()
-                Branch.add(pos)
-                ret.push(Branch)
-                this.grid.NavGrid.set(pos[0], pos[1], "qued")
-            }
-        }
-
-        return [false, ret]
+        return [solved, qued]
     }
 
     PathFound(path: Path) {
