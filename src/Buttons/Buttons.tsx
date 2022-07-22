@@ -34,7 +34,11 @@ export function Buttons(props: { grid: LayerManger, nav: NavGrid }) {
                 onClick={() => { mazeGen(props.grid) }}
             >Gen Maze!</button>
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { GridToNode2d(props.grid.BaseGrid, [[1, 0], [0, 1], [-1, 0], [0, -1]]) }}
+                onClick={() => {
+                    const nodeGrid = GridToNode2d(props.grid.BaseGrid, [[1, 0], [0, 1], [-1, 0], [0, -1]])
+                    console.log(nodeGrid.get(1, 1));
+                    console.log(nodeGrid);
+                }}
             >Gen Nodes (test)</button>
         </div>
         <SelectTile />
