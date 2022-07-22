@@ -56,7 +56,7 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
             }
         } else {
             if (RefNode) {
-                RefNode.deleteSelf()
+                RefNode.removeRefrences()
                 RefNode = undefined
             }
         }
