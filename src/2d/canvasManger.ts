@@ -17,7 +17,7 @@ export class CanvasManager {
             else if (state === false)
                 return
 
-            this.render(x, y, state)
+            this.render(x, y)
         }
 
         this.grid.BaseGrid.addCallback(Update)
@@ -51,7 +51,8 @@ export class CanvasManager {
                 this.render(x, y)
     }
 
-    render(x: number, y: number, tile = this.grid.getTop(x, y)): void {
+    render(x: number, y: number): void {
+        const tile = this.grid.getTop(x, y)
         if (!this.context || !this.canvas || tile === false)
             return
 
