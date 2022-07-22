@@ -1,7 +1,7 @@
 import { Grid2d } from "../2d/grid_types";
 import { isWalkable } from "../backend/misc";
 import { baseState } from "../backend/types";
-import { Node } from "./NodeClasses";
+import { Node } from "./NodeClass";
 
 //TODO: room and maze simplifiers
 type xy = { x: number, y: number }

@@ -1,5 +1,3 @@
-//TODO: updated path
-
 import { removeItem } from "../backend/misc"
 
 export class Node<Data extends any> {
