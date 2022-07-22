@@ -46,11 +46,7 @@ export class NavGrid {
     }
 
     Reset() {
-        this.grid.NavGrid.foreach((x: number, y: number, tile?: navState) => {
-            if (tile === "qued" || tile === "checked" || tile === "solved") {
-                this.grid.NavGrid.set(x, y, undefined)
-            }
-        })
+        this.grid.NavGrid.clear()
         delete (this.Qued)
 
         this.StopRunPath()
