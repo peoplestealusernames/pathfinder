@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { allStates } from "../backend/types"
+import { Selectable, SelectableArray } from "../backend/types"
 
 export function SelectTile() {
-    let [selected, setSelected] = useState<allStates>("empty")
+    let [selected, setSelected] = useState<Selectable>("empty")
 
     return (
         <div id={"Block selector"} data-value={selected}
@@ -11,7 +11,7 @@ export function SelectTile() {
                 .on {background-Color:red}
                 .off {background-Color:grey}
                 `}</style>
-            {(["empty", "wall", "start", "goal"] as allStates[]).map((tile: allStates) => {
+            {SelectableArray.map((tile: Selectable) => {
                 return (
                     <button key={`ToggleButton:${tile}`} style={{ alignSelf: "center", display: "flex" }} onClick={(e: any) => {
                         setSelected(tile)
