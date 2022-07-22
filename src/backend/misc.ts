@@ -1,4 +1,4 @@
-import { allStates, keyLike, Walkable } from "./types";
+import { allStates, keyLike, Replaceable, Walkable } from "./types";
 
 export function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
@@ -42,6 +42,17 @@ export function outOfBounds(x: number, y: number, width: number, height: number)
 export function isWalkable<T extends allStates | false>(tile: T): boolean {
     if (tile in Walkable)
         if (Walkable[tile as keyLike])
+            return true
+
+    if (tile === undefined)
+        return true
+
+    return false
+}
+
+export function isReplaceable<T extends allStates | false>(tile: T): boolean {
+    if (tile in Walkable)
+        if (Replaceable[tile as keyLike])
             return true
 
     if (tile === undefined)
