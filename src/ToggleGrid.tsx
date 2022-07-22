@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
-import { Replaceable, Selectable, SelectableFnc } from "./backend/types"
+import { Selectable, SelectableFnc } from "./backend/types"
 
 export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager }) {
     useEffect(() => {
@@ -26,10 +26,7 @@ export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager
             const tile = props.grid.getTop(x, y)
 
             if (tile === false)
-                throw new Error(`Tile not found at ${x},${y}`)
-
-            if (!Replaceable[tile])
-                throw new Error(`Tile at ${x},${y}(${tile}) is not replaceable`)
+                throw new Error(`Selection is out of bounds`)
 
             const selector = document.getElementById("Block selector") as HTMLDivElement
             if (!selector)
@@ -40,7 +37,7 @@ export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager
                 throw new Error("No selected value")
 
             if (SelectableFnc[selected]) {
-                SelectableFnc[selected](x, y, props.grid)
+                SelectableFnc[selected](x, y, props.grid, tile)
             }
         }
 

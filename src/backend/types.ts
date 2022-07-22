@@ -1,8 +1,9 @@
 import { LayerManger } from "../2d/LayerManger"
+import { isReplaceable } from "./misc"
 
 export const baseArray = ["wall", "start", "goal"] as const
 export const navArray = ["qued", "checked", "solved"] as const
-export const SelectableArray = ["empty", "wall", "start", "goal"] as const
+export const SelectableArray = ["debug", "empty", "wall", "start", "goal"] as const
 
 export type baseState = (typeof baseArray[number] | undefined)
 export type navState = (typeof navArray[number] | undefined)
@@ -42,11 +43,28 @@ export const Walkable: { [k in keyLike]: boolean } = {
     "start": false,
 }
 
-export const SelectableFnc: { [k in Selectable]: (x: number, y: number, grid: LayerManger) => void } = {
-    "wall": (x, y, grid) => { grid.BaseGrid.set(x, y, "wall", true) },
-    "empty": (x, y, grid) => { grid.BaseGrid.set(x, y, undefined, true) },
-    "start": (x, y, grid) => { grid.move(x, y, "start") },
-    "goal": (x, y, grid) => { grid.move(x, y, "goal") },
+export const SelectableFnc: { [k in Selectable]:
+    (x: number, y: number, grid: LayerManger, topTile: allStates) => void }
+    = {
+    "debug": (x, y, grid, topTile) => {
+        console.log(topTile, grid.BaseGrid.get(x, y), grid.NavGrid.get(x, y))
+    },
+    "wall": (x, y, grid, topTile) => {
+        if (!isReplaceable(topTile)) return
+        grid.BaseGrid.set(x, y, "wall", true)
+    },
+    "empty": (x, y, grid, topTile) => {
+        if (!isReplaceable(topTile)) return
+        grid.BaseGrid.set(x, y, undefined, true)
+    },
+    "start": (x, y, grid, topTile) => {
+        if (!isReplaceable(topTile)) return
+        grid.move(x, y, "start")
+    },
+    "goal": (x, y, grid, topTile) => {
+        if (!isReplaceable(topTile)) return
+        grid.move(x, y, "goal")
+    },
 }
 
 export class Path {
