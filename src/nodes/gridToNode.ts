@@ -20,7 +20,6 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
         }
     )
 
-
     Ret.foreach(
         (x, y, state) => {
             if (!state)
@@ -36,6 +35,33 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
             }
         }
     )
+
+    grid.addCallback((x, y, state) => {
+        let RefNode = Ret.get(x, y)
+        if (RefNode === false)
+            return
+
+        if (isWalkable(state)) {
+            if (!RefNode) {
+                RefNode = new Node<xy>(1, { x, y })
+                for (const offset of movement) {
+                    const pos: [number, number] = [x + offset[0], y + offset[1]]
+                    const tile = Ret.get(pos[0], pos[1])
+
+                    if (tile) {
+                        RefNode.addChilds(tile)
+                        RefNode.addParents(tile)
+                    }
+                }
+            }
+        } else {
+            if (RefNode) {
+                RefNode.deleteSelf()
+                RefNode = undefined
+            }
+        }
+        Ret.set(x, y, RefNode, true)
+    })
 
     return Ret
 }
