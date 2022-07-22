@@ -109,9 +109,14 @@ export class NavGrid {
 
         //TODO: grab from class
         const [solved, qued] = StepFloodFill(this.Qued, this.grid)
+
         this.solved = solved
         this.Qued = qued
         out(`Step done ${qued.length} paths`)
+        if (this.solved) {
+            out("Path found")
+            this.PathFound(qued[0])
+        }
 
         return [solved, qued]
     }
