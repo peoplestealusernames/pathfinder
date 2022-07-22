@@ -1,7 +1,7 @@
 import { getRandomInt } from "../backend/misc";
 import { LayerManger } from "./LayerManger";
 
-const Movement: [number, number][] = [
+const MazeMovement: [number, number][] = [
     [0, 2],
     [2, 0],
     [0, -2],
@@ -25,7 +25,7 @@ export function mazeGen(grid: LayerManger) {
 
         let options: [[number, number], [number, number]][] = []
 
-        for (const offset of Movement) {
+        for (const offset of MazeMovement) {
             const pos: [number, number] = [origin[0] + offset[0], origin[1] + offset[1]]
             const tile = grid.BaseGrid.get(pos[0], pos[1])
 
