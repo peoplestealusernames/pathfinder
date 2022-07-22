@@ -68,4 +68,9 @@ export class Node<Data extends any> {
                 parent.removeChilds(this)
         });
     }
+
+    deleteSelf() {
+        this.removeChilds(...this.children)
+        this.removeParents(...this.parents)
+    }
 }
