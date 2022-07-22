@@ -60,7 +60,7 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
                 RefNode = undefined
             }
         }
-        Ret.set(x, y, RefNode, true)
+        Ret.set(x, y, RefNode)
     })
 
     return Ret
