@@ -9,9 +9,6 @@ const MazeMovement: [number, number][] = [
 ]
 
 export function mazeGen(grid: LayerManger) {
-    //TODO: fix bug where sometimes goal is deleted
-
-    //TODO: incorperate in LayerManager
     grid.NavGrid.clear()
     grid.BaseGrid.clear("wall")
     grid.placeSF()
