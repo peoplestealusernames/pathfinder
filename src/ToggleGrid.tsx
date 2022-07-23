@@ -1,3 +1,4 @@
+import { title } from "process"
 import { useEffect } from "react"
 import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
@@ -36,9 +37,11 @@ export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager
             if (!selected)
                 throw new Error("No selected value")
 
-            if (SelectableFnc[selected]) {
+            if (selected === tile)
+                throw new Error(`Update blocked {${x},${y}} is already a ${tile}`)
+
+            if (SelectableFnc[selected])
                 SelectableFnc[selected](x, y, props.grid, tile)
-            }
         }
 
         //TODO: drag
