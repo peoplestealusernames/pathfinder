@@ -1,10 +1,9 @@
 import { Grid2d } from "../2d/grid_types";
 import { isWalkable } from "../backend/misc";
-import { baseState } from "../backend/types";
+import { baseState, xy } from "../backend/types";
 import { Node } from "./NodeClass";
 
 //TODO: room and maze simplifiers
-type xy = { x: number, y: number }
 
 export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [number, number][]) {
     const Ret = new Grid2d<undefined | Node<xy>>

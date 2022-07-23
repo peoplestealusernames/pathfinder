@@ -13,6 +13,8 @@ export type Selectable = (typeof SelectableArray[number])
 export type allStates = baseState | navState | "empty"
 export type keyLike = Exclude<allStates, undefined>
 
+export type xy = { x: number, y: number }
+
 export const SwapTable: { [key in keyLike]: string } = {
     "empty": "grey",
     "wall": "red",
