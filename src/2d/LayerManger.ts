@@ -1,8 +1,14 @@
-import { Grid2d } from "./grid_types"
-import { navState, baseState, keyLike } from "../backend/types"
+import { Grid2d, GridEvents } from "./grid_types"
+import { navState, baseState, keyLike, allStates } from "../backend/types"
 import { outOfBounds } from "../backend/misc"
+import { TypedEventEmitter } from "../backend/events"
 
-export class LayerManger {
+type LayerMangerEvents = GridEvents<allStates> & {
+    goalMove: (x: number, y: number) => void
+    startMove: (x: number, y: number) => void
+}
+
+export class LayerManger extends TypedEventEmitter<LayerMangerEvents> {
     private width = 5
     private height = 5
 
@@ -21,6 +27,7 @@ export class LayerManger {
 
         this.BaseGrid.set(x, y, state, true)
         this[state] = [x, y]
+        this.emit(`${state}Move`, x, y)
     }
 
     getStart() {
@@ -47,6 +54,7 @@ export class LayerManger {
     }
 
     constructor(width: number, height: number) {
+        super()
         this.width = width
         this.height = height
         this.sizeChange()
