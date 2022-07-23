@@ -15,7 +15,7 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
             if (!isWalkable(state))
                 return
 
-            const aNode = new Node<xy>(1, { x, y })
+            const aNode = new Node<xy>(`${x},${y}`, 1, { x, y })
             Ret.set(x, y, aNode)
         }
     )
@@ -43,7 +43,7 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
 
         if (isWalkable(state)) {
             if (!RefNode) {
-                RefNode = new Node<xy>(1, { x, y })
+                RefNode = new Node<xy>(`${x},${y}`, 1, { x, y })
                 for (const offset of movement) {
                     const pos: [number, number] = [x + offset[0], y + offset[1]]
                     const tile = Ret.get(pos[0], pos[1])

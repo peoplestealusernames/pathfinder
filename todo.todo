@@ -46,3 +46,5 @@
 //TODO: graphical moving
 
 //TODO: movement as a option (maybe allow knight jumps or chess moves)
+
+//TODO: move grid2d to allow size of any using ...dimentions:number[] and maths

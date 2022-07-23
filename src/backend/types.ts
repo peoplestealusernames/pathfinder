@@ -40,7 +40,7 @@ export const Walkable: { [k in keyLike]: boolean } = {
     "qued": false,
     "goal": true,
     "solved": false,
-    "start": false,
+    "start": true,
 }
 
 export const SelectableFnc: { [k in Selectable]:

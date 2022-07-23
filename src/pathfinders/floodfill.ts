@@ -1,50 +1,95 @@
-import { LayerManger } from "../2d/LayerManger"
-import { isWalkable } from "../backend/misc"
-import { Path } from "../backend/types"
+import { Node } from "../nodes/NodeClass";
+import { NavInterface } from "./NavInterface";
 
-const Movement: [number, number][] = [
-    [0, 1],
-    [1, 0],
-    [0, -1],
-    [-1, 0]
-]
+export class FloodFill<Data extends any> implements NavInterface<Data> {
+    private solved: boolean = false;
+    readonly StartNode: Node<Data>
+    readonly GoalNode: Node<Data>
 
-export function StepFloodFill(qued: Path[], grid: LayerManger): [boolean, Path[]] {
-    let ret: Path[] = []
+    constructor(StartNode: Node<Data>, GoalNode: Node<Data>) {
+        this.StartNode = StartNode
+        this.GoalNode = GoalNode
+        this.Qued = [StartNode]
 
-    for (const pos of qued) {
-        const [solved, surroundings] = CheckSurround(pos, grid)
-        if (!solved) {
-            ret.push(...surroundings)
-        } else {
-            return [true, surroundings]
-        }
+        this.WeightTable[StartNode.id] = 0
     }
 
-    return [false, ret]
-}
+    getSolution(): false | Node<Data>[] {
+        if (!this.solved)
+            return false
 
-function CheckSurround(path: Path, grid: LayerManger): [boolean, Path[]] {
-    let ret: Path[] = []
-    const origin = path.last()
+        return this.SolutionPath
+    }
 
-    grid.NavGrid.set(origin[0], origin[1], "checked")
+    private WeightTable: { [key: string]: number } = {}
+    private Qued: Node<Data>[] = []
+    private SolutionPath: Node<Data>[] = []
 
-    for (const offset of Movement) {
-        const pos: [number, number] = [origin[0] + offset[0], origin[1] + offset[1]]
-        const tile = grid.getTop(pos[0], pos[1])
+    getSolved(): boolean {
+        return this.solved
+    }
 
-        if (isWalkable(tile)) {
-            if (tile === "goal") {
-                path.add(pos)
-                return [true, [path]]
+    GeneratePath(): boolean {
+        while (this.Qued.length > 0 && !this.solved) {
+            this.StepPath()
+        }
+        return this.solved
+    }
+
+    StepPath(): boolean {
+        let newQue: Node<Data>[] = []
+
+        console.log(`FloodFill:Step start:${this.Qued.length} nodes to process`);
+        for (const element of this.Qued) {
+            for (const child of element.getChildren()) {
+                const pathWeight = this.WeightTable[element.id] + child.weight
+                if (child.id in this.WeightTable)
+                    continue //Only returns true when it was already checked
+
+                this.WeightTable[child.id] = pathWeight
+
+                if (child === this.GoalNode) {
+                    this.SolutionPath = this.MakePath(child)
+                    this.solved = true
+                    console.log("FloodFill:Step solution found");
+
+                    return true
+                }
+
+                newQue.push(child)
+            };
+        };
+
+        console.log(`FloodFill:Step finish:${newQue.length} nodes now qued`);
+        this.Qued = newQue
+
+        return false
+    }
+
+    private MakePath(lastNode: Node<Data>) {
+        let cNode = lastNode
+        let Ret: Node<Data>[] = []
+        while (cNode !== this.StartNode) {
+            Ret.push(cNode)
+            cNode = this.LeastHeavyParent(cNode)
+        }
+        Ret.push(cNode)
+        return Ret
+    }
+
+
+    private LeastHeavyParent(node: Node<Data>) {
+        const parents = node.getParents()
+        let weight = this.WeightTable[parents[0].id]
+        let best = parents[0]
+        for (const Parent of parents) {
+            const nodeWeight = this.WeightTable[Parent.id]
+            if (weight > nodeWeight) {
+                best = Parent
+                weight = nodeWeight
             }
-            let Branch = path.Branch()
-            Branch.add(pos)
-            ret.push(Branch)
-            grid.NavGrid.set(pos[0], pos[1], "qued")
         }
-    }
 
-    return [false, ret]
+        return best
+    }
 }

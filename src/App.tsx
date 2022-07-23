@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Buttons } from './Buttons/Buttons';
 import { LayerManger } from './2d/LayerManger';
-import { NavGrid } from './2d/navGrid';
 import { ToggleGrid } from './ToggleGrid';
 import { CanvasManager } from './2d/canvasManger';
+import { FloodFill } from './pathfinders/floodfill';
+import { GridToNode2d } from './nodes/gridToNode';
 
+const Movement: [number, number][] = [
+  [1, 0],
+  [0, 1],
+  [-1, 0],
+  [0, -1],
+]
 
 function App() {
-
   const Grid = new LayerManger(75, 25)
-  const Nav = new NavGrid(Grid)
   const CanvasMang = new CanvasManager(Grid)
+  const Nodes = GridToNode2d(Grid.BaseGrid, Movement)
+  const Start = Nodes.get(...Grid.getStart())
+  const Finish = Nodes.get(...Grid.getGoal())
+
+  //TODO: remove patch work
+  if (!(Start && Finish)) {
+    return (
+      <div className="App">
+        Error start and finish not valid
+      </div>
+    )
+  }
+
+  const Nav = new FloodFill(
+    Start,
+    Finish
+  )
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
