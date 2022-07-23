@@ -18,7 +18,7 @@ export class FloodFill<Data extends any> implements NavInterface<Data> {
         if (!this.solved)
             return false
 
-        return this.SolutionPath
+        return Array.from(this.SolutionPath)
     }
 
     private WeightTable: { [key: string]: number } = {}
