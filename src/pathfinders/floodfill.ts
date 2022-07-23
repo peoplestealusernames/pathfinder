@@ -1,12 +1,20 @@
+import { TypedEventEmitter } from "../backend/events";
+import { allStates } from "../backend/types";
 import { Node } from "../nodes/NodeClass";
 import { NavInterface } from "./NavInterface";
 
-export class FloodFill<Data extends any> implements NavInterface<Data> {
+type FloodFillEvents<T> = {
+    update: (node: Node<T>, state: allStates) => void
+    solved: (solvedStack: Node<T>[]) => void
+}
+
+export class FloodFill<Data extends any> extends TypedEventEmitter<FloodFillEvents<Data>> implements NavInterface<Data> {
     private solved: boolean = false;
     readonly StartNode: Node<Data>
     readonly GoalNode: Node<Data>
 
     constructor(StartNode: Node<Data>, GoalNode: Node<Data>) {
+        super()
         this.StartNode = StartNode
         this.GoalNode = GoalNode
         this.Qued = [StartNode]
@@ -53,11 +61,19 @@ export class FloodFill<Data extends any> implements NavInterface<Data> {
                     this.solved = true
                     console.log("FloodFill:Step solution found");
 
+                    if (this.SolutionPath) {
+                        this.emit("solved", this.SolutionPath)
+                    } else {
+                        //TODO:PANIC
+                    }
                     return true
                 }
 
+                this.emit("update", child, "qued")
                 newQue.push(child)
             };
+
+            this.emit("update", element, "checked")
         };
 
         console.log(`FloodFill:Step finish:${newQue.length} nodes now qued`);
