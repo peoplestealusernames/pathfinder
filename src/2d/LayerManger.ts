@@ -72,6 +72,7 @@ export class LayerManger extends TypedEventEmitter<LayerMangerEvents> {
         this.NavGrid.setSize(this.width, this.height)
         this.BaseGrid.setSize(this.width, this.height)
         this.placeSF()
+        this.emit("sizeChange", this.width, this.height)
     }
     //TODO:foreach layer
 
@@ -79,6 +80,7 @@ export class LayerManger extends TypedEventEmitter<LayerMangerEvents> {
         this.BaseGrid.clear()
         this.NavGrid.clear()
         this.placeSF()
+        this.emit("clear")
     }
 
     placeSF() {
