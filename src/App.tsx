@@ -80,9 +80,6 @@ function App() {
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
-      <button style={{ alignSelf: "center", display: "flex" }}
-        onClick={() => { CanvasMang.reRender() }}
-      >Rerender</button>
       <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
       <p style={{ padding: "10px", margin: "0px", width: "100vw" }}>Pathfinding starts on the orange start square and goes to the green goal square.</p>
       <ToggleGrid grid={Grid} canvasMang={CanvasMang} />
