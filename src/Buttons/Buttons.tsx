@@ -1,7 +1,6 @@
 import { CanvasManager } from "../2d/canvasManger";
 import { LayerManger } from "../2d/LayerManger";
 import { mazeGen } from "../2d/mazeGen";
-import { CheckSolved } from "../backend/misc";
 import { GridToNode2d } from "../nodes/gridToNode";
 import { NavInterface } from "../pathfinders/NavInterface";
 import { ChangeDim } from "./ChangeDim";
@@ -9,6 +8,7 @@ import { RandomWall } from "./RandomWall";
 import { SelectTile } from "./SelectTile";
 
 export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canvas: CanvasManager }) {
+    let Timer: NodeJS.Timer | undefined
     return (<div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", width: "100vw" }}>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
             <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={(width: number) => { props.grid.setWidth(width); props.canvas.reRender() }} />
@@ -22,7 +22,7 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canv
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.nav.StepPath(); CheckSolved(props.grid, props.nav) }}
+                onClick={() => { props.nav.StepPath() }}
             >Step path</button>
             {/*//TODO:reimpliment
             <button style={{ alignSelf: "center", display: "flex" }}
@@ -30,7 +30,7 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canv
             >Toggle pathfinder</button>
 */}
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.nav.GeneratePath(); CheckSolved(props.grid, props.nav) }}
+                onClick={() => { props.nav.GeneratePath() }}
             >Generate path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>

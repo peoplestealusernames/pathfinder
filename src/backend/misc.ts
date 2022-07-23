@@ -64,12 +64,6 @@ export function isReplaceable<T extends allStates | false>(tile: T): boolean {
     return false
 }
 
-export function CheckSolved(grid: LayerManger, nav: NavInterface<any>) {
-    const solution = nav.getSolution()
-    if (solution)
-        RenderSolved(grid, solution)
-}
-
 export function RenderSolved(grid: LayerManger, Path: Node<xy>[]) {
     while (true) {
         const node = Path.pop()

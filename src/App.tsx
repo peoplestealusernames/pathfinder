@@ -68,6 +68,15 @@ function App() {
 
   Nav.on("update", (node, state) => { Grid.NavGrid.set(node.data.x, node.data.y, state) })
   Nav.on("reset", () => { Grid.NavGrid.clear() })
+  Nav.on("solved", (solvedStack) => {
+    while (true) {
+      const node = solvedStack.pop()
+      if (!node)
+        return
+
+      Grid.NavGrid.set(node.data.x, node.data.y, "solved")
+    }
+  })
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
