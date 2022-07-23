@@ -31,6 +31,8 @@ export class FloodFill<Data extends any> extends TypedEventEmitter<FloodFillEven
     }
 
     reset(): void {
+        this.solved = false
+        this.SolutionPath = []
         this.Qued = [this.StartNode]
         this.WeightTable = {}
         this.WeightTable[this.StartNode.id] = 0
