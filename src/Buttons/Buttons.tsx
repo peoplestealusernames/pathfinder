@@ -24,11 +24,21 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canv
             <button style={{ alignSelf: "center", display: "flex" }}
                 onClick={() => { props.nav.StepPath() }}
             >Step path</button>
-            {/*//TODO:reimpliment
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.nav.TogglePath() }}
+                onClick={() => {
+                    if (!Timer) {
+                        Timer = setInterval(() => {
+                            if (props.nav.StepPath()) {
+                                clearInterval(Timer)
+                                Timer = undefined
+                            }
+                        }, 100)
+                    } else {
+                        clearInterval(Timer)
+                        Timer = undefined
+                    }
+                }}
             >Toggle pathfinder</button>
-*/}
             <button style={{ alignSelf: "center", display: "flex" }}
                 onClick={() => { props.nav.GeneratePath() }}
             >Generate path</button>
