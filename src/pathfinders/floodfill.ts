@@ -16,8 +16,7 @@ export class FloodFill<Data extends any> extends TypedEventEmitter<FloodFillEven
 
     setStart(node: Node<Data>) {
         this.StartNode = node
-        this.Qued = [node]
-        this.emit("reset")
+        this.reset()
     }
 
     setGoal(node: Node<Data>) {
@@ -28,9 +27,14 @@ export class FloodFill<Data extends any> extends TypedEventEmitter<FloodFillEven
         super()
         this.StartNode = StartNode
         this.GoalNode = GoalNode
-        this.Qued = [StartNode]
+        this.reset()
+    }
 
-        this.WeightTable[StartNode.id] = 0
+    reset(): void {
+        this.Qued = [this.StartNode]
+        this.WeightTable = {}
+        this.WeightTable[this.StartNode.id] = 0
+        this.emit("reset")
     }
 
     getSolution(): false | Node<Data>[] {

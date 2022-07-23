@@ -8,4 +8,6 @@ export interface NavInterface<Data extends any> {
     GeneratePath(): boolean
 
     StepPath(): boolean
+
+    reset(): void
 }
