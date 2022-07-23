@@ -12,7 +12,7 @@ export function ChangeDim<T>(props: { setter: (arg0: T) => void, initValue: T, i
             onChange={(e: any) => {
                 const newValue = e.target.value
                 setValue(newValue)
-                props.setter(newValue)
+                props.setter(JSON.parse(newValue))
             }} style={{ width: 50 }} />
     )
 }
