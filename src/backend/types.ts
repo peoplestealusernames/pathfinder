@@ -3,7 +3,7 @@ import { isReplaceable } from "./misc"
 
 export const baseArray = ["wall", "start", "goal"] as const
 export const navArray = ["qued", "checked", "solved"] as const
-export const SelectableArray = ["debug", "empty", "wall", "start", "goal"] as const
+export const SelectableArray = [/*"debug",*/"empty", "wall", "start", "goal"] as const
 
 export type baseState = (typeof baseArray[number] | undefined)
 export type navState = (typeof navArray[number] | undefined)
@@ -48,9 +48,9 @@ export const Walkable: { [k in keyLike]: boolean } = {
 export const SelectableFnc: { [k in Selectable]:
     (x: number, y: number, grid: LayerManger, topTile: allStates) => void }
     = {
-    "debug": (x, y, grid, topTile) => {
-        console.log(topTile, grid.BaseGrid.get(x, y), grid.NavGrid.get(x, y))
-    },
+    /*"debug": (x, y, grid, topTile) => {
+        console.log(`Top layer: ${topTile}\nBaseGrid: ${grid.BaseGrid.get(x, y)}\nNavGrid: ${grid.NavGrid.get(x, y)}`)
+    },*/
     "wall": (x, y, grid, topTile) => {
         if (!isReplaceable(topTile)) return
         grid.BaseGrid.set(x, y, "wall", true)
