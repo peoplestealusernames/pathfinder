@@ -35,7 +35,20 @@ function App() {
     Finish
   )
 
+  Grid.on("startMove", (x, y) => {
+    const tile = Nodes.get(x, y)
+    if (tile)
+      Nav.setStart(tile)
+  })
+
+  Grid.on("goalMove", (x, y) => {
+    const tile = Nodes.get(x, y)
+    if (tile)
+      Nav.setGoal(tile)
+  })
+
   Nav.on("update", (node, state) => { Grid.NavGrid.set(node.data.x, node.data.y, state) })
+  Nav.on("reset", () => { Grid.NavGrid.clear() })
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
