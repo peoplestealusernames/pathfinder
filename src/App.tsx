@@ -35,6 +35,18 @@ function App() {
     Finish
   )
 
+  Grid.on("sizeChange", () => {
+    const Nodes = GridToNode2d(Grid.BaseGrid, Movement)
+    const Start = Nodes.get(...Grid.getStart())
+    const Finish = Nodes.get(...Grid.getGoal())
+
+    if (!Start || !Finish)
+      return
+
+    Nav.setStart(Start)
+    Nav.setGoal(Finish)
+  })
+
   Grid.on("startMove", (x, y) => {
     const tile = Nodes.get(x, y)
     if (tile)
