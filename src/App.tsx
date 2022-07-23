@@ -35,6 +35,8 @@ function App() {
     Finish
   )
 
+  Nav.on("update", (node, state) => { Grid.NavGrid.set(node.data.x, node.data.y, state) })
+
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
       <button style={{ alignSelf: "center", display: "flex" }}

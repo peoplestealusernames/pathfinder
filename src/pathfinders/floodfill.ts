@@ -1,10 +1,10 @@
 import { TypedEventEmitter } from "../backend/events";
-import { allStates } from "../backend/types";
+import { allStates, navState } from "../backend/types";
 import { Node } from "../nodes/NodeClass";
 import { NavInterface } from "./NavInterface";
 
 type FloodFillEvents<T> = {
-    update: (node: Node<T>, state: allStates) => void
+    update: (node: Node<T>, state: navState) => void
     solved: (solvedStack: Node<T>[]) => void
 }
 
