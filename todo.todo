@@ -48,3 +48,7 @@
 //TODO: movement as a option (maybe allow knight jumps or chess moves)
 
 //TODO: move grid2d to allow size of any using ...dimentions:number[] and maths
+
+//TODO: revamp events
+// Maze generator makes nodes regenerate like crazy
+// Generate path does the same
