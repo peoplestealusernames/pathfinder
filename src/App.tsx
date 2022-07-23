@@ -17,7 +17,7 @@ const Movement: [number, number][] = [
 function App() {
   const Grid = new LayerManger(75, 25)
   const CanvasMang = new CanvasManager(Grid)
-  const Nodes = GridToNode2d(Grid.BaseGrid, Movement)
+  let Nodes = GridToNode2d(Grid.BaseGrid, Movement)
   const Start = Nodes.get(...Grid.getStart())
   const Finish = Nodes.get(...Grid.getGoal())
 
@@ -36,7 +36,7 @@ function App() {
   )
 
   Grid.on("sizeChange", () => {
-    const Nodes = GridToNode2d(Grid.BaseGrid, Movement)
+    Nodes = GridToNode2d(Grid.BaseGrid, Movement)
     const Start = Nodes.get(...Grid.getStart())
     const Finish = Nodes.get(...Grid.getGoal())
 
