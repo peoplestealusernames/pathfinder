@@ -6,12 +6,23 @@ import { NavInterface } from "./NavInterface";
 type FloodFillEvents<T> = {
     update: (node: Node<T>, state: navState) => void
     solved: (solvedStack: Node<T>[]) => void
+    reset: () => void
 }
 
 export class FloodFill<Data extends any> extends TypedEventEmitter<FloodFillEvents<Data>> implements NavInterface<Data> {
     private solved: boolean = false;
-    readonly StartNode: Node<Data>
-    readonly GoalNode: Node<Data>
+    private StartNode: Node<Data>
+    private GoalNode: Node<Data>
+
+    setStart(node: Node<Data>) {
+        this.StartNode = node
+        this.Qued = [node]
+        this.emit("reset")
+    }
+
+    setGoal(node: Node<Data>) {
+        this.GoalNode = node //TODO: update mechanism for nodes
+    }
 
     constructor(StartNode: Node<Data>, GoalNode: Node<Data>) {
         super()
