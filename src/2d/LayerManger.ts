@@ -1,6 +1,6 @@
 import { Grid2d } from "./grid_types"
 import { navState, baseState, keyLike } from "../backend/types"
-import { outOfBounds, trueEqual } from "../backend/misc"
+import { outOfBounds } from "../backend/misc"
 
 export class LayerManger {
     private width = 5

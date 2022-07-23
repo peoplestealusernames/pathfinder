@@ -20,8 +20,8 @@ export class CanvasManager {
             this.render(x, y)
         }
 
-        this.grid.BaseGrid.addCallback(Update)
-        this.grid.NavGrid.addCallback(Update)
+        this.grid.BaseGrid.on("update", Update)
+        this.grid.NavGrid.on("update", Update)
     }
 
     addCanvas(canvas: HTMLCanvasElement) {

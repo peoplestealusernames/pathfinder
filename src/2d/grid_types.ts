@@ -1,18 +1,23 @@
+import { TypedEventEmitter } from "../backend/events"
 import { outOfBounds, removeItem } from "../backend/misc"
+import { keyLike } from "../backend/types"
 
-type FNC<T> = (x: number, y: number, state: T) => void
+export type GridEvents<T> = {
+    update: (x: number, y: number, state: T) => void
+    sizeChange: (width: number, height: number) => void
+    clear: () => void
+}
 
-export class Grid2d<T> {
+export class Grid2d<T> extends TypedEventEmitter<GridEvents<T>> {
     private grid: T[] = []
 
     private defaultState: T
-
-    private updateCallbacks: FNC<T>[] = []
 
     private width: number
     private height: number
 
     constructor(width: number, height: number, defaultState: T) {
+        super()
         //TODO: size checking
         this.width = width
         this.height = height
@@ -20,13 +25,6 @@ export class Grid2d<T> {
         this.defaultState = defaultState
 
         this.reset()
-    }
-
-    addCallback(callback: FNC<T>) {
-        this.updateCallbacks.push(callback)
-    }
-    removeCallback(callback: FNC<T>) {
-        removeItem(this.updateCallbacks, callback)
     }
 
     getWidth(): number {
@@ -59,6 +57,8 @@ export class Grid2d<T> {
         for (let y = 0; y < this.height; y++)
             for (let x = 0; x < this.width; x++)
                 this.grid[this.toI(x, y)] = this.defaultState
+
+        this.emit("sizeChange", this.width, this.height)
     }
 
     clear(setTo: T = this.defaultState, makeDefault = false): void {
@@ -68,6 +68,8 @@ export class Grid2d<T> {
         })
         if (makeDefault)
             this.defaultState = setTo
+
+        this.emit("clear")
     }
 
     getDefault() {
@@ -84,7 +86,6 @@ export class Grid2d<T> {
         const id = this.toI(x, y)
 
         return this.grid[id]
-
     }
 
     set(x: number, y: number, state: T, log = false): boolean {
@@ -100,9 +101,7 @@ export class Grid2d<T> {
             console.log(`Update:{${x},${y}} is ${state}`)
         }
 
-        for (const callback of this.updateCallbacks) {
-            callback(x, y, state)
-        }
+        this.emit("update", x, y, state)
         return true
     }
 

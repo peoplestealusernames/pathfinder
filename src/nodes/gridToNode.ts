@@ -35,7 +35,7 @@ export function GridToNode2d<T extends baseState>(grid: Grid2d<T>, movement: [nu
         }
     )
 
-    grid.addCallback((x, y, state) => {
+    grid.on("update", (x, y, state) => {
         let RefNode = Ret.get(x, y)
         if (RefNode === false)
             return
