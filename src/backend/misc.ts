@@ -1,4 +1,7 @@
-import { allStates, keyLike, Replaceable, Walkable } from "./types";
+import { LayerManger } from "../2d/LayerManger";
+import { Node } from "../nodes/NodeClass";
+import { NavInterface } from "../pathfinders/NavInterface";
+import { allStates, keyLike, Replaceable, Walkable, xy } from "./types";
 
 export function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
@@ -59,4 +62,22 @@ export function isReplaceable<T extends allStates | false>(tile: T): boolean {
         return true
 
     return false
+}
+
+export function CheckSolved(grid: LayerManger, nav: NavInterface<any>) {
+    const solution = nav.getSolution()
+    if (solution)
+        RenderSolved(grid, solution)
+}
+
+export function RenderSolved(grid: LayerManger, Path: Node<xy>[]) {
+    while (true) {
+        const node = Path.pop()
+        if (!node)
+            return
+        if (!node.data)
+            return
+
+        grid.NavGrid.set(node.data.x, node.data.y, "solved")
+    }
 }

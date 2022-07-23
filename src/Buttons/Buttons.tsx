@@ -1,6 +1,7 @@
 import { CanvasManager } from "../2d/canvasManger";
 import { LayerManger } from "../2d/LayerManger";
 import { mazeGen } from "../2d/mazeGen";
+import { CheckSolved } from "../backend/misc";
 import { GridToNode2d } from "../nodes/gridToNode";
 import { NavInterface } from "../pathfinders/NavInterface";
 import { ChangeDim } from "./ChangeDim";
@@ -23,7 +24,7 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canv
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.nav.StepPath() }}
+                onClick={() => { props.nav.StepPath(); CheckSolved(props.grid, props.nav) }}
             >Step path</button>
             {/*//TODO:reimpliment
             <button style={{ alignSelf: "center", display: "flex" }}
@@ -31,7 +32,7 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canv
             >Toggle pathfinder</button>
 */}
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.nav.GeneratePath() }}
+                onClick={() => { props.nav.GeneratePath(); CheckSolved(props.grid, props.nav) }}
             >Generate path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
