@@ -47,6 +47,13 @@ function App() {
       Nav.setGoal(tile)
   })
 
+  Grid.BaseGrid.on("clear", () => {
+    Nav.reset()
+  })
+  Grid.on("clear", () => {
+    Nav.reset()
+  })
+
   Nav.on("update", (node, state) => { Grid.NavGrid.set(node.data.x, node.data.y, state) })
   Nav.on("reset", () => { Grid.NavGrid.clear() })
 
