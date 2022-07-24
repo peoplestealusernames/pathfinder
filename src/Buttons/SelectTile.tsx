@@ -13,7 +13,7 @@ export function SelectTile() {
                 `}</style>
             {SelectableArray.map((tile: Selectable) => {
                 return (
-                    <button key={`ToggleButton:${tile}`} style={{ alignSelf: "center", display: "flex" }} onClick={(e: any) => {
+                    <button key={`ToggleButton:${tile}`} style={{ alignSelf: "center", display: "flex" }} onMouseDown={(e: any) => {
                         setSelected(tile)
                     }} className={selected === tile ? "on" : "off"}>
                         {tile}

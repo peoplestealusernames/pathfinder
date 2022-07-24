@@ -14,18 +14,18 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canv
             <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={(width: number) => { props.grid.setWidth(width); props.canvas.reRender() }} />
             <ChangeDim key="ChangeY" inputType="number" initValue={props.grid.getHeight()} setter={(height: number) => { props.grid.setHeight(height); props.canvas.reRender() }} />
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.grid.clear(); }}
+                onMouseDown={() => { props.grid.clear(); }}
             >Reset</button>
             <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-                onClick={() => { props.nav.reset() }}
+                onMouseDown={() => { props.nav.reset() }}
             >Remove Path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.nav.StepPath() }}
+                onMouseDown={() => { props.nav.StepPath() }}
             >Step path</button>
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => {
+                onMouseDown={() => {
                     if (!Timer) {
                         Timer = setInterval(() => {
                             if (props.nav.StepPath()) {
@@ -40,12 +40,12 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canv
                 }}
             >Toggle pathfinder</button>
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { props.nav.GeneratePath() }}
+                onMouseDown={() => { props.nav.GeneratePath() }}
             >Generate path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
             <button style={{ alignSelf: "center", display: "flex" }}
-                onClick={() => { mazeGen(props.grid) }}
+                onMouseDown={() => { mazeGen(props.grid) }}
             >Gen Maze!</button>
         </div>
         <SelectTile />

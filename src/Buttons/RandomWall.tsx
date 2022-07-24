@@ -10,7 +10,7 @@ export function RandomWall(props: { grid: LayerManger }) {
         <input type="number" value={WallCount} onChange={(e: any) => { SetWallCount(e.target.value) }}
             style={{ width: 50, WebkitAppearance: "none", MozAppearance: "textfield", padding: 0, }} />
         <button style={{ alignSelf: "center", display: "flex" }}
-            onClick={() => {
+            onMouseDown={() => {
                 for (let i = 0; i < WallCount; i++)
                     SetRandomWall(props.grid)
             }}

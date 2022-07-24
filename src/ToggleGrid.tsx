@@ -45,10 +45,10 @@ export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager
         }
 
         //TODO: drag
-        elem.addEventListener("click", mouseDown)
+        elem.addEventListener("mousedown", mouseDown)
 
         return (() => {
-            elem.removeEventListener("click", mouseDown)
+            elem.removeEventListener("mousedown", mouseDown)
         })
     })
 
