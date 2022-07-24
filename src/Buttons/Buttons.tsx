@@ -1,7 +1,6 @@
 import { CanvasManager } from "../2d/canvasManger";
 import { LayerManger } from "../2d/LayerManger";
 import { mazeGen } from "../2d/mazeGen";
-import { GridToNode2d } from "../nodes/gridToNode";
 import { NavInterface } from "../pathfinders/NavInterface";
 import { ChangeDim } from "./ChangeDim";
 import { RandomWall } from "./RandomWall";

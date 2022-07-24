@@ -1,4 +1,3 @@
-import { title } from "process"
 import { useEffect } from "react"
 import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"

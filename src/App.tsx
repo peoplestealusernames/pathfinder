@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { Buttons } from './Buttons/Buttons';
 import { LayerManger } from './2d/LayerManger';
