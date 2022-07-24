@@ -1,15 +1,6 @@
-//TODO: Revamp (Grid, NavGrid and Renderer)
-// Grid -> NavGrid -> Renderer
-// Make NavGrid with all nav fnc
-// Make canvas manger aka renderer
-// scaling management to fit screen
-
-//TODO: Revamp (nodes)
-// Replace grid with nodes making a web linking to eachother
-// custom ids
-// events maybe?
-//  custom baises for a default in and a clac in
-//  custom bais for changeing direction
+//TODO: Node improvements
+// custom bais for changeing direction
+// tiles that are harder to walk on
 
 //TODO: Scale when scaling
 // Options:
@@ -17,7 +8,7 @@
 // Move to scale without adding more tiles
 // Dont move but save (save the old grid and grab in new cell during reset)
 
-//TODO: fix cords 0,0 is top left not bottem left
+//TODO: fix cords 0,0 is top left not bottem left (render issue)
 
 //TODO: maze
 // multiple generators
