@@ -1,6 +1,5 @@
 import { TypedEventEmitter } from "../backend/events"
-import { outOfBounds, removeItem } from "../backend/misc"
-import { keyLike } from "../backend/types"
+import { outOfBounds } from "../backend/misc"
 
 export type GridEvents<T> = {
     update: (x: number, y: number, state: T) => void
