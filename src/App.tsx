@@ -77,10 +77,10 @@ function App() {
           fontSize: "25px",
           color: "white",
         }} >
-          <ContextButton setTrueState={setInfoPopupState}>
+          <ContextButton setButtonState={setInfoPopupState}>
             <AiOutlineInfoCircle size={30} />
           </ContextButton>
-          <ContextButton setTrueState={setSettingPopupState}>
+          <ContextButton setButtonState={setSettingPopupState}>
             <AiFillSetting size={30} />
           </ContextButton>
         </div>
@@ -88,7 +88,7 @@ function App() {
         {PopupMenus.map((Menu, i) => {
           const Icon = Menu.Icon
           return (
-            <ContextButton key={`MenuButton:${i}`} setTrueState={StateArray[i][1]}>
+            <ContextButton key={`MenuButton:${i}`} setButtonState={StateArray[i][1]}>
               <Icon size={30} />
             </ContextButton>
           )
