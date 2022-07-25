@@ -1,6 +1,10 @@
 import { LayerManger } from "../2d/LayerManger";
 import { Selectable } from "../backend/types";
+import { ContextButton } from "../components/ContextButton";
+import { StyledTab } from "../components/StyledTab";
 import { NavInterface } from "../pathfinders/NavInterface";
+import { IoMdSkipForward, IoMdPlay, IoMdPause } from "react-icons/io"
+import { CgTimelapse } from "react-icons/cg";
 
 export function NavMenu(props: {
     grid: LayerManger,
@@ -9,43 +13,55 @@ export function NavMenu(props: {
 }) {
     let Timer: NodeJS.Timer | undefined
 
-    return (<div>
-        <div id={"Block selector"} data-value={props.selectorState}
-            style={{
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                backgroundColor: "white",
-                borderRadius: "10px",
-                padding: "10px",
-                border: "10px solid black",
-            }}>
-            <button style={{ alignSelf: "center", display: "flex" }}
+    function RunPath() {
+        if (!Timer) {
+            Timer = setInterval(() => {
+                if (props.nav.StepPath()) {
+                    clearInterval(Timer)
+                    Timer = undefined
+                }
+            }, 100)//TODO: pathfinder speed
+        }
+    }
+
+    function StopPath() {
+        clearInterval(Timer)
+        Timer = undefined
+    }
+
+
+    return (
+        <StyledTab title="NavMenu">
+            <ContextButton
+                context={"Step Path"}
+                contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { props.nav.StepPath() }}
-            >Step path</button>
-            <button style={{ alignSelf: "center", display: "flex" }}
-                onMouseDown={() => {
-                    if (!Timer) {
-                        Timer = setInterval(() => {
-                            if (props.nav.StepPath()) {
-                                clearInterval(Timer)
-                                Timer = undefined
-                            }
-                        }, 100)
-                    } else {
-                        clearInterval(Timer)
-                        Timer = undefined
-                    }
-                }}
-            >Toggle pathfinder</button>
-            <button style={{ alignSelf: "center", display: "flex" }}
+            >
+                <IoMdSkipForward />
+            </ContextButton>
+            <ContextButton
+                context={"Play pathfinder"}
+                contextStyle={{ bottom: "-100%" }}
+                buttonStyle={{ color: "green" }}
+                onMouseDown={() => { RunPath() }}
+            >
+                <IoMdPlay />
+            </ContextButton>
+            <ContextButton
+                context={"Stop pathfinder"}
+                contextStyle={{ bottom: "-100%" }}
+                buttonStyle={{ color: "red" }}
+                onMouseDown={() => { StopPath() }}
+            >
+                <IoMdPause />
+            </ContextButton>
+            <ContextButton
+                context={"Generate Path"}
+                contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { props.nav.GeneratePath() }}
-            >Generate path</button>
-            <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-                onMouseDown={() => { props.nav.reset() }}
-            >Remove Path</button>
-        </div >
-    </div>
+            >
+                <CgTimelapse />
+            </ContextButton>
+        </StyledTab>
     )
 }
