@@ -10,7 +10,8 @@ export function TopBar(props: {
         alignItems: "center",
         justifyItems: "center",
         justifyContent: "center",
-        background: "black"
+        background: "black",
+        borderBottom: '2px solid rgba(255, 255, 255, 1)'
     }}>
         <div className='Logo' style={{
             display: "flex", position: "absolute", width: "100vw", height: "50px",
