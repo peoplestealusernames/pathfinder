@@ -13,10 +13,10 @@ export function SelectTile(props: {
                 flexDirection: "row",
                 flexWrap: "wrap",
                 justifyContent: "center",
-                backgroundColor: "white",
-                borderRadius: "10px",
-                padding: "10px",
-                border: "10px solid black",
+                backgroundColor: "black",
+                borderRadius: "0px",
+                padding: "5px",
+                border: "2px solid white",
             }}>
             {SelectableArray.map((tile) => {
                 return (
@@ -69,10 +69,11 @@ function TileBuilder(props: {
                 display: "flex",
                 alignSelf: "center",
                 flexDirection: "column",
-                margin: "5px",
-                borderRadius: "10px",
-                border: Hover ? "5px solid red" : "5px solid black",
-                backgroundColor: props.selectorState === props.tile ? "green" : "grey",
+                margin: "3px",
+                padding: "2px",
+                borderRadius: "0px",
+                border: Hover ? "2px solid red" : "2px solid white",
+                backgroundColor: props.selectorState === props.tile ? "darkgoldenrod" : "#484848",
                 userSelect: "none"
             }}
             onMouseEnter={() => { setHover(true) }}
@@ -81,13 +82,19 @@ function TileBuilder(props: {
         >
             <canvas style={{
                 display: "flow",
-                width: "70px",
-                height: "70px",
-                margin: "5px"
+                width: "50px",
+                height: "50px",
+                margin: "2px"
             }}
                 id={ID}
             />
-            {props.tile}
+            <p style={{
+                margin: "1px",
+                color: "white",
+                fontSize: "13px"
+            }} >
+                {props.tile}
+            </p>
         </div >
     )
 }
