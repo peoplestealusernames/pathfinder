@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
-
-export function BlurBackground(props: { children?: React.ReactNode }) {
+export function BlurBackground(props: {
+    children?: React.ReactNode
+}) {
     return (
         <div style={{
             position: "absolute",

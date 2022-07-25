@@ -1,4 +1,3 @@
-import { useMemo } from "react"
 import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
 import { xy } from "./backend/types"

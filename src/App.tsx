@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useMemo, useState } from 'react';
 import './App.css';
 import { ToggleGrid } from './ToggleGrid';
 import { Popup } from './components/Popup';
@@ -13,7 +13,6 @@ import { NavMenu } from './Buttons/NavMenu';
 
 import { TbReplace } from 'react-icons/tb'
 import { GiMaze, GiPathDistance } from 'react-icons/gi'
-import { GrStatusPlaceholderSmall } from 'react-icons/gr'
 import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
 import { MazeMenu } from './Buttons/MazeMenu';
 

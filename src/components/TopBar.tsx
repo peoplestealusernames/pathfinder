@@ -1,6 +1,4 @@
 import { BiCodeBlock } from "react-icons/bi"
-import { TopBarButton } from "./TopBarButton"
-
 
 export function TopBar(props: {
     children?: React.ReactNode
