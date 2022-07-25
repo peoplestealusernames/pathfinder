@@ -20,7 +20,12 @@ function App() {
   const [Grid, CanvasMang, Nav] = useMemo(() => { return setup() }, [])
 
   return (
-    <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", backgroundColor: "#840202" }}>
+    <div className="App" style={{
+      display: "flex",
+      flexDirection: "column",
+      flexWrap: "wrap",
+      backgroundColor: "#4e4e4e",
+    }}>
       <TopBar>
         <button style={{
           position: "relative",
