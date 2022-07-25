@@ -1,4 +1,5 @@
 import { BiCodeBlock } from "react-icons/bi"
+import { TopBarButton } from "./TopBarButton"
 
 
 export function TopBar(props: {
@@ -18,6 +19,7 @@ export function TopBar(props: {
             display: "flex", position: "absolute", width: "100vw", height: "50px",
             alignItems: "center",
             justifyItems: "center",
+            justifyContent: "left",
             left: "10px",
             fontSize: "25px",
             color: "white",
