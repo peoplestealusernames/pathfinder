@@ -6,14 +6,18 @@ export function ContextButton(props: {
     context?: React.ReactNode
     contextStyle?: React.CSSProperties
     buttonStyle?: React.CSSProperties
-    setButtonState: Dispatch<SetStateAction<boolean>>
+    setButtonState?: Dispatch<SetStateAction<boolean>>
+    onMouseDown?: () => void
     setHoverState?: Dispatch<SetStateAction<boolean>>
+    onHover?: (Hover: boolean) => void
 }) {
     const [Hover, setHover] = useState<boolean>(false)
 
     useEffect(() => {
         if (props.setHoverState)
             props.setHoverState(Hover)
+        if (props.onHover)
+            props.onHover(Hover)
     }, [Hover])
 
     return (
@@ -33,7 +37,12 @@ export function ContextButton(props: {
         }}
             onMouseEnter={() => { setHover(true) }}
             onMouseLeave={() => { setHover(false) }}
-            onMouseDown={() => props.setButtonState(true)}
+            onMouseDown={() => {
+                if (props.setButtonState)
+                    props.setButtonState(true)
+                if (props.onMouseDown)
+                    props.onMouseDown()
+            }}
         >
             {props.children}
             {
