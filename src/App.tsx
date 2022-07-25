@@ -101,7 +101,7 @@ function App() {
         <InfoMenu />
       </Popup >
       <Popup active={SettingPopupState} setActive={setSettingPopupState} >
-        <SettingsMenu />
+        <SettingsMenu grid={Grid} />
       </Popup >
 
       {PopupMenus.map((Menu, i) => {
