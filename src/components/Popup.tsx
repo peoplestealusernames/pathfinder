@@ -3,7 +3,12 @@ import { BlurBackground } from "./BlurBackground";
 import { CenterDiv } from "./CenterDiv";
 
 
-export function Popup(props: { active: boolean, setActive: Dispatch<SetStateAction<boolean>>, children?: React.ReactNode }) {
+export function Popup(props: {
+    active: boolean,
+    setActive: Dispatch<SetStateAction<boolean>>,
+    children?: React.ReactNode
+}) {
+
     const KeyPressed = (e: KeyboardEvent) => {
         if (e.key === "Escape") {
             props.setActive(false)
