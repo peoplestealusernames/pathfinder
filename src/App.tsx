@@ -59,7 +59,9 @@ function App() {
           <SelectTile setSelectorState={setSelectorState} selectorState={SelectorState} />
         </div>
       </Popup >
-      <ToggleGrid grid={Grid} canvasMang={CanvasMang} selectorState={SelectorState} />
+      <ToggleGrid grid={Grid} canvasMang={CanvasMang} selectorState={SelectorState}
+        style={{ "border": "10px solid black" }}
+      />
     </div >
   );
 }
