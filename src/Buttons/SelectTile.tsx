@@ -7,26 +7,50 @@ export function SelectTile(props: {
 }) {
 
     return (
-        <div id={"Block selector"} data-value={props.selectorState}
-            style={{
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                backgroundColor: "black",
-                borderRadius: "0px",
-                padding: "5px",
-                border: "2px solid white",
-            }}>
-            {SelectableArray.map((tile) => {
-                return (
-                    <TileBuilder
-                        key={`ToggleButton:${tile}`}
-                        {...props}
-                        tile={tile}
-                    />
-                )
-            })}
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            backgroundColor: "black",
+            borderRadius: "0px",
+            padding: "3px",
+            border: "2px solid white",
+        }}>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                }}>
+                <p style={{
+                    width: "fit-content",
+                    color: "white",
+                    border: "4px solid white",
+                    borderRadius: "5px",
+                    fontSize: "30px",
+                    padding: "7px",
+                    margin: "7px"
+                }}>
+                    Tile Selector
+                </p>
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                }}>
+                {SelectableArray.map((tile) => {
+                    return (
+                        <TileBuilder
+                            key={`ToggleButton:${tile}`}
+                            {...props}
+                            tile={tile}
+                        />
+                    )
+                })}
+            </div >
         </div >
     )
 }
