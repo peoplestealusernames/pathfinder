@@ -13,8 +13,7 @@ export function CenterDiv(props: {
                 alignItems: "center",
                 justifyItems: "center",
                 justifyContent: "center",
-                height: "100%",
-                width: "100%"
+                flex: 1
             },
             ...props.styleOverride
         }}>
