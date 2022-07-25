@@ -3,8 +3,7 @@ import { Selectable, SelectableArray } from "../backend/types"
 
 export function SelectTile(props: {
     selectorState: Selectable,
-    setSelectorState: Dispatch<SetStateAction<Selectable>>,
-    children?: React.ReactNode
+    setSelectorState: Dispatch<SetStateAction<Selectable>>
 }) {
 
     return (
