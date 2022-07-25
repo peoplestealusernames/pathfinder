@@ -23,7 +23,7 @@ function App() {
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
       <TopBar>
         <button style={{
-          position: "static",
+          position: "relative",
           margin: "2px",
           padding: "2px",
           display: "flex"
@@ -33,7 +33,7 @@ function App() {
           <GrStatusPlaceholderSmall size={32} />
         </button>
         <button style={{
-          position: "static",
+          position: "relative",
           margin: "2px",
           padding: "2px",
           display: "flex"
