@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { Selectable, SelectableArray, SwapTable } from "../backend/types"
+import { ContextButton } from "../components/ContextButton"
 import { StyledTab } from "../components/StyledTab"
 
 export function SelectTile(props: {
@@ -54,23 +55,18 @@ function TileBuilder(props: {
         context.scale(scaleFactor / 10 * 2, scaleFactor / 10)
     }, [ID, props.tile])
 
-    const [Hover, setHover] = useState<boolean>(false)
-
     return (
-        <div
-            style={{
-                position: "relative",
-                display: "flex",
-                alignSelf: "center",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
+        <ContextButton
+            buttonStyle={{
                 margin: "5px",
                 userSelect: "none"
             }}
-            onMouseEnter={() => { setHover(true) }}
-            onMouseLeave={() => { setHover(false) }}
-            onMouseDown={(e: any) => { props.setSelectorState(props.tile) }}
+            onMouseDown={() => { props.setSelectorState(props.tile) }}
+            context={props.tile}
+            contextStyle={{
+                fontSize: "12px",
+                border: "1px solid white",
+            }}
         >
             <canvas style={{
                 display: "flow",
@@ -81,19 +77,6 @@ function TileBuilder(props: {
             }}
                 id={ID}
             />
-            {Hover &&
-                <div style={{
-                    position: "absolute",
-                    whiteSpace: "nowrap",
-                    backgroundColor: "black",
-                    padding: "2px",
-                    fontSize: "12px",
-                    borderRadius: "6px",
-                    color: "white",
-                    border: "1px solid white",
-                }}>
-                    {props.tile}
-                </div>}
-        </div >
+        </ContextButton >
     )
 }
