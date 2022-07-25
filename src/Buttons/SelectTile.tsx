@@ -7,8 +7,9 @@ export function SelectTile(props: {
 }) {
 
     return (
+
         <div id={"Block selector"} data-value={props.selectorState}
-            style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+            style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center", backgroundColor: "black", borderRadius: "10px", padding: "10px" }}>
             <style>{`
                 .on {background-Color:red}
                 .off {background-Color:grey}

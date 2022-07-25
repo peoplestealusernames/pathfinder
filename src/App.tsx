@@ -69,14 +69,10 @@ function App() {
         <SettingsMenu />
       </Popup >
       <Popup active={ButtonsPopupState} setActive={setButtonsPopupState} >
-        <div style={{ display: "flex", backgroundColor: "black", borderRadius: "20px", padding: "10px" }}>
-          <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
-        </div>
+        <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
       </Popup >
       <Popup active={PlacePopupState} setActive={setPlacePopupState} >
-        <div style={{ display: "flex", backgroundColor: "black", borderRadius: "10px", padding: "10px" }}>
-          <SelectTile setSelectorState={setSelectorState} selectorState={SelectorState} />
-        </div>
+        <SelectTile setSelectorState={setSelectorState} selectorState={SelectorState} />
       </Popup >
       <ToggleGrid grid={Grid} canvasMang={CanvasMang} selectorState={SelectorState}
         style={{ "border": "10px solid black" }}

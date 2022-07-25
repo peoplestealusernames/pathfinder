@@ -8,7 +8,8 @@ import { SelectTile } from "./SelectTile";
 
 export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canvas: CanvasManager }) {
     let Timer: NodeJS.Timer | undefined
-    return (<div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
+
+    return (<div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", backgroundColor: "black", borderRadius: "20px", padding: "10px" }}>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
             <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={(width: number) => { props.grid.setWidth(width); props.canvas.reRender() }} />
             <ChangeDim key="ChangeY" inputType="number" initValue={props.grid.getHeight()} setter={(height: number) => { props.grid.setHeight(height); props.canvas.reRender() }} />
