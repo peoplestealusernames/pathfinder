@@ -7,7 +7,6 @@ import { RandomWall } from "./RandomWall";
 import { SelectTile } from "./SelectTile";
 
 export function Buttons(props: { grid: LayerManger, nav: NavInterface<any> }) {
-    let Timer: NodeJS.Timer | undefined
 
     return (<div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", backgroundColor: "black", borderRadius: "20px", padding: "10px" }}>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
@@ -21,27 +20,6 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any> }) {
             >Remove Path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-            <button style={{ alignSelf: "center", display: "flex" }}
-                onMouseDown={() => { props.nav.StepPath() }}
-            >Step path</button>
-            <button style={{ alignSelf: "center", display: "flex" }}
-                onMouseDown={() => {
-                    if (!Timer) {
-                        Timer = setInterval(() => {
-                            if (props.nav.StepPath()) {
-                                clearInterval(Timer)
-                                Timer = undefined
-                            }
-                        }, 100)
-                    } else {
-                        clearInterval(Timer)
-                        Timer = undefined
-                    }
-                }}
-            >Toggle pathfinder</button>
-            <button style={{ alignSelf: "center", display: "flex" }}
-                onMouseDown={() => { props.nav.GeneratePath() }}
-            >Generate path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
             <button style={{ alignSelf: "center", display: "flex" }}

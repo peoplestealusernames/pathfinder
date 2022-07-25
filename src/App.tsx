@@ -9,15 +9,18 @@ import { setup } from './setup';
 import { TopBar } from './components/TopBar';
 import { TopBarButton } from './components/TopBarButton';
 import { InfoMenu } from './components/InfoMenu';
+import { SettingsMenu } from './components/SettingsMenu';
+import { NavMenu } from './Buttons/NavMenu';
 
 import { TbReplace } from 'react-icons/tb'
+import { GiPathDistance } from 'react-icons/gi'
 import { GrStatusPlaceholderSmall } from 'react-icons/gr'
 import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
-import { SettingsMenu } from './components/SettingsMenu';
 
 function App() {
   const [ButtonsPopupState, setButtonsPopupState] = useState<boolean>(false)
   const [PlacePopupState, setPlacePopupState] = useState<boolean>(false)
+  const [NavPopupState, setNavPopupState] = useState<boolean>(false)
 
   //FIXME: allway enable in production
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
@@ -60,6 +63,9 @@ function App() {
         <TopBarButton context='Place Menu' setTrueState={setPlacePopupState}>
           <TbReplace size={30} />
         </TopBarButton>
+        <TopBarButton context='Nav Menu' setTrueState={setNavPopupState}>
+          <GiPathDistance size={30} />
+        </TopBarButton>
       </TopBar>
 
       <Popup active={InfoPopupState} setActive={setInfoPopupState} >
@@ -70,6 +76,9 @@ function App() {
       </Popup >
       <Popup active={ButtonsPopupState} setActive={setButtonsPopupState} >
         <Buttons grid={Grid} nav={Nav} />
+      </Popup >
+      <Popup active={NavPopupState} setActive={setNavPopupState} >
+        <NavMenu grid={Grid} nav={Nav} selectorState={SelectorState} />
       </Popup >
       <Popup active={PlacePopupState} setActive={setPlacePopupState} >
         <SelectTile setSelectorState={setSelectorState} selectorState={SelectorState} />
