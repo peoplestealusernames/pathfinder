@@ -90,7 +90,7 @@ function App() {
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
       <div className='TopBar' style={{
-        display: "flex", position: "absolute", width: "100vw", height: "50px",
+        display: "flex", position: "fixed", width: "100vw", height: "50px",
         alignItems: "center",
         justifyItems: "center",
         justifyContent: "center",
