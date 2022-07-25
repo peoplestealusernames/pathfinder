@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { xy } from "./backend/types";
 
 
-export function FollowMouse(props: {
+export function FollowMouse(props: {//TODO: center div
     xOffset?: number,
     yOffset?: number,
     children?: React.ReactNode
