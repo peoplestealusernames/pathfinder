@@ -27,20 +27,22 @@ function App() {
           margin: "2px",
           padding: "2px",
           display: "flex",
+          borderRadius: "6px"
         }}
           onMouseDown={() => setButtonsPopupState(true)
           }>
-          <GrStatusPlaceholderSmall size={32} />
+          <GrStatusPlaceholderSmall size={30} />
         </button>
         <button style={{
           position: "relative",
           margin: "2px",
           padding: "2px",
-          display: "flex"
+          display: "flex",
+          borderRadius: "6px"
         }}
           onMouseDown={() => setPlacePopupState(true)
           }>
-          <TbReplace size={32} />
+          <TbReplace size={30} />
         </button>
       </TopBar>
 
@@ -60,8 +62,6 @@ function App() {
       <ToggleGrid grid={Grid} canvasMang={CanvasMang} selectorState={SelectorState} />
     </div >
   );
-
-
 }
 
 export default App;
