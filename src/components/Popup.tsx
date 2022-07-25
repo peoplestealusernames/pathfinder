@@ -29,11 +29,19 @@ export function Popup(props: {
     return (<div>
         {
             props.active &&
-            <BlurBackground>
-                <CenterDiv>
-                    {props.children}
-                </CenterDiv>
-            </BlurBackground>
+            <div style={{
+                position: "fixed",
+                top: "0px",
+                left: "0px",
+                width: "100vw",
+                height: "100vh",
+            }}>
+                <BlurBackground>
+                    <CenterDiv>
+                        {props.children}
+                    </CenterDiv>
+                </BlurBackground>
+            </div >
         }
     </div >)
 }
