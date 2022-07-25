@@ -8,6 +8,7 @@ import { FloodFill } from './pathfinders/floodfill';
 import { GridToNode2d } from './nodes/gridToNode';
 import { Popup } from './components/Popup';
 import { BiCodeBlock } from 'react-icons/bi'
+import { TbReplace } from 'react-icons/tb'
 
 const Movement: [number, number][] = [
   [1, 0],
@@ -18,6 +19,7 @@ const Movement: [number, number][] = [
 
 function App() {
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
+  const [PlacePopupState, setPlacePopupState] = useState<boolean>(false)
 
   const [Grid, CanvasMang, Nav] = useMemo(() => {
     const Grid = new LayerManger(75, 25)
@@ -101,11 +103,18 @@ function App() {
           <BiCodeBlock size={30} />
           Pathfinder
         </div>
+        <button style={{ position: "absolute" }} onMouseDown={() => setPlacePopupState(true)}>
+          <TbReplace size={30} />
+        </button>
       </div>
       <Popup active={InfoPopupState} setActive={setInfoPopupState} >
         <div style={{ color: "red" }}>test</div>
       </Popup >
-      <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
+      <Popup active={PlacePopupState} setActive={setPlacePopupState} >
+        <div style={{ display: "flex", backgroundColor: "black", borderRadius: "20px", width: "200px" }}>
+          <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
+        </div>
+      </Popup >
       <ToggleGrid grid={Grid} canvasMang={CanvasMang} />
     </div >
   );
