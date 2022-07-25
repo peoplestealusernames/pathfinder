@@ -40,6 +40,8 @@ export function setup(): [LayerManger, CanvasManager, NavInterface<xy>] {
 
         Nav.setStart(Start)
         Nav.setGoal(Finish)
+
+        CanvasMang.reRender()
     })
 
     Grid.on("startMove", (x, y) => {
