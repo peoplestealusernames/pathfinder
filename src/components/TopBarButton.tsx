@@ -6,7 +6,7 @@ export function TopBarButton(props: {
     context: React.ReactNode
     setTrueState: Dispatch<SetStateAction<boolean>>
 }) {
-    const [Hover, setHover] = useState<boolean>(true)
+    const [Hover, setHover] = useState<boolean>(false)
 
     return (
         <div style={{
