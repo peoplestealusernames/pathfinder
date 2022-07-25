@@ -32,11 +32,11 @@ export function StyledTab(props: {
                     ...{
                         width: "fit-content",
                         color: "white",
-                        border: "4px solid white",
-                        borderRadius: "5px",
+                        borderBottom: "4px solid white",
                         fontSize: "30px",
-                        padding: "7px",
-                        margin: "7px"
+                        padding: "0px",
+                        margin: "14px",
+                        fontWeight: "bold"
                     }, ...props.titleStyle
                 }}>
                     {props.title}
