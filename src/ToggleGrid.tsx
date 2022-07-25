@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
 import { Selectable, SelectableFnc } from "./backend/types"
+import { CenterDiv } from "./components/CenterDiv"
 
 export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager }) {
     useEffect(() => {
@@ -52,12 +53,8 @@ export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager
     })
 
     return (
-        <div key={`A`} style={{
-            margin: "0px", padding: "15px",
-            display: "flex", flexWrap: "nowrap", flexDirection: "row",
-            justifyContent: "center"
-        }}>
-            <canvas style={{ display: "flow" }} id="GridCanvas" />
-        </div>
+        <CenterDiv>
+            <canvas style={{ display: "flex", flexWrap: "nowrap", flexDirection: "row", }} id="GridCanvas" />
+        </CenterDiv>
     )
 }
