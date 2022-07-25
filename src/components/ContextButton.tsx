@@ -51,7 +51,6 @@ export function ContextButton(props: {
                         ...{
                             position: "absolute",
                             whiteSpace: "nowrap",
-                            top: "43px",
                             backgroundColor: "black",
                             padding: "2px",
                             fontSize: "13px",
