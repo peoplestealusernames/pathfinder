@@ -21,7 +21,7 @@ export function Popup(props: { active: boolean, setActive: Dispatch<SetStateActi
         }
     }, [props.active])
 
-    return (<div className="Popup">
+    return (<div>
         {
             props.active &&
             <BlurBackground>
