@@ -17,11 +17,25 @@ import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
 import { MazeMenu } from './Buttons/MazeMenu';
 
 const PopupMenus: {
-  Menu: (...args: any) => JSX.Element, Icon: (...args: any) => JSX.Element
+  Menu: (...args: any) => JSX.Element,
+  Icon: (...args: any) => JSX.Element,
+  Context?: string
 }[] = [
-    { Menu: SelectTile, Icon: TbReplace },
-    { Menu: NavMenu, Icon: GiPathDistance },
-    { Menu: MazeMenu, Icon: GiMaze }
+    {
+      Menu: SelectTile,
+      Icon: TbReplace,
+      Context: "Tile selector"
+    },
+    {
+      Menu: NavMenu,
+      Icon: GiPathDistance,
+      Context: "Pathfinding"
+    },
+    {
+      Menu: MazeMenu,
+      Icon: GiMaze,
+      Context: "Obstacles"
+    }
   ]
 
 function App() {
@@ -88,7 +102,11 @@ function App() {
         {PopupMenus.map((Menu, i) => {
           const Icon = Menu.Icon
           return (
-            <ContextButton key={`MenuButton:${i}`} setButtonState={StateArray[i][1]}>
+            <ContextButton
+              key={`MenuButton:${i}`}
+              setButtonState={StateArray[i][1]}
+              context={Menu.Context}
+            >
               <Icon size={30} />
             </ContextButton>
           )
