@@ -64,6 +64,9 @@ export class FloodFill<Data extends any> extends TypedEventEmitter<FloodFillEven
     StepPath(): boolean {
         let newQue: Node<Data>[] = []
 
+        if (this.solved)
+            return true
+
         console.log(`FloodFill:Step start:${this.Qued.length} nodes to process`);
         for (const element of this.Qued) {
             for (const child of element.getChildren()) {
