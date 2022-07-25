@@ -19,7 +19,6 @@ export function TopBarButton(props: {
             justifyContent: "center",
             borderRadius: "6px",
             transition: "none",
-            //backgroundColor: "white",
             color: Hover ? "grey" : "white"
         }}
             onMouseEnter={() => { setHover(true) }}
