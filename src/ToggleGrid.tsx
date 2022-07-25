@@ -4,8 +4,14 @@ import { LayerManger } from "./2d/LayerManger"
 import { Selectable, SelectableFnc } from "./backend/types"
 import { CenterDiv } from "./components/CenterDiv"
 
-export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager }) {
+export function ToggleGrid(props: {
+    grid: LayerManger,
+    canvasMang: CanvasManager,
+    selectorState: Selectable
+}) {
+
     useEffect(() => {
+        //TODO: pass along
         const elem = document.getElementById('GridCanvas') as HTMLCanvasElement
         if (!elem)
             return
@@ -29,19 +35,11 @@ export function ToggleGrid(props: { grid: LayerManger, canvasMang: CanvasManager
             if (tile === false)
                 throw new Error(`Selection is out of bounds`)
 
-            const selector = document.getElementById("Block selector") as HTMLDivElement
-            if (!selector)
-                throw new Error("No selector div")
-
-            const selected = selector.getAttribute("data-value") as Selectable
-            if (!selected)
-                throw new Error("No selected value")
-
-            if (selected === tile)
+            if (props.selectorState === tile)
                 throw new Error(`Update blocked {${x},${y}} is already a ${tile}`)
 
-            if (SelectableFnc[selected])
-                SelectableFnc[selected](x, y, props.grid, tile)
+            if (SelectableFnc[props.selectorState])
+                SelectableFnc[props.selectorState](x, y, props.grid, tile)
         }
 
         //TODO: drag

@@ -1,11 +1,14 @@
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import { Selectable, SelectableArray } from "../backend/types"
 
-export function SelectTile() {
-    let [selected, setSelected] = useState<Selectable>("empty")
+export function SelectTile(props: {
+    selectorState: Selectable,
+    setSelectorState: Dispatch<SetStateAction<Selectable>>,
+    children?: React.ReactNode
+}) {
 
     return (
-        <div id={"Block selector"} data-value={selected}
+        <div id={"Block selector"} data-value={props.selectorState}
             style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
             <style>{`
                 .on {background-Color:red}
@@ -14,8 +17,8 @@ export function SelectTile() {
             {SelectableArray.map((tile: Selectable) => {
                 return (
                     <button key={`ToggleButton:${tile}`} style={{ alignSelf: "center", display: "flex" }} onMouseDown={(e: any) => {
-                        setSelected(tile)
-                    }} className={selected === tile ? "on" : "off"}>
+                        props.setSelectorState(tile)
+                    }} className={props.selectorState === tile ? "on" : "off"}>
                         {tile}
                     </button>
                 )

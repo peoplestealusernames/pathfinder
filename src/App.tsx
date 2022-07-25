@@ -11,6 +11,7 @@ import { BiCodeBlock } from 'react-icons/bi'
 import { TbReplace } from 'react-icons/tb'
 import { GrStatusPlaceholderSmall } from 'react-icons/gr'
 import { SelectTile } from './Buttons/SelectTile';
+import { Selectable } from './backend/types';
 
 const Movement: [number, number][] = [
   [1, 0],
@@ -23,6 +24,8 @@ function App() {
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
   const [ButtonsPopupState, setButtonsPopupState] = useState<boolean>(false)
   const [PlacePopupState, setPlacePopupState] = useState<boolean>(false)
+
+  const [SelectorState, setSelectorState] = useState<Selectable>("empty")
 
   const [Grid, CanvasMang, Nav] = useMemo(() => {
     const Grid = new LayerManger(75, 25)
@@ -127,10 +130,10 @@ function App() {
       </Popup >
       <Popup active={PlacePopupState} setActive={setPlacePopupState} >
         <div style={{ display: "flex", backgroundColor: "black", borderRadius: "10px", padding: "10px" }}>
-          <SelectTile />
+          <SelectTile setSelectorState={setSelectorState} selectorState={SelectorState} />
         </div>
       </Popup >
-      <ToggleGrid grid={Grid} canvasMang={CanvasMang} />
+      <ToggleGrid grid={Grid} canvasMang={CanvasMang} selectorState={SelectorState} />
     </div >
   );
 
