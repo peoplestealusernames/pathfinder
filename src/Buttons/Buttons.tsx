@@ -47,7 +47,6 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canv
                 onMouseDown={() => { mazeGen(props.grid) }}
             >Gen Maze!</button>
         </div>
-        <SelectTile />
         <RandomWall grid={props.grid} />
     </div>)
 }

@@ -9,6 +9,8 @@ import { GridToNode2d } from './nodes/gridToNode';
 import { Popup } from './components/Popup';
 import { BiCodeBlock } from 'react-icons/bi'
 import { TbReplace } from 'react-icons/tb'
+import { GrStatusPlaceholderSmall } from 'react-icons/gr'
+import { SelectTile } from './Buttons/SelectTile';
 
 const Movement: [number, number][] = [
   [1, 0],
@@ -19,6 +21,7 @@ const Movement: [number, number][] = [
 
 function App() {
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
+  const [ButtonsPopupState, setButtonsPopupState] = useState<boolean>(false)
   const [PlacePopupState, setPlacePopupState] = useState<boolean>(false)
 
   const [Grid, CanvasMang, Nav] = useMemo(() => {
@@ -103,16 +106,28 @@ function App() {
           <BiCodeBlock size={30} />
           Pathfinder
         </div>
-        <button style={{ position: "absolute" }} onMouseDown={() => setPlacePopupState(true)}>
+        <button style={{ position: "relative", margin: "2px" }}
+          onMouseDown={() => setButtonsPopupState(true)
+          }>
+          <GrStatusPlaceholderSmall size={30} />
+        </button>
+        <button style={{ position: "relative", margin: "2px" }}
+          onMouseDown={() => setPlacePopupState(true)
+          }>
           <TbReplace size={30} />
         </button>
       </div>
       <Popup active={InfoPopupState} setActive={setInfoPopupState} >
         <div style={{ color: "red" }}>test</div>
       </Popup >
-      <Popup active={PlacePopupState} setActive={setPlacePopupState} >
+      <Popup active={ButtonsPopupState} setActive={setButtonsPopupState} >
         <div style={{ display: "flex", backgroundColor: "black", borderRadius: "20px", width: "200px" }}>
           <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
+        </div>
+      </Popup >
+      <Popup active={PlacePopupState} setActive={setPlacePopupState} >
+        <div style={{ display: "flex", backgroundColor: "black", borderRadius: "20px" }}>
+          <SelectTile />
         </div>
       </Popup >
       <ToggleGrid grid={Grid} canvasMang={CanvasMang} />
