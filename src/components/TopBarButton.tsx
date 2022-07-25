@@ -9,36 +9,41 @@ export function TopBarButton(props: {
     const [Hover, setHover] = useState<boolean>(true)
 
     return (
-        < button style={{
+        <div style={{
             position: "relative",
-            margin: "2px",
-            padding: "2px",
+            margin: "4px",
+            padding: "3px",
             display: "flex",
             alignItems: "center",
             justifyItems: "center",
             justifyContent: "center",
-            borderRadius: "6px"
+            borderRadius: "6px",
+            transition: "none",
+            //backgroundColor: "white",
+            color: Hover ? "grey" : "white"
         }}
             onMouseEnter={() => { setHover(true) }}
             onMouseLeave={() => { setHover(false) }}
             onMouseDown={() => props.setTrueState(true)}
         >
             {props.children}
-            {Hover && (
-                <div style={{
-                    position: "absolute",
-                    whiteSpace: "nowrap",
-                    top: "42px",
-                    backgroundColor: "black",
-                    padding: "2px",
-                    fontSize: "13px",
-                    border: "2px solid white",
-                    color: "white"
-                }}>
-                    {props.context}
-                </div>
-            )
+            {
+                Hover && (
+                    <div style={{
+                        position: "absolute",
+                        whiteSpace: "nowrap",
+                        top: "43px",
+                        backgroundColor: "black",
+                        padding: "2px",
+                        fontSize: "13px",
+                        border: "2px solid white",
+                        borderRadius: "6px",
+                        color: "white"
+                    }}>
+                        {props.context}
+                    </div>
+                )
             }
-        </button >
+        </div >
     )
 }
