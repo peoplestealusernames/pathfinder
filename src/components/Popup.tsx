@@ -33,11 +33,9 @@ export function Popup(props: {
                 position: "fixed",
                 top: "0px",
                 left: "0px",
-                width: "100vw",
-                height: "100vh",
             }}>
                 <BlurBackground>
-                    <CenterDiv>
+                    <CenterDiv styleOverride={{ width: "100vw", height: "100vh" }}>
                         {props.children}
                     </CenterDiv>
                 </BlurBackground>
