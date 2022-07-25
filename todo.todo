@@ -43,3 +43,7 @@
 //TODO: revamp events
 // Maze generator makes nodes regenerate like crazy
 // Generate path does the same
+
+//TODO: loading icon
+//TODO: load in chunks for larger size to prevent freeze
+//TODO: use debounce to try and default run generator
