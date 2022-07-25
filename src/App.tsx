@@ -69,7 +69,7 @@ function App() {
       minHeight: "100vh"
     }}>
       <TopBar>
-        <div className='Logo' style={{
+        <div className='LeftSide' style={{
           display: "flex", position: "absolute", width: "100vw", height: "50px",
           alignItems: "center",
           justifyItems: "center",
