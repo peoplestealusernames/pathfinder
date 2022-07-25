@@ -69,7 +69,7 @@ function App() {
         <SettingsMenu />
       </Popup >
       <Popup active={ButtonsPopupState} setActive={setButtonsPopupState} >
-        <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
+        <Buttons grid={Grid} nav={Nav} />
       </Popup >
       <Popup active={PlacePopupState} setActive={setPlacePopupState} >
         <SelectTile setSelectorState={setSelectorState} selectorState={SelectorState} />

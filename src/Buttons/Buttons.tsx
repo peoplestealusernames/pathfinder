@@ -6,7 +6,7 @@ import { ChangeDim } from "./ChangeDim";
 import { RandomWall } from "./RandomWall";
 import { SelectTile } from "./SelectTile";
 
-export function Buttons(props: { grid: LayerManger, nav: NavInterface<any>, canvas: CanvasManager }) {
+export function Buttons(props: { grid: LayerManger, nav: NavInterface<any> }) {
     let Timer: NodeJS.Timer | undefined
 
     return (<div className="Buttons" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", backgroundColor: "black", borderRadius: "20px", padding: "10px" }}>
