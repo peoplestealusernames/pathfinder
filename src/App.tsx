@@ -6,7 +6,7 @@ import { SelectTile } from './Buttons/SelectTile';
 import { Selectable } from './backend/types';
 import { setup } from './setup';
 import { TopBar } from './components/TopBar';
-import { TopBarButton } from './components/TopBarButton';
+import { ContextButton } from './components/ContextButton';
 import { InfoMenu } from './components/InfoMenu';
 import { SettingsMenu } from './components/SettingsMenu';
 import { NavMenu } from './Buttons/NavMenu';
@@ -77,20 +77,20 @@ function App() {
           fontSize: "25px",
           color: "white",
         }} >
-          <TopBarButton setTrueState={setInfoPopupState}>
+          <ContextButton setTrueState={setInfoPopupState}>
             <AiOutlineInfoCircle size={30} />
-          </TopBarButton>
-          <TopBarButton setTrueState={setSettingPopupState}>
+          </ContextButton>
+          <ContextButton setTrueState={setSettingPopupState}>
             <AiFillSetting size={30} />
-          </TopBarButton>
+          </ContextButton>
         </div>
 
         {PopupMenus.map((Menu, i) => {
           const Icon = Menu.Icon
           return (
-            <TopBarButton key={`MenuButton:${i}`} setTrueState={StateArray[i][1]}>
+            <ContextButton key={`MenuButton:${i}`} setTrueState={StateArray[i][1]}>
               <Icon size={30} />
-            </TopBarButton>
+            </ContextButton>
           )
         })}
       </TopBar>

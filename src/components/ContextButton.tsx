@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react"
 
 
-export function TopBarButton(props: {
+export function ContextButton(props: {
     children: React.ReactNode
     context?: React.ReactNode
     setTrueState: Dispatch<SetStateAction<boolean>>
