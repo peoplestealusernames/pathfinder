@@ -9,13 +9,14 @@ export function Popup(props: {
     children?: React.ReactNode
 }) {
 
-    const KeyPressed = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-            props.setActive(false)
-        }
-    }
 
     useEffect(() => {
+        const KeyPressed = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                props.setActive(false)
+            }
+        }
+
         if (props.active)
             window.addEventListener('keydown', KeyPressed)
         else
@@ -24,7 +25,7 @@ export function Popup(props: {
         return () => {
             window.removeEventListener('keydown', KeyPressed)
         }
-    }, [props.active, KeyPressed])
+    }, [props])
 
     return (<div>
         {
