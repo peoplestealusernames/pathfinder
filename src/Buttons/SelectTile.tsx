@@ -22,6 +22,7 @@ export function SelectTile(props: {
             {SelectableArray.map((tile) => {
                 return (
                     <TileBuilder
+                        key={`ToggleButton:${tile}`}
                         {...props}
                         tile={tile}
                     />
@@ -39,7 +40,7 @@ function TileBuilder(props: {
     const Key = `ToggleButton:${props.tile}`
 
     useEffect(() => {
-        const canvas = document.getElementById(Key + "canvas") as HTMLCanvasElement
+        const canvas = document.getElementById(Key + ":canvas") as HTMLCanvasElement
 
         if (!canvas)
             throw new Error("Could not find canvas")
@@ -64,7 +65,7 @@ function TileBuilder(props: {
     const [Hover, setHover] = useState<boolean>(false)
 
     return (
-        <div key={Key}
+        <div key={Key + ":div"}
             style={{
                 display: "flex",
                 alignSelf: "center",
@@ -85,14 +86,10 @@ function TileBuilder(props: {
                 height: "70px",
                 margin: "5px"
             }}
-                key={Key + "canvas"}
-                id={Key + "canvas"}
+                key={Key + ":canvas"}
+                id={Key + ":canvas"}
             />
-            <div style={{
-
-            }}>
-                {props.tile}
-            </div>
+            props.tile
         </div >
     )
 }
