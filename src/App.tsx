@@ -12,7 +12,8 @@ import { SettingsMenu } from './components/SettingsMenu';
 import { NavMenu } from './Buttons/NavMenu';
 
 import { TbReplace } from 'react-icons/tb'
-import { GiMaze, GiPathDistance } from 'react-icons/gi'
+import { GiMaze } from 'react-icons/gi'
+import { VscSourceControl } from 'react-icons/vsc'
 import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
 import { MazeMenu } from './Buttons/MazeMenu';
 
@@ -28,7 +29,7 @@ const PopupMenus: {
     },
     {
       Menu: NavMenu,
-      Icon: GiPathDistance,
+      Icon: VscSourceControl,
       Context: "Pathfinding"
     },
     {
