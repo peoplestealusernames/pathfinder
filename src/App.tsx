@@ -22,15 +22,25 @@ function App() {
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
       <TopBar>
-        <button style={{ position: "relative", margin: "2px" }}
+        <button style={{
+          position: "static",
+          margin: "2px",
+          padding: "2px",
+          display: "flex"
+        }}
           onMouseDown={() => setButtonsPopupState(true)
           }>
-          <GrStatusPlaceholderSmall size={30} />
+          <GrStatusPlaceholderSmall size={32} />
         </button>
-        <button style={{ position: "relative", margin: "2px" }}
+        <button style={{
+          position: "static",
+          margin: "2px",
+          padding: "2px",
+          display: "flex"
+        }}
           onMouseDown={() => setPlacePopupState(true)
           }>
-          <TbReplace size={30} />
+          <TbReplace size={32} />
         </button>
       </TopBar>
 
