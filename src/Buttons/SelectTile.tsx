@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { Selectable, SelectableArray, SwapTable } from "../backend/types"
-import { CenterDiv } from "../components/CenterDiv"
 
 export function SelectTile(props: {
     selectorState: Selectable,
@@ -60,7 +59,7 @@ function TileBuilder(props: {
 
         const scaleFactor = Math.min(canvas.width, canvas.height)
         context.scale(scaleFactor / 10 * 2, scaleFactor / 10)
-    }, [])
+    }, [ID, props.tile])
 
     const [Hover, setHover] = useState<boolean>(false)
 
