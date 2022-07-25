@@ -121,12 +121,12 @@ function App() {
         <div style={{ color: "red" }}>test</div>
       </Popup >
       <Popup active={ButtonsPopupState} setActive={setButtonsPopupState} >
-        <div style={{ display: "flex", backgroundColor: "black", borderRadius: "20px", width: "200px" }}>
+        <div style={{ display: "flex", backgroundColor: "black", borderRadius: "20px", padding: "10px" }}>
           <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
         </div>
       </Popup >
       <Popup active={PlacePopupState} setActive={setPlacePopupState} >
-        <div style={{ display: "flex", backgroundColor: "black", borderRadius: "20px" }}>
+        <div style={{ display: "flex", backgroundColor: "black", borderRadius: "10px", padding: "10px" }}>
           <SelectTile />
         </div>
       </Popup >
