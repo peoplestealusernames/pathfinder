@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import './App.css';
-import { Buttons } from './Buttons/Buttons';
 import { ToggleGrid } from './ToggleGrid';
 import { Popup } from './components/Popup';
 import { SelectTile } from './Buttons/SelectTile';
@@ -21,7 +20,6 @@ import { MazeMenu } from './Buttons/MazeMenu';
 const PopupMenus: {
   Menu: (...args: any) => JSX.Element, Icon: (...args: any) => JSX.Element
 }[] = [
-    { Menu: Buttons, Icon: GrStatusPlaceholderSmall },
     { Menu: SelectTile, Icon: TbReplace },
     { Menu: NavMenu, Icon: GiPathDistance },
     { Menu: MazeMenu, Icon: GiMaze }
