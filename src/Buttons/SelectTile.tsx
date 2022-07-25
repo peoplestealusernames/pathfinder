@@ -88,7 +88,7 @@ function TileBuilder(props: {
             }}
                 id={ID}
             />
-            props.tile
+            {props.tile}
         </div >
     )
 }
