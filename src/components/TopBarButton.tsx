@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react"
 
 export function TopBarButton(props: {
     children: React.ReactNode
-    context: React.ReactNode
+    context?: React.ReactNode
     setTrueState: Dispatch<SetStateAction<boolean>>
 }) {
     const [Hover, setHover] = useState<boolean>(false)
@@ -27,7 +27,7 @@ export function TopBarButton(props: {
         >
             {props.children}
             {
-                Hover && (
+                props.context && Hover && (
                     <div style={{
                         position: "absolute",
                         whiteSpace: "nowrap",
