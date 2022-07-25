@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import './App.css';
 import { Buttons } from './Buttons/Buttons';
 import { LayerManger } from './2d/LayerManger';
@@ -18,64 +18,68 @@ const Movement: [number, number][] = [
 function App() {
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(true)
 
-  const Grid = new LayerManger(75, 25)
-  const CanvasMang = new CanvasManager(Grid)
-  let Nodes = GridToNode2d(Grid.BaseGrid, Movement)
-  const Start = Nodes.get(...Grid.getStart())
-  const Finish = Nodes.get(...Grid.getGoal())
-
-  //TODO: remove patch work
-  if (!(Start && Finish)) {
-    throw new Error("no start or finish")
-  }
-
-  const Nav = new FloodFill(
-    Start,
-    Finish
-  )
-
-  Grid.on("sizeChange", () => {
-    Nodes = GridToNode2d(Grid.BaseGrid, Movement)
+  const [Grid, CanvasMang, Nav] = useMemo(() => {
+    const Grid = new LayerManger(75, 25)
+    const CanvasMang = new CanvasManager(Grid)
+    let Nodes = GridToNode2d(Grid.BaseGrid, Movement)
     const Start = Nodes.get(...Grid.getStart())
     const Finish = Nodes.get(...Grid.getGoal())
 
-    if (!Start || !Finish)
-      return
+    //TODO: remove patch work
+    if (!(Start && Finish)) {
+      throw new Error("no start or finish")
+    }
 
-    Nav.setStart(Start)
-    Nav.setGoal(Finish)
-  })
+    const Nav = new FloodFill(
+      Start,
+      Finish
+    )
 
-  Grid.on("startMove", (x, y) => {
-    const tile = Nodes.get(x, y)
-    if (tile)
-      Nav.setStart(tile)
-  })
+    Grid.on("sizeChange", () => {
+      Nodes = GridToNode2d(Grid.BaseGrid, Movement)
+      const Start = Nodes.get(...Grid.getStart())
+      const Finish = Nodes.get(...Grid.getGoal())
 
-  Grid.on("goalMove", (x, y) => {
-    const tile = Nodes.get(x, y)
-    if (tile)
-      Nav.setGoal(tile)
-  })
-
-  Grid.BaseGrid.on("clear", () => {
-    Nav.reset()
-  })
-  Grid.on("clear", () => {
-    Nav.reset()
-  })
-
-  Nav.on("update", (node, state) => { Grid.NavGrid.set(node.data.x, node.data.y, state) })
-  Nav.on("reset", () => { Grid.NavGrid.clear() })
-  Nav.on("solved", (solvedStack) => {
-    while (true) {
-      const node = solvedStack.pop()
-      if (!node)
+      if (!Start || !Finish)
         return
 
-      Grid.NavGrid.set(node.data.x, node.data.y, "solved")
-    }
-  })
+      Nav.setStart(Start)
+      Nav.setGoal(Finish)
+    })
+
+    Grid.on("startMove", (x, y) => {
+      const tile = Nodes.get(x, y)
+      if (tile)
+        Nav.setStart(tile)
+    })
+
+    Grid.on("goalMove", (x, y) => {
+      const tile = Nodes.get(x, y)
+      if (tile)
+        Nav.setGoal(tile)
+    })
+
+    Grid.BaseGrid.on("clear", () => {
+      Nav.reset()
+    })
+    Grid.on("clear", () => {
+      Nav.reset()
+    })
+
+    Nav.on("update", (node, state) => { Grid.NavGrid.set(node.data.x, node.data.y, state) })
+    Nav.on("reset", () => { Grid.NavGrid.clear() })
+    Nav.on("solved", (solvedStack) => {
+      while (true) {
+        const node = solvedStack.pop()
+        if (!node)
+          return
+
+        Grid.NavGrid.set(node.data.x, node.data.y, "solved")
+      }
+    })
+
+    return [Grid, CanvasMang, Nav]
+  }, [])
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
