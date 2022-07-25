@@ -9,6 +9,7 @@ import { SelectTile } from './Buttons/SelectTile';
 import { Selectable } from './backend/types';
 import { setup } from './setup';
 import { TopBar } from './components/TopBar';
+import { TopBarButton } from './components/TopBarButton';
 
 function App() {
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
@@ -27,28 +28,12 @@ function App() {
       backgroundColor: "#4e4e4e",
     }}>
       <TopBar>
-        <button style={{
-          position: "relative",
-          margin: "2px",
-          padding: "2px",
-          display: "flex",
-          borderRadius: "6px"
-        }}
-          onMouseDown={() => setButtonsPopupState(true)
-          }>
+        <TopBarButton context='Old Menu' setTrueState={setButtonsPopupState}>
           <GrStatusPlaceholderSmall size={30} />
-        </button>
-        <button style={{
-          position: "relative",
-          margin: "2px",
-          padding: "2px",
-          display: "flex",
-          borderRadius: "6px"
-        }}
-          onMouseDown={() => setPlacePopupState(true)
-          }>
+        </TopBarButton>
+        <TopBarButton context='Place Menu' setTrueState={setPlacePopupState}>
           <TbReplace size={30} />
-        </button>
+        </TopBarButton>
       </TopBar>
 
       <Popup active={InfoPopupState} setActive={setInfoPopupState} >
