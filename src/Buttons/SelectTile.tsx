@@ -37,10 +37,10 @@ function TileBuilder(props: {
     selectorState: Selectable
     setSelectorState: Dispatch<SetStateAction<Selectable>>
 }) {
-    const Key = `ToggleButton:${props.tile}`
+    const ID = `ToggleButton:${props.tile}:Canvas`
 
     useEffect(() => {
-        const canvas = document.getElementById(Key + ":canvas") as HTMLCanvasElement
+        const canvas = document.getElementById(ID) as HTMLCanvasElement
 
         if (!canvas)
             throw new Error("Could not find canvas")
@@ -65,7 +65,7 @@ function TileBuilder(props: {
     const [Hover, setHover] = useState<boolean>(false)
 
     return (
-        <div key={Key + ":div"}
+        <div
             style={{
                 display: "flex",
                 alignSelf: "center",
@@ -86,8 +86,7 @@ function TileBuilder(props: {
                 height: "70px",
                 margin: "5px"
             }}
-                key={Key + ":canvas"}
-                id={Key + ":canvas"}
+                id={ID}
             />
             props.tile
         </div >
