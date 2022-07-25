@@ -3,12 +3,12 @@ import './App.css';
 import { Buttons } from './Buttons/Buttons';
 import { ToggleGrid } from './ToggleGrid';
 import { Popup } from './components/Popup';
-import { BiCodeBlock } from 'react-icons/bi'
 import { TbReplace } from 'react-icons/tb'
 import { GrStatusPlaceholderSmall } from 'react-icons/gr'
 import { SelectTile } from './Buttons/SelectTile';
 import { Selectable } from './backend/types';
 import { setup } from './setup';
+import { TopBar } from './components/TopBar';
 
 function App() {
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
@@ -21,23 +21,7 @@ function App() {
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
-      <div className='TopBar' style={{
-        display: "flex", position: "fixed", width: "100vw", height: "50px",
-        alignItems: "center",
-        justifyItems: "center",
-        justifyContent: "center",
-        background: "grey"
-      }}>
-        <div className='Logo' style={{
-          display: "flex", position: "absolute", width: "100vw", height: "50px",
-          alignItems: "center",
-          justifyItems: "center",
-          left: "10px",
-          fontSize: "25px"
-        }}>
-          <BiCodeBlock size={30} />
-          Pathfinder
-        </div>
+      <TopBar>
         <button style={{ position: "relative", margin: "2px" }}
           onMouseDown={() => setButtonsPopupState(true)
           }>
@@ -48,7 +32,8 @@ function App() {
           }>
           <TbReplace size={30} />
         </button>
-      </div>
+      </TopBar>
+
       <Popup active={InfoPopupState} setActive={setInfoPopupState} >
         <div style={{ color: "red" }}>test</div>
       </Popup >
