@@ -89,7 +89,7 @@ function App() {
         {PopupMenus.map((Menu, i) => {
           return (
             <TopBarButton key={`MenuButton:${i}`} setTrueState={StateArray[i][1]}>
-              {Menu.Icon()}
+              {Menu.Icon({ size: 30 })}
             </TopBarButton>
           )
         })}
