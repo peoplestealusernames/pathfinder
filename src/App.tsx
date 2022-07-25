@@ -20,13 +20,13 @@ function App() {
   const [Grid, CanvasMang, Nav] = useMemo(() => { return setup() }, [])
 
   return (
-    <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
+    <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", backgroundColor: "#840202" }}>
       <TopBar>
         <button style={{
           position: "relative",
           margin: "2px",
           padding: "2px",
-          display: "flex"
+          display: "flex",
         }}
           onMouseDown={() => setButtonsPopupState(true)
           }>

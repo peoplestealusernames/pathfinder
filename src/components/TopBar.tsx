@@ -10,16 +10,17 @@ export function TopBar(props: {
         alignItems: "center",
         justifyItems: "center",
         justifyContent: "center",
-        background: "grey"
+        background: "black"
     }}>
         <div className='Logo' style={{
             display: "flex", position: "absolute", width: "100vw", height: "50px",
             alignItems: "center",
             justifyItems: "center",
             left: "10px",
-            fontSize: "25px"
-        }}>
-            <BiCodeBlock size={30} />
+            fontSize: "25px",
+            color: "white"
+        }} >
+            <BiCodeBlock size={30} color={"white"} />
             Pathfinder
         </div>
         {props.children}
