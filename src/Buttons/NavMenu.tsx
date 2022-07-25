@@ -42,6 +42,9 @@ export function NavMenu(props: {
             <button style={{ alignSelf: "center", display: "flex" }}
                 onMouseDown={() => { props.nav.GeneratePath() }}
             >Generate path</button>
+            <button style={{ width: 100, alignSelf: "center", display: "flex" }}
+                onMouseDown={() => { props.nav.reset() }}
+            >Remove Path</button>
         </div >
     </div>
     )

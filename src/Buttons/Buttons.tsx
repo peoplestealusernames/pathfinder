@@ -15,9 +15,6 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any> }) {
             <button style={{ alignSelf: "center", display: "flex" }}
                 onMouseDown={() => { props.grid.clear(); }}
             >Reset</button>
-            <button style={{ width: 100, alignSelf: "center", display: "flex" }}
-                onMouseDown={() => { props.nav.reset() }}
-            >Remove Path</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
         </div>
