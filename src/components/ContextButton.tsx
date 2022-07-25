@@ -53,8 +53,8 @@ export function ContextButton(props: {
                             whiteSpace: "nowrap",
                             backgroundColor: "black",
                             padding: "2px",
-                            fontSize: "13px",
-                            border: "2px solid white",
+                            fontSize: "12px",
+                            border: "1px solid white",
                             borderRadius: "6px",
                             color: "white",
                             userSelect: "none"

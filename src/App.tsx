@@ -106,7 +106,11 @@ function App() {
               key={`MenuButton:${i}`}
               setButtonState={StateArray[i][1]}
               context={Menu.Context}
-              contextStyle={{ top: "43px" }}
+              contextStyle={{
+                top: "43px",
+                fontSize: "13px",
+                border: "2px solid white",
+              }}
             >
               <Icon size={30} />
             </ContextButton>

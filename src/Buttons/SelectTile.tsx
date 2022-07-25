@@ -63,10 +63,6 @@ function TileBuilder(props: {
             }}
             onMouseDown={() => { props.setSelectorState(props.tile) }}
             context={props.tile}
-            contextStyle={{
-                fontSize: "12px",
-                border: "1px solid white",
-            }}
         >
             <canvas style={{
                 display: "flow",
