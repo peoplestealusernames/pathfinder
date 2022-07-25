@@ -26,11 +26,7 @@ function App() {
 
   //TODO: remove patch work
   if (!(Start && Finish)) {
-    return (
-      <div className="App">
-        Error start and finish not valid
-      </div>
-    )
+    throw new Error("no start or finish")
   }
 
   const Nav = new FloodFill(
