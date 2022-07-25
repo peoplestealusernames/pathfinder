@@ -86,9 +86,10 @@ function App() {
         </div>
 
         {PopupMenus.map((Menu, i) => {
+          const Icon = Menu.Icon
           return (
             <TopBarButton key={`MenuButton:${i}`} setTrueState={StateArray[i][1]}>
-              {Menu.Icon({ size: 30 })}
+              <Icon size={30} />
             </TopBarButton>
           )
         })}
@@ -102,9 +103,10 @@ function App() {
       </Popup >
 
       {PopupMenus.map((Menu, i) => {
+        const MenuHTML = Menu.Menu
         return (
           <Popup key={`MenuPopup:${i}`} active={StateArray[i][0]} setActive={StateArray[i][1]} >
-            {Menu.Menu(PassProps)}
+            <MenuHTML {...PassProps} />
           </Popup>
         )
       })}
