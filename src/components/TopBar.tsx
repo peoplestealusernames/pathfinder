@@ -11,7 +11,8 @@ export function TopBar(props: {
         justifyItems: "center",
         justifyContent: "center",
         background: "black",
-        borderBottom: '2px solid rgba(255, 255, 255, 1)'
+        borderBottom: '2px solid rgba(255, 255, 255, 1)',
+        userSelect: "none"
     }}>
         <div className='Logo' style={{
             display: "flex", position: "absolute", width: "100vw", height: "50px",
@@ -19,7 +20,7 @@ export function TopBar(props: {
             justifyItems: "center",
             left: "10px",
             fontSize: "25px",
-            color: "white"
+            color: "white",
         }} >
             <BiCodeBlock size={30} color={"white"} />
             Pathfinder
