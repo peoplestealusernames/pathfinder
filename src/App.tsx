@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import './App.css';
 import { Buttons } from './Buttons/Buttons';
 import { ToggleGrid } from './ToggleGrid';
@@ -17,10 +17,32 @@ import { GiPathDistance } from 'react-icons/gi'
 import { GrStatusPlaceholderSmall } from 'react-icons/gr'
 import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
 
+const PopupMenus: {
+  Menu: (...args: any) => JSX.Element, Icon: (...args: any) => JSX.Element
+}[] = [
+    { Menu: NavMenu, Icon: GiPathDistance },
+    { Menu: SelectTile, Icon: TbReplace },
+    { Menu: Buttons, Icon: GrStatusPlaceholderSmall }
+  ]
+
 function App() {
-  const [ButtonsPopupState, setButtonsPopupState] = useState<boolean>(false)
-  const [PlacePopupState, setPlacePopupState] = useState<boolean>(false)
-  const [NavPopupState, setNavPopupState] = useState<boolean>(false)
+
+  const [PopupMenusStates, SetPopupMenusStates] =
+    useState<boolean[]>(
+      PopupMenus.map(() => { return false })
+    )
+
+  const StateArray: [boolean, Dispatch<SetStateAction<boolean>>][] = PopupMenus.map(
+    (Menu, i): [boolean, Dispatch<SetStateAction<boolean>>] => {
+      return [
+        PopupMenusStates[i], ((state: boolean) => {
+          const NewStates = Array.from(PopupMenusStates)
+          NewStates[i] = state
+          SetPopupMenusStates(NewStates)
+        }) as Dispatch<SetStateAction<boolean>>
+      ]
+    }
+  )
 
   //FIXME: allway enable in production
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
@@ -29,6 +51,13 @@ function App() {
   const [SelectorState, setSelectorState] = useState<Selectable>("empty")
 
   const [Grid, CanvasMang, Nav] = useMemo(() => { return setup() }, [])
+
+  const PassProps = {
+    grid: Grid,
+    nav: Nav,
+    selectorState: SelectorState,
+    setSelectorState: setSelectorState,
+  }
 
   return (
     <div className="App" style={{
@@ -57,15 +86,13 @@ function App() {
           </TopBarButton>
         </div>
 
-        <TopBarButton context='Old Menu' setTrueState={setButtonsPopupState}>
-          <GrStatusPlaceholderSmall size={30} />
-        </TopBarButton>
-        <TopBarButton context='Place Menu' setTrueState={setPlacePopupState}>
-          <TbReplace size={30} />
-        </TopBarButton>
-        <TopBarButton context='Nav Menu' setTrueState={setNavPopupState}>
-          <GiPathDistance size={30} />
-        </TopBarButton>
+        {PopupMenus.map((Menu, i) => {
+          return (
+            <TopBarButton key={`MenuButton:${i}`} setTrueState={StateArray[i][1]}>
+              {Menu.Icon()}
+            </TopBarButton>
+          )
+        })}
       </TopBar>
 
       <Popup active={InfoPopupState} setActive={setInfoPopupState} >
@@ -74,15 +101,15 @@ function App() {
       <Popup active={SettingPopupState} setActive={setSettingPopupState} >
         <SettingsMenu />
       </Popup >
-      <Popup active={ButtonsPopupState} setActive={setButtonsPopupState} >
-        <Buttons grid={Grid} nav={Nav} />
-      </Popup >
-      <Popup active={NavPopupState} setActive={setNavPopupState} >
-        <NavMenu grid={Grid} nav={Nav} selectorState={SelectorState} />
-      </Popup >
-      <Popup active={PlacePopupState} setActive={setPlacePopupState} >
-        <SelectTile setSelectorState={setSelectorState} selectorState={SelectorState} />
-      </Popup >
+
+      {PopupMenus.map((Menu, i) => {
+        return (
+          <Popup key={`MenuPopup:${i}`} active={StateArray[i][0]} setActive={StateArray[i][1]} >
+            {Menu.Menu(PassProps)}
+          </Popup>
+        )
+      })}
+
       <ToggleGrid grid={Grid} canvasMang={CanvasMang} selectorState={SelectorState}
         style={{ "border": "10px solid black" }}
       />
