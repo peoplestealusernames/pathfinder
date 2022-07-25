@@ -20,9 +20,9 @@ import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
 const PopupMenus: {
   Menu: (...args: any) => JSX.Element, Icon: (...args: any) => JSX.Element
 }[] = [
-    { Menu: NavMenu, Icon: GiPathDistance },
+    { Menu: Buttons, Icon: GrStatusPlaceholderSmall },
     { Menu: SelectTile, Icon: TbReplace },
-    { Menu: Buttons, Icon: GrStatusPlaceholderSmall }
+    { Menu: NavMenu, Icon: GiPathDistance },
   ]
 
 function App() {
