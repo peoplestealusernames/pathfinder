@@ -13,6 +13,7 @@ export function SettingsMenu(props: {
             color: "black",
             borderRadius: "20px",
             border: "5px solid black",
+            flexDirection: "column"
         }}>
             <p>
                 Settings
