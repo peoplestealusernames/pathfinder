@@ -59,14 +59,13 @@ function TileBuilder(props: {
     return (
         <div
             style={{
+                position: "relative",
                 display: "flex",
                 alignSelf: "center",
                 flexDirection: "column",
-                margin: "3px",
-                padding: "2px",
-                borderRadius: "0px",
-                border: Hover ? "2px solid red" : "2px solid white",
-                backgroundColor: props.selectorState === props.tile ? "darkgoldenrod" : "#484848",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "5px",
                 userSelect: "none"
             }}
             onMouseEnter={() => { setHover(true) }}
@@ -77,17 +76,24 @@ function TileBuilder(props: {
                 display: "flow",
                 width: "50px",
                 height: "50px",
-                margin: "2px"
+                border: props.tile === props.selectorState ? "3px solid darkgoldenrod" : "3px solid white",
+                margin: "0px",
             }}
                 id={ID}
             />
-            <p style={{
-                margin: "1px",
-                color: "white",
-                fontSize: "13px"
-            }} >
-                {props.tile}
-            </p>
+            {Hover &&
+                <div style={{
+                    position: "absolute",
+                    whiteSpace: "nowrap",
+                    backgroundColor: "black",
+                    padding: "2px",
+                    fontSize: "12px",
+                    borderRadius: "6px",
+                    color: "white",
+                    border: "1px solid white",
+                }}>
+                    {props.tile}
+                </div>}
         </div >
     )
 }
