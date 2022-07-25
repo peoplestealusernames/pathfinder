@@ -16,13 +16,5 @@ export function Buttons(props: { grid: LayerManger, nav: NavInterface<any> }) {
                 onMouseDown={() => { props.grid.clear(); }}
             >Reset</button>
         </div>
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-        </div>
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-            <button style={{ alignSelf: "center", display: "flex" }}
-                onMouseDown={() => { mazeGen(props.grid) }}
-            >Gen Maze!</button>
-        </div>
-        <RandomWall grid={props.grid} />
     </div>)
 }

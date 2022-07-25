@@ -13,9 +13,10 @@ import { SettingsMenu } from './components/SettingsMenu';
 import { NavMenu } from './Buttons/NavMenu';
 
 import { TbReplace } from 'react-icons/tb'
-import { GiPathDistance } from 'react-icons/gi'
+import { GiMaze, GiPathDistance } from 'react-icons/gi'
 import { GrStatusPlaceholderSmall } from 'react-icons/gr'
 import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
+import { MazeMenu } from './Buttons/MazeMenu';
 
 const PopupMenus: {
   Menu: (...args: any) => JSX.Element, Icon: (...args: any) => JSX.Element
@@ -23,6 +24,7 @@ const PopupMenus: {
     { Menu: Buttons, Icon: GrStatusPlaceholderSmall },
     { Menu: SelectTile, Icon: TbReplace },
     { Menu: NavMenu, Icon: GiPathDistance },
+    { Menu: MazeMenu, Icon: GiMaze }
   ]
 
 function App() {
