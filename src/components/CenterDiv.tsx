@@ -8,9 +8,9 @@ export function CenterDiv(props: { children?: React.ReactNode }) {
             display: "flex",
             alignItems: "center",
             justifyItems: "center",
+            justifyContent: "center",
             height: "100vh",
-            width: "100vw",
-            justifyContent: "center"
+            width: "100vw"
         }}>
             {props.children}
         </div>
