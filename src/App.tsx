@@ -19,7 +19,8 @@ function App() {
   const [ButtonsPopupState, setButtonsPopupState] = useState<boolean>(false)
   const [PlacePopupState, setPlacePopupState] = useState<boolean>(false)
 
-  const [InfoPopupState, setInfoPopupState] = useState<boolean>(true)
+  //FIXME: allway enable in production
+  const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
   const [SettingPopupState, setSettingPopupState] = useState<boolean>(false)
 
   const [SelectorState, setSelectorState] = useState<Selectable>("empty")
