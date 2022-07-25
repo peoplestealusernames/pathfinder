@@ -7,6 +7,7 @@ import { CanvasManager } from './2d/canvasManger';
 import { FloodFill } from './pathfinders/floodfill';
 import { GridToNode2d } from './nodes/gridToNode';
 import { Popup } from './components/Popup';
+import { BiCodeBlock } from 'react-icons/bi'
 
 const Movement: [number, number][] = [
   [1, 0],
@@ -16,7 +17,7 @@ const Movement: [number, number][] = [
 ]
 
 function App() {
-  const [InfoPopupState, setInfoPopupState] = useState<boolean>(true)
+  const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
 
   const [Grid, CanvasMang, Nav] = useMemo(() => {
     const Grid = new LayerManger(75, 25)
@@ -83,11 +84,28 @@ function App() {
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
+      <div className='TopBar' style={{
+        display: "flex", position: "absolute", width: "100vw", height: "50px",
+        alignItems: "center",
+        justifyItems: "center",
+        justifyContent: "center",
+        background: "grey"
+      }}>
+        <div className='Logo' style={{
+          display: "flex", position: "absolute", width: "100vw", height: "50px",
+          alignItems: "center",
+          justifyItems: "center",
+          left: "10px",
+          fontSize: "25px"
+        }}>
+          <BiCodeBlock size={30} />
+          Pathfinder
+        </div>
+      </div>
       <Popup active={InfoPopupState} setActive={setInfoPopupState} >
         <div style={{ color: "red" }}>test</div>
       </Popup >
       <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
-      <p style={{ padding: "10px", margin: "0px", width: "100vw" }}>Pathfinding starts on the orange start square and goes to the green goal square.</p>
       <ToggleGrid grid={Grid} canvasMang={CanvasMang} />
     </div >
   );
