@@ -26,6 +26,8 @@ function App() {
       flexDirection: "column",
       flexWrap: "wrap",
       backgroundColor: "#4e4e4e",
+      minWidth: "100vw",
+      minHeight: "100vh"
     }}>
       <TopBar>
         <TopBarButton context='Old Menu' setTrueState={setButtonsPopupState}>
