@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Buttons } from './Buttons/Buttons';
 import { LayerManger } from './2d/LayerManger';
@@ -6,6 +6,7 @@ import { ToggleGrid } from './ToggleGrid';
 import { CanvasManager } from './2d/canvasManger';
 import { FloodFill } from './pathfinders/floodfill';
 import { GridToNode2d } from './nodes/gridToNode';
+import { Popup } from './components/Popup';
 
 const Movement: [number, number][] = [
   [1, 0],
@@ -15,6 +16,8 @@ const Movement: [number, number][] = [
 ]
 
 function App() {
+  const [InfoPopupState, setInfoPopupState] = useState<boolean>(true)
+
   const Grid = new LayerManger(75, 25)
   const CanvasMang = new CanvasManager(Grid)
   let Nodes = GridToNode2d(Grid.BaseGrid, Movement)
@@ -80,6 +83,9 @@ function App() {
 
   return (
     <div className="App" style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
+      <Popup active={InfoPopupState} setActive={setInfoPopupState} >
+        <div style={{ color: "red" }}>test</div>
+      </Popup >
       <Buttons grid={Grid} nav={Nav} canvas={CanvasMang} />
       <p style={{ padding: "10px", margin: "0px", width: "100vw" }}>Pathfinding starts on the orange start square and goes to the green goal square.</p>
       <ToggleGrid grid={Grid} canvasMang={CanvasMang} />
