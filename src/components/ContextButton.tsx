@@ -47,7 +47,8 @@ export function ContextButton(props: {
                             fontSize: "13px",
                             border: "2px solid white",
                             borderRadius: "6px",
-                            color: "white"
+                            color: "white",
+                            userSelect: "none"
                         }, ...props.contextStyle
                     }}>
                         {props.context}
