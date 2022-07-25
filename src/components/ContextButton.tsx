@@ -20,9 +20,10 @@ export function ContextButton(props: {
         <div style={{
             ...{
                 position: "relative",
+                display: "flex",
                 margin: "4px",
                 padding: "3px",
-                display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
                 justifyItems: "center",
                 justifyContent: "center",
