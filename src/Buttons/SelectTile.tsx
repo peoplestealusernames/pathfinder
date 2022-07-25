@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { Selectable, SelectableArray, SwapTable } from "../backend/types"
+import { StyledTab } from "../components/StyledTab"
 
 export function SelectTile(props: {
     selectorState: Selectable,
@@ -7,41 +8,9 @@ export function SelectTile(props: {
 }) {
 
     return (
-        <div style={{
-            display: "flex",
-            flexDirection: "column",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            backgroundColor: "black",
-            borderRadius: "0px",
-            padding: "3px",
-            border: "2px solid white",
-        }}>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                }}>
-                <p style={{
-                    width: "fit-content",
-                    color: "white",
-                    border: "4px solid white",
-                    borderRadius: "5px",
-                    fontSize: "30px",
-                    padding: "7px",
-                    margin: "7px"
-                }}>
-                    Tile Selector
-                </p>
-            </div>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                }}>
-                {SelectableArray.map((tile) => {
+        <StyledTab title="Tile Selector">
+            {
+                SelectableArray.map((tile) => {
                     return (
                         <TileBuilder
                             key={`ToggleButton:${tile}`}
@@ -49,9 +18,9 @@ export function SelectTile(props: {
                             tile={tile}
                         />
                     )
-                })}
-            </div >
-        </div >
+                })
+            }
+        </StyledTab>
     )
 }
 
