@@ -47,3 +47,15 @@
 //TODO: loading icon
 //TODO: load in chunks for larger size to prevent freeze
 //TODO: use debounce to try and default run generator
+
+//TODO: undo button
+//TODO: port navs to steps only and not classes (a* can use a stack for best result)
+//TODO: paint tools for building ie fill and radius
+//TODO: export and import
+
+//TODO: icons over canvas
+// Show current selected tileinfo
+// show lock if you cant replace it
+// show some bais 
+
+//TODO: speed change keys
