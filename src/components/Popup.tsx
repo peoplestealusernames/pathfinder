@@ -19,7 +19,7 @@ export function Popup(props: { active: boolean, setActive: Dispatch<SetStateActi
         return () => {
             window.removeEventListener('keydown', KeyPressed)
         }
-    }, [props.active])
+    }, [props.active, KeyPressed])
 
     return (<div>
         {
