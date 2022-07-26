@@ -62,6 +62,8 @@ function App() {
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
   const [SettingPopupState, setSettingPopupState] = useState<boolean>(false)
 
+  const [RunState, setRunState] = useState<boolean>(false)
+
   const [SelectorState, setSelectorState] = useState<Selectable>("empty")
 
   const [Grid, CanvasMang, Nav] = useMemo(() => { return setup() }, [])
@@ -71,6 +73,7 @@ function App() {
     nav: Nav,
     selectorState: SelectorState,
     setSelectorState: setSelectorState,
+    runState: [RunState, setRunState]
   }
 
   return (
