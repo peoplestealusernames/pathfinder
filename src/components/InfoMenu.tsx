@@ -4,7 +4,7 @@ export function InfoMenu() {
     //TODO: make name
     return (
         <StyledTab
-            title="Pathfinder info"
+            title="Pathfinder Info"
             style={{
                 flexDirection: "column"
             }}>
