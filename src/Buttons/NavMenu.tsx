@@ -9,7 +9,8 @@ import { NavBar } from "../components/NavBar";
 
 export function NavMenu(props: {
     grid: LayerManger,
-    nav: NavInterface<any>
+    nav: NavInterface<any>,
+    runState?: boolean
 }) {
     return (
         <StyledTab title="NavMenu" style={{ flexDirection: "column" }}>
