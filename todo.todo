@@ -24,6 +24,10 @@
 // when generators are running add console log to say its still processing after x iteration
 // use Waiting cursor
 
+// FIXME: clean up memory
+// automaticlly delete nodemaps
+// delete function on graph2d
+
 //TODO: options
 // auto regen path
 // path finders
