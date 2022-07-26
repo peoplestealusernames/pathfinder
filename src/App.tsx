@@ -70,7 +70,7 @@ function App() {
     return (() => {
       clearInterval(TimerState)
     })
-  }, [])
+  }, [TimerState])
 
   const [SelectorState, setSelectorState] = useState<Selectable>("empty")
 
