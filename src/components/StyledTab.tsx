@@ -3,7 +3,7 @@ import React from "react";
 
 export function StyledTab(props: {
     children?: React.ReactNode
-    title: string
+    title?: string
     style?: React.CSSProperties
     titleStyle?: React.CSSProperties
     masterStyle?: React.CSSProperties
@@ -22,7 +22,7 @@ export function StyledTab(props: {
                 border: "2px solid white",
             }, ...props.masterStyle
         }}>
-            <div
+            {props.title && <div
                 style={{
                     display: "flex",
                     flexDirection: "row",
@@ -42,7 +42,7 @@ export function StyledTab(props: {
                 }}>
                     {props.title}
                 </p>
-            </div>
+            </div>}
             <div
                 style={{
                     ...{
