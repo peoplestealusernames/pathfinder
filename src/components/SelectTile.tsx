@@ -4,10 +4,10 @@ import { ContextButton } from "./ContextButton"
 import { StyledTab } from "./StyledTab"
 
 export function SelectTile(props: {
-    selectorState: Selectable,
-    setSelectorState: Dispatch<SetStateAction<Selectable>>
+    selectorState?: Selectable,
+    setSelectorState?: Dispatch<SetStateAction<Selectable>>,
+    onClick?: (tile: Selectable) => void
 }) {
-
     return (
         <div style={{
             display: "flex",
@@ -35,8 +35,9 @@ export function SelectTile(props: {
 
 export function TileButton(props: {
     tile: Selectable,
-    selectorState: Selectable
-    setSelectorState: Dispatch<SetStateAction<Selectable>>
+    selectorState?: Selectable
+    setSelectorState?: Dispatch<SetStateAction<Selectable>>
+    onClick?: (tile: Selectable) => void
 }) {
     return (
         <ContextButton
@@ -44,7 +45,12 @@ export function TileButton(props: {
                 margin: "5px",
                 userSelect: "none"
             }}
-            onMouseDown={() => { props.setSelectorState(props.tile) }}
+            onMouseDown={() => {
+                if (props.setSelectorState)
+                    props.setSelectorState(props.tile)
+                if (props.onClick)
+                    props.onClick(props.tile)
+            }}
             context={props.tile}
         >
             <TileRender tile={props.tile} ID={`Selector:${props.tile}:Canvas`}
