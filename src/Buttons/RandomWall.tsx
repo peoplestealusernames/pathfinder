@@ -71,7 +71,11 @@ export function RandomWall(props: { grid: LayerManger }) {
                     border: "2px solid white",
                 }} />
             {
-                <TileGrabber selectorState={SelectedTile} setSelectorState={SetSelectedTile} />
+                <TileGrabber
+                    allowedStates={["empty", "wall"]}
+                    selectorState={SelectedTile}
+                    setSelectorState={SetSelectedTile}
+                />
             }
             <ContextButton
                 setButtonState={setOverride}
