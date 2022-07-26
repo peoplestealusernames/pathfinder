@@ -16,6 +16,7 @@ import { GiMaze } from 'react-icons/gi'
 import { VscSourceControl } from 'react-icons/vsc'
 import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
 import { MazeMenu } from './Buttons/MazeMenu';
+import { NavBar } from './components/NavBar';
 
 const PopupMenus: {
   Menu: (...args: any) => JSX.Element,
@@ -62,7 +63,7 @@ function App() {
   const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
   const [SettingPopupState, setSettingPopupState] = useState<boolean>(false)
 
-  const [RunState, setRunState] = useState<boolean>(false)
+  const [TimerState, setTimerState] = useState<NodeJS.Timer | undefined>(undefined)
 
   const [SelectorState, setSelectorState] = useState<Selectable>("empty")
 
@@ -73,7 +74,7 @@ function App() {
     nav: Nav,
     selectorState: SelectorState,
     setSelectorState: setSelectorState,
-    runState: [RunState, setRunState]
+    timerState: [TimerState, setTimerState]
   }
 
   return (
@@ -101,6 +102,12 @@ function App() {
           <ContextButton setButtonState={setSettingPopupState}>
             <AiFillSetting size={30} />
           </ContextButton>
+        </div>
+        <div style={{
+          position: "absolute",
+          top: "53px"
+        }}>
+          <NavBar grid={Grid} nav={Nav} timerState={[TimerState, setTimerState]} />
         </div>
 
         {PopupMenus.map((Menu, i) => {
