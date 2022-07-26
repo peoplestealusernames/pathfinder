@@ -33,7 +33,6 @@ export function TileGrabber(props: {
                         (tile: Selectable) => {
                             props.setSelectorState(tile)
                             setTilePopup(false)
-                            console.log(tile);
                         }
                     } />
             </StyledTab>
