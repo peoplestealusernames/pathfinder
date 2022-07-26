@@ -14,7 +14,7 @@ export function TopBar(props: {
         userSelect: "none"
     }}>
         <div className='Logo' style={{
-            display: "flex", position: "absolute", width: "100vw", height: "50px",
+            display: "flex", position: "absolute",
             alignItems: "center",
             justifyItems: "center",
             justifyContent: "left",
