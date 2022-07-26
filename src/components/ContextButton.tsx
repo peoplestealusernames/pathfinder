@@ -49,7 +49,8 @@ export function ContextButton(props: {
                 justifyItems: "center",
                 justifyContent: "center",
                 borderRadius: "6px",
-                color: Hover ? "grey" : "white"
+                color: Hover ? "grey" : "white",
+                userSelect: "none"
             }, ...props.style,
             ...Hover ? hoverStyle : {},
             ...Pressed ? pressedStyle : {},
@@ -72,7 +73,6 @@ export function ContextButton(props: {
                             border: "1px solid white",
                             borderRadius: "6px",
                             color: "white",
-                            userSelect: "none"
                         }, ...props.contextStyle
                     }}>
                         {props.context}
