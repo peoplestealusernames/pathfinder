@@ -21,7 +21,7 @@ export function SelectTile(props: {
             {
                 SelectableArray.map((tile) => {
                     return (
-                        <TileBuilder
+                        <TileButton
                             key={`ToggleButton:${tile}`}
                             {...props}
                             tile={tile}
@@ -33,7 +33,7 @@ export function SelectTile(props: {
     )
 }
 
-function TileBuilder(props: {
+export function TileButton(props: {
     tile: Selectable,
     selectorState: Selectable
     setSelectorState: Dispatch<SetStateAction<Selectable>>
