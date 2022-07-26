@@ -91,7 +91,9 @@ function App() {
       flexWrap: "wrap",
       backgroundColor: "#4e4e4e",
       minWidth: "100vw",
-      minHeight: "100vh"
+      minHeight: "100vh",
+      width: "fit-content",
+      height: "fit-content",
     }}>
       <TopBar>
         <div className='LeftSide' style={{
