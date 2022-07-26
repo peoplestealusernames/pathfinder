@@ -22,6 +22,7 @@
 // less memory usage and array creation
 // mark cells as processed by a custom id
 // when generators are running add console log to say its still processing after x iteration
+// use Waiting cursor
 
 //TODO: options
 // auto regen path
@@ -68,3 +69,5 @@
 //TODO: dissable log setting
 //TODO: error menu in website
 //TODO: option to dissable context's
+
+//TODO: animation
