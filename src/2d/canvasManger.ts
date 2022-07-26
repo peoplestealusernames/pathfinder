@@ -41,10 +41,8 @@ export class CanvasManager {
         this.canvas.width = width * 10
         this.canvas.height = height * 10
 
-        const img = new Image(width * 10, height * 10)
-        this.context.drawImage(img, 0, 0, img.width * 10, img.height * 10)
         this.context.fillStyle = "black"
-        this.context.fillRect(0, 0, img.width * 10, img.height * 10)
+        this.context.fillRect(0, 0, width * 10, height * 10)
 
         for (let y = 0; y < height; y++)
             for (let x = 0; x < width; x++)

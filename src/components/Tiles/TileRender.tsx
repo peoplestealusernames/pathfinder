@@ -19,19 +19,10 @@ export function TileRender(props: {
         if (!context)
             throw new Error("Could not find context")
 
-        const img = new Image()
-        context.drawImage(img, 0, 0)
-
         context.fillStyle = "black"
         context.fillRect(0, 0, 10, 10)
         context.fillStyle = SwapTable[props.tile]
         context.fillRect(1, 1, 8, 8)
-
-        const scaleFactor = Math.min(canvas.width, canvas.height)
-        let transform = new DOMMatrix([1, 0, 0, 1, 0, 0])
-        transform = transform.scale(scaleFactor / 5, scaleFactor / 10)
-
-        context.setTransform(transform)
     }, [props.tile, canvasRef])
 
     return (
