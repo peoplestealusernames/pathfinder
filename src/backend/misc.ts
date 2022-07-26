@@ -54,7 +54,7 @@ export function isWalkable<T extends allStates | false>(tile: T): boolean {
 }
 
 export function isReplaceable<T extends allStates | false>(tile: T): boolean {
-    if (tile in Walkable)
+    if (tile in Replaceable)
         if (Replaceable[tile as keyLike])
             return true
 
