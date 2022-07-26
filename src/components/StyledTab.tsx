@@ -24,13 +24,11 @@ export function StyledTab(props: {
         }}>
             {props.title && <div
                 style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                }}>
-                <span style={{
                     ...{
-                        width: "fit-content",
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        width: "fit-contents",
                         color: "white",
                         borderBottom: "4px solid white",
                         fontSize: "30px",
@@ -39,10 +37,10 @@ export function StyledTab(props: {
                         fontWeight: "bold",
                         userSelect: "none",
                     }, ...props.titleStyle
-                }}>
-                    {props.title}
-                </span>
-            </div>}
+                }
+                }>
+                {props.title}
+            </div >}
             <div
                 style={{
                     ...{
