@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import './App.css';
 import { ToggleGrid } from './ToggleGrid';
 import { Popup } from './components/Popup';
-import { SelectTile } from './Buttons/SelectTile';
+import { SelectTileTab } from './Buttons/SelectTileTab';
 import { Selectable } from './backend/types';
 import { setup } from './setup';
 import { TopBar } from './components/TopBar';
@@ -24,7 +24,7 @@ const PopupMenus: {
   Context?: string
 }[] = [
     {
-      Menu: SelectTile,
+      Menu: SelectTileTab,
       Icon: TbReplace,
       Context: "Tile selector"
     },

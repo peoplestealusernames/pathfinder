@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { Selectable, SelectableArray, SwapTable } from "../backend/types"
-import { ContextButton } from "../components/ContextButton"
-import { StyledTab } from "../components/StyledTab"
+import { ContextButton } from "./ContextButton"
+import { StyledTab } from "./StyledTab"
 
 export function SelectTile(props: {
     selectorState: Selectable,
@@ -9,7 +9,13 @@ export function SelectTile(props: {
 }) {
 
     return (
-        <StyledTab title="Tile Selector">
+        <div style={{
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            flexDirection: "row"
+        }}
+        >
             {
                 SelectableArray.map((tile) => {
                     return (
@@ -21,11 +27,11 @@ export function SelectTile(props: {
                     )
                 })
             }
-        </StyledTab>
+        </div>
     )
 }
 
-function TileBuilder(props: {
+export function TileBuilder(props: {
     tile: Selectable,
     selectorState: Selectable
     setSelectorState: Dispatch<SetStateAction<Selectable>>
