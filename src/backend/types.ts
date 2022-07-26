@@ -3,7 +3,9 @@ import { isReplaceable } from "./misc"
 
 export const baseArray = ["wall", "start", "goal"] as const
 export const navArray = ["qued", "checked", "solved"] as const
+
 export const SelectableArray = [/*"debug",*/"empty", "wall", "start", "goal"] as const
+export const GeneratorArray = ["wall", "empty"] as const
 
 export type baseState = (typeof baseArray[number] | undefined)
 export type navState = (typeof navArray[number] | undefined)
