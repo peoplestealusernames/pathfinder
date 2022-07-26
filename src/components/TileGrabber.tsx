@@ -12,7 +12,7 @@ export function TileGrabber(props: {
     selectorState: Selectable,
     setSelectorState: Dispatch<SetStateAction<Selectable>>
 }) {
-    const [tilePopup, setTilePopup] = useState<boolean>(true)
+    const [tilePopup, setTilePopup] = useState<boolean>(false)
 
     return (<div>
         <TileButton
