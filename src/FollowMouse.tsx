@@ -30,7 +30,8 @@ export function FollowMouse(props: {//TODO: center div
             display: "flex",
             left: `${Pos.x + xOffset}px`,
             top: `${Pos.y + yOffset}px`,
-            userSelect: "none"
+            userSelect: "none",
+            pointerEvents: "none"
         }}>
             {props.children}
         </div>
