@@ -19,7 +19,11 @@ export function TileGrabber(props: {
             tile={props.selectorState}
             onClick={() => { setTilePopup(true) }}
         />
-        <Popup active={tilePopup} setActive={setTilePopup}>
+        <Popup
+            active={tilePopup}
+            setActive={setTilePopup}
+            dissableCloseButton={true}
+        >
             <StyledTab>
                 <SelectTile selectorState={props.selectorState} onClick={
                     (tile: Selectable) => {
