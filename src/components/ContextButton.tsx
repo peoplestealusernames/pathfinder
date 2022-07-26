@@ -33,7 +33,8 @@ export function ContextButton(props: {
         if (props.setButtonState)
             props.setButtonState(state)
         if (props.onMouseDown)
-            props.onMouseDown()
+            if (state)
+                props.onMouseDown()
     }
 
     return (
