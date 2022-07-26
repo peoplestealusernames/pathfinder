@@ -1,11 +1,5 @@
 import { MdOutlineClose } from "react-icons/md";
 
-const Style = {
-    position: "absolute",
-    right: "0px",
-    top: "0px",
-}
-
 export function CloseButton(props: {
     onClose: () => void
 }) {
