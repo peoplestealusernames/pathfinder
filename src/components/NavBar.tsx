@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { CgTimelapse } from "react-icons/cg"
 import { IoMdSkipForward, IoMdPlay, IoMdPause } from "react-icons/io"
 import { LayerManger } from "../2d/LayerManger"
@@ -8,14 +8,19 @@ import { ContextButton } from "./ContextButton"
 export function NavBar(props: {
     grid: LayerManger,
     nav: NavInterface<any>,
-    runState?: boolean,
+    runState?: [boolean, Dispatch<SetStateAction<boolean>>],
 }) {
     useEffect(() => {
-        if (props.runState === true)
+        if (!props.runState)
+            return
+
+        if (props.runState[0])
             RunPath()
-        else if (props.runState === false)
+        else if (props.runState[1])
             StopPath()
-    }, [props.runState])
+    }, [props.runState ? props.runState[0] : undefined])
+
+    const UpdateRunState = props.runState ? props.runState[1] : (dump: boolean) => { }
 
     const [Timer, setTimer] = useState<NodeJS.Timer | undefined>(undefined)
 
@@ -26,12 +31,14 @@ export function NavBar(props: {
                     StopPath()
                 }
             }, 100))//TODO: pathfinder speed
+            UpdateRunState(true)
         }
     }
 
     function StopPath() {
         clearInterval(Timer)
         setTimer(undefined)
+        UpdateRunState(false)
     }
 
     return (

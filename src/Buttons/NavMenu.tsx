@@ -6,11 +6,12 @@ import { NavInterface } from "../pathfinders/NavInterface";
 import { IoMdSkipForward, IoMdPlay, IoMdPause } from "react-icons/io"
 import { CgTimelapse } from "react-icons/cg";
 import { NavBar } from "../components/NavBar";
+import { Dispatch, SetStateAction } from "react";
 
 export function NavMenu(props: {
     grid: LayerManger,
     nav: NavInterface<any>,
-    runState?: boolean
+    runState?: [boolean, Dispatch<SetStateAction<boolean>>]
 }) {
     return (
         <StyledTab title="NavMenu" style={{ flexDirection: "column" }}>
