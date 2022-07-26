@@ -18,11 +18,12 @@ export function MazeMenu(props: {
     return (
         <StyledTab title="Obstacles Menu" style={{ margin: "2px", flexDirection: "row" }}>
             <span style={{ flexDirection: "column", margin: "0px" }}>
-                <StyledTab title="Clear gird" titleStyle={{
-                    margin: "2px",
-                    borderBottom: "none",
-                    fontSize: "19",
-                }}
+                <StyledTab title="Clear Gird"
+                    titleStyle={{
+                        margin: "2px",
+                        borderBottom: "none",
+                        fontSize: "19",
+                    }}
                     style={{
                         alignSelf: "center",
                         width: "fit-content",
@@ -49,6 +50,7 @@ export function MazeMenu(props: {
                 </StyledTab>
                 <ContextButton style={{ ...Style, flex: 1, margin: "5px" }}
                     onMouseDown={() => { mazeGen(props.grid) }}
+                    context={"Generate Maze"}
                 >
                     <GiMaze size={35} />
                 </ContextButton>
