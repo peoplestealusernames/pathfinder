@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import './App.css';
 import { ToggleGrid } from './ToggleGrid';
 import { Popup } from './components/Popup';
@@ -64,6 +64,12 @@ function App() {
   const [SettingPopupState, setSettingPopupState] = useState<boolean>(false)
 
   const [TimerState, setTimerState] = useState<NodeJS.Timer | undefined>(undefined)
+  useEffect(() => {
+
+    return (() => {
+      clearInterval(TimerState)
+    })
+  }, [])
 
   const [SelectorState, setSelectorState] = useState<Selectable>("empty")
 
