@@ -6,6 +6,7 @@ export function ContextButton(props: {
     context?: React.ReactNode
     contextStyle?: React.CSSProperties
     style?: React.CSSProperties
+    toggle?: boolean
     setButtonState?: Dispatch<SetStateAction<boolean>>
     onMouseDown?: () => void
     setHoverState?: Dispatch<SetStateAction<boolean>>
@@ -29,6 +30,11 @@ export function ContextButton(props: {
     }
 
     function setPressed(state: boolean) {
+        if (props.toggle && !state)
+            return
+
+        state = !Pressed
+
         setPressedState(state)
         if (props.setButtonState)
             props.setButtonState(state)
