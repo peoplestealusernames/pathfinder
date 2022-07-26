@@ -19,6 +19,9 @@ export function TileRender(props: {
         if (!context)
             throw new Error("Could not find context")
 
+        canvas.width = 10
+        canvas.height = 10
+
         context.fillStyle = "black"
         context.fillRect(0, 0, 10, 10)
         context.fillStyle = SwapTable[props.tile]
