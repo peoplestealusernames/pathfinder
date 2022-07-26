@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
 import { Selectable, SelectableFnc } from "./backend/types"
 import { CenterDiv } from "./components/CenterDiv"
+import { TileCursor } from "./components/Tiles/TileCursor"
 
 export function ToggleGrid(props: {
     grid: LayerManger,
@@ -10,10 +11,11 @@ export function ToggleGrid(props: {
     selectorState: Selectable
     style?: React.CSSProperties
 }) {
+    const [Hover, setHover] = useState<boolean>(false)
+
     const canvasRef = useRef(null)
 
     useEffect(() => {
-        //TODO: pass along
         const elem = document.getElementById('GridCanvas') as HTMLCanvasElement
         if (!elem)
             return
@@ -57,6 +59,7 @@ export function ToggleGrid(props: {
             <canvas style={{
                 ...props.style,
                 ...{
+                    cursor: "none",
                     display: "flex",
                     flexWrap: "nowrap",
                     flexDirection: "row",
@@ -64,7 +67,11 @@ export function ToggleGrid(props: {
             }}
                 ref={canvasRef}
                 id="GridCanvas" className="DisplayGrid"
+
+                onMouseEnter={() => { setHover(true) }}
+                onMouseLeave={() => { setHover(false) }}
             />
+            {Hover && <TileCursor tile={props.selectorState} />}
         </CenterDiv>
     )
 }
