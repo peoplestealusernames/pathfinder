@@ -1,7 +1,5 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { allStates, keyLike, Selectable, SelectableArray, SwapTable } from "../../backend/types"
-import { ContextButton } from "../ContextButton"
-import { StyledTab } from "../StyledTab"
+import { Dispatch, SetStateAction } from "react"
+import { Selectable, SelectableArray } from "../../backend/types"
 import { TileButton } from "./TileButton"
 
 export function SelectTile(props: {

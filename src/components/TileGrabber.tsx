@@ -1,10 +1,8 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { allStates, keyLike, Selectable, SelectableArray } from "../backend/types";
-import { ContextButton } from "./ContextButton";
+import { Selectable } from "../backend/types";
 import { Popup } from "./Popup";
 import { SelectTile } from "./Tiles/SelectTile";
 import { StyledTab } from "./StyledTab";
-import { TileRender } from "./Tiles/TileRender";
 import { TileButton } from "./Tiles/TileButton";
 
 

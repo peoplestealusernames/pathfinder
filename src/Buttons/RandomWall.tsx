@@ -1,10 +1,8 @@
 import { useState } from "react"
 import { LayerManger } from "../2d/LayerManger"
 import { getRandomInt, isReplaceable } from "../backend/misc"
-import { allStates, baseArray, baseState, Generatable, GeneratorArray, Replaceable, Selectable, SelectableArray } from "../backend/types"
+import { baseState, Selectable } from "../backend/types"
 import { ContextButton } from "../components/ContextButton"
-import { Popup } from "../components/Popup"
-import { SelectTile } from "../components/Tiles/SelectTile"
 import { TileGrabber } from "../components/TileGrabber"
 
 export function RandomWall(props: { grid: LayerManger }) {

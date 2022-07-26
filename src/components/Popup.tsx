@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { AiFillCloseCircle } from "react-icons/ai";
 import { BlurBackground } from "./BlurBackground";
 import { CenterDiv } from "./CenterDiv";
 import { CloseButton } from "./CloseButton";
