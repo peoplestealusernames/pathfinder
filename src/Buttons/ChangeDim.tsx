@@ -13,6 +13,8 @@ export function ChangeDim<T>(props: { setter: (arg0: T) => void, initValue: T, i
                 const newValue = e.target.value
                 setValue(newValue)
                 props.setter(JSON.parse(newValue))
-            }} style={{ width: 50 }} />
+            }} style={{ width: 50 }}
+            min={3}
+        />
     )
 }
