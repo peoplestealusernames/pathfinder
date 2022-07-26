@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { Selectable, SelectableArray, SwapTable } from "../backend/types"
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { allStates, keyLike, Selectable, SelectableArray, SwapTable } from "../backend/types"
 import { ContextButton } from "./ContextButton"
 import { StyledTab } from "./StyledTab"
 
@@ -33,12 +33,37 @@ export function SelectTile(props: {
     )
 }
 
-export function TileBuilder(props: {
+function TileBuilder(props: {
     tile: Selectable,
     selectorState: Selectable
     setSelectorState: Dispatch<SetStateAction<Selectable>>
 }) {
-    const ID = `ToggleButton:${props.tile}:Canvas`
+    return (
+        <ContextButton
+            style={{
+                margin: "5px",
+                userSelect: "none"
+            }}
+            onMouseDown={() => { props.setSelectorState(props.tile) }}
+            context={props.tile}
+        >
+            <TileRender tile={props.tile} ID={`Selector:${props.tile}:Canvas`}
+                style={{
+                    border: props.tile === props.selectorState ?
+                        "3px solid darkgoldenrod" :
+                        "3px solid white",
+                }}
+            />
+        </ContextButton >
+    )
+}
+
+export function TileRender(props: {
+    tile: keyLike,
+    ID: string,
+    style?: React.CSSProperties
+}) {
+    const ID = props.ID
 
     useEffect(() => {
         const canvas = document.getElementById(ID) as HTMLCanvasElement
@@ -64,23 +89,16 @@ export function TileBuilder(props: {
     }, [ID, props.tile])
 
     return (
-        <ContextButton
-            style={{
-                margin: "5px",
-                userSelect: "none"
-            }}
-            onMouseDown={() => { props.setSelectorState(props.tile) }}
-            context={props.tile}
-        >
-            <canvas style={{
+        <canvas style={{
+            ...{
                 display: "flow",
                 width: "50px",
                 height: "50px",
-                border: props.tile === props.selectorState ? "3px solid darkgoldenrod" : "3px solid white",
+                border: "3px solid white",
                 margin: "0px",
-            }}
-                id={ID}
-            />
-        </ContextButton >
+            }, ...props.style
+        }}
+            id={ID}
+        />
     )
 }
