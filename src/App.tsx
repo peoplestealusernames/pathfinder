@@ -10,13 +10,13 @@ import { ContextButton } from './components/ContextButton';
 import { InfoMenu } from './components/InfoMenu';
 import { SettingsMenu } from './components/SettingsMenu';
 import { NavMenu } from './Buttons/NavMenu';
-
-import { TbReplace } from 'react-icons/tb'
-import { GiMaze } from 'react-icons/gi'
-import { VscSourceControl } from 'react-icons/vsc'
-import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
 import { MazeMenu } from './Buttons/MazeMenu';
 import { NavBar } from './components/NavBar';
+
+import { TbReplace } from 'react-icons/tb'
+import { BsCone } from 'react-icons/bs'
+import { VscSourceControl } from 'react-icons/vsc'
+import { AiFillSetting, AiOutlineInfoCircle } from "react-icons/ai"
 
 const PopupMenus: {
   Menu: (...args: any) => JSX.Element,
@@ -35,7 +35,7 @@ const PopupMenus: {
     },
     {
       Menu: MazeMenu,
-      Icon: GiMaze,
+      Icon: BsCone,
       Context: "Obstacles"
     }
   ]
