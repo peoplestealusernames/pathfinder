@@ -8,21 +8,9 @@ import { ContextButton } from "./ContextButton"
 export function NavBar(props: {
     grid: LayerManger,
     nav: NavInterface<any>,
-    runState?: [boolean, Dispatch<SetStateAction<boolean>>],
+    timerState: [NodeJS.Timer | undefined, Dispatch<SetStateAction<NodeJS.Timer | undefined>>],
 }) {
-    useEffect(() => {
-        if (!props.runState)
-            return
-
-        if (props.runState[0])
-            RunPath()
-        else if (props.runState[1])
-            StopPath()
-    }, [props.runState ? props.runState[0] : undefined])
-
-    const UpdateRunState = props.runState ? props.runState[1] : (dump: boolean) => { }
-
-    const [Timer, setTimer] = useState<NodeJS.Timer | undefined>(undefined)
+    const [Timer, setTimer] = props.timerState
 
     function RunPath() {
         if (!Timer) {
@@ -30,15 +18,13 @@ export function NavBar(props: {
                 if (props.nav.StepPath()) {
                     StopPath()
                 }
-            }, 100))//TODO: pathfinder speed
-            UpdateRunState(true)
+            }, 100))
         }
     }
 
     function StopPath() {
         clearInterval(Timer)
         setTimer(undefined)
-        UpdateRunState(false)
     }
 
     return (

@@ -11,7 +11,7 @@ import { Dispatch, SetStateAction } from "react";
 export function NavMenu(props: {
     grid: LayerManger,
     nav: NavInterface<any>,
-    runState?: [boolean, Dispatch<SetStateAction<boolean>>]
+    timerState: [NodeJS.Timer | undefined, Dispatch<SetStateAction<NodeJS.Timer | undefined>>],
 }) {
     return (
         <StyledTab title="NavMenu" style={{ flexDirection: "column" }}>
