@@ -8,7 +8,7 @@ import { CloseButton } from "./CloseButton";
 export function Popup(props: {
     active: boolean,
     setActive: Dispatch<SetStateAction<boolean>>,
-    dissableCloseButton?: JSX.Element;
+    dissableCloseButton?: boolean;
     children?: React.ReactNode
 }) {
 
