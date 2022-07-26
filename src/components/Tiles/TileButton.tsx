@@ -23,7 +23,7 @@ export function TileButton(props: {
             }}
             context={props.tile}
         >
-            <TileRender tile={props.tile} ID={`Selector:${props.tile}:Canvas`}
+            <TileRender tile={props.tile}
                 style={{
                     border: props.tile === props.selectorState ?
                         "3px solid darkgoldenrod" :

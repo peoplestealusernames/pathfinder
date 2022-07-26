@@ -1,16 +1,15 @@
-import { useEffect } from "react"
+import { LegacyRef, useEffect, useRef } from "react"
 import { keyLike, SwapTable } from "../../backend/types"
 
 
 export function TileRender(props: {
     tile: keyLike,
-    ID: string,
     style?: React.CSSProperties
 }) {
-    const ID = props.ID
+    const canvasRef = useRef(null)
 
     useEffect(() => {
-        const canvas = document.getElementById(ID) as HTMLCanvasElement
+        const canvas = canvasRef.current as unknown as HTMLCanvasElement
 
         if (!canvas)
             throw new Error("Could not find canvas")
@@ -30,19 +29,20 @@ export function TileRender(props: {
 
         const scaleFactor = Math.min(canvas.width, canvas.height)
         context.scale(scaleFactor / 10 * 2, scaleFactor / 10)
-    }, [ID, props.tile])
+    }, [props.tile, canvasRef])
 
     return (
-        <canvas style={{
-            ...{
-                display: "flow",
-                width: "50px",
-                height: "50px",
-                border: "3px solid white",
-                margin: "0px",
-            }, ...props.style
-        }}
-            id={ID}
+        <canvas
+            ref={canvasRef}
+            style={{
+                ...{
+                    display: "flow",
+                    width: "50px",
+                    height: "50px",
+                    border: "3px solid white",
+                    margin: "0px",
+                }, ...props.style
+            }}
         />
     )
 }
