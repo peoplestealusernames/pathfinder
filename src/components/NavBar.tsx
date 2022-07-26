@@ -9,8 +9,11 @@ export function NavBar(props: {
     grid: LayerManger,
     nav: NavInterface<any>,
     style?: React.CSSProperties,
+    showContext?: boolean
     timerState: [NodeJS.Timer | undefined, Dispatch<SetStateAction<NodeJS.Timer | undefined>>],
 }) {
+    const ShowContext = props.showContext !== undefined ? props.showContext : true
+
     const [Timer, setTimer] = props.timerState
 
     function RunPath() {
@@ -46,7 +49,7 @@ export function NavBar(props: {
         }}>
             <ContextButton
                 buttonStyle={Style}
-                context={"Step Path"}
+                context={ShowContext ? "Step Path" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { props.nav.StepPath() }}
             >
@@ -54,7 +57,7 @@ export function NavBar(props: {
             </ContextButton>
             <ContextButton
                 buttonStyle={{ ...Style, ...{ color: "green" } }}
-                context={"Play pathfinder"}
+                context={ShowContext ? "Play pathfinder" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { RunPath() }}
             >
@@ -62,7 +65,7 @@ export function NavBar(props: {
             </ContextButton>
             <ContextButton
                 buttonStyle={{ ...Style, ...{ color: "red" } }}
-                context={"Stop pathfinder"}
+                context={ShowContext ? "Stop pathfinder" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { StopPath() }}
             >
@@ -70,7 +73,7 @@ export function NavBar(props: {
             </ContextButton>
             <ContextButton
                 buttonStyle={Style}
-                context={"Generate Path"}
+                context={ShowContext ? "Generate Path" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { props.nav.GeneratePath() }}
             >
