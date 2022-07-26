@@ -57,6 +57,7 @@ export function NavBar(props: {
             </ContextButton>
             <ContextButton
                 style={{ ...Style, ...{ color: "green" } }}
+                hoverStyle={{ color: "darkgreen" }}
                 context={ShowContext ? "Play pathfinder" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { RunPath() }}
@@ -65,6 +66,7 @@ export function NavBar(props: {
             </ContextButton>
             <ContextButton
                 style={{ ...Style, ...{ color: "red" } }}
+                hoverStyle={{ color: "darkred" }}
                 context={ShowContext ? "Stop pathfinder" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { StopPath() }}
