@@ -23,8 +23,7 @@ export function NavBar(props: {
         if (!Timer) {
             setTimer(setInterval(() => {
                 if (props.nav.StepPath()) {
-                    clearInterval(Timer)
-                    setTimer(undefined)
+                    StopPath()
                 }
             }, 100))//TODO: pathfinder speed
         }
