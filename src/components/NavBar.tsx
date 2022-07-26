@@ -8,7 +8,14 @@ import { ContextButton } from "./ContextButton"
 export function NavBar(props: {
     grid: LayerManger,
     nav: NavInterface<any>,
+    runState?: boolean,
 }) {
+    useEffect(() => {
+        if (props.runState === true)
+            RunPath()
+        else if (props.runState === false)
+            StopPath()
+    }, [props.runState])
 
     let Timer: NodeJS.Timer | undefined
 
