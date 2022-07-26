@@ -17,6 +17,8 @@ export function RandomWall(props: { grid: LayerManger }) {
         <div style={{
             position: "relative",
             display: "flex",
+            height: "fit-content",
+            width: "fit-content",
             margin: "4px",
             padding: "7px",
             flexDirection: "column",
