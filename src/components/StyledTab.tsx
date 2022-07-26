@@ -20,15 +20,14 @@ export function StyledTab(props: {
                 borderRadius: "0px",
                 padding: "3px",
                 border: "2px solid white",
+                width: "fit-content",
             }, ...props.masterStyle
         }}>
             {props.title && <div
                 style={{
                     ...{
                         display: "flex",
-                        flexDirection: "row",
                         justifyContent: "center",
-                        width: "fit-contents",
                         color: "white",
                         borderBottom: "4px solid white",
                         fontSize: "30px",
