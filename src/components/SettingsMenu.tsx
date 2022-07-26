@@ -7,12 +7,15 @@ export function SettingsMenu(props: {
 }) {
 
     return (
-        <StyledTab title="Settings">
-            <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={(width: number) => { props.grid.setWidth(width) }} />
-            <ChangeDim key="ChangeY" inputType="number" initValue={props.grid.getHeight()} setter={(height: number) => { props.grid.setHeight(height) }} />
-            <button style={{ alignSelf: "center", display: "flex" }}
-                onMouseDown={() => { props.grid.clear(); }}
-            >Reset</button>
+        <StyledTab title="Settings" style={{
+            flexDirection: "column",
+            alignItems: "center",
+            color: "white"
+        }}>
+            <span style={{ flexDirection: "column", alignItems: "center" }}>
+                <ChangeDim key="ChangeX" inputType="number" initValue={props.grid.getWidth()} setter={(width: number) => { props.grid.setWidth(width) }} />
+                <ChangeDim key="ChangeY" inputType="number" initValue={props.grid.getHeight()} setter={(height: number) => { props.grid.setHeight(height) }} />
+            </span>
             MENU UNDER CONSTRUCTION
         </StyledTab>
     )
