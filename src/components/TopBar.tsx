@@ -22,7 +22,9 @@ export function TopBar(props: {
             fontSize: "25px",
             color: "white",
         }} >
-            <BiCodeBlock size={30} color={"white"} />
+            <BiCodeBlock
+                size={30}
+            />
             Pathfinder
         </div>
         {props.children}
