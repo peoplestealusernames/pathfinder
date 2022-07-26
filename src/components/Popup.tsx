@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { BlurBackground } from "./BlurBackground";
 import { CenterDiv } from "./CenterDiv";
+import { CloseButton } from "./CloseButton";
 
 
 export function Popup(props: {
@@ -37,7 +39,15 @@ export function Popup(props: {
             }}>
                 <BlurBackground>
                     <CenterDiv styleOverride={{ width: "100vw", height: "100vh" }}>
-                        {props.children}
+                        <span style={{
+                            display: "flex",
+                            position: "relative",
+                            width: "fit-content",
+                            height: "fit-content"
+                        }}>
+                            <CloseButton onClose={() => { props.setActive(false) }} />
+                            {props.children}
+                        </span>
                     </CenterDiv>
                 </BlurBackground>
             </div >
