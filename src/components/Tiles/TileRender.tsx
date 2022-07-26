@@ -1,4 +1,4 @@
-import { LegacyRef, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { keyLike, SwapTable } from "../../backend/types"
 
 

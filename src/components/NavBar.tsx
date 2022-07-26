@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
+import React, { Dispatch, SetStateAction } from "react"
 import { CgTimelapse } from "react-icons/cg"
 import { IoMdSkipForward, IoMdPlay, IoMdPause } from "react-icons/io"
 import { LayerManger } from "../2d/LayerManger"

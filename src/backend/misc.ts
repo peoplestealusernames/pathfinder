@@ -1,6 +1,5 @@
 import { LayerManger } from "../2d/LayerManger";
 import { Node } from "../nodes/NodeClass";
-import { NavInterface } from "../pathfinders/NavInterface";
 import { allStates, keyLike, Replaceable, Walkable, xy } from "./types";
 
 export function getRandomInt(max: number) {

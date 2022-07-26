@@ -1,5 +1,5 @@
 import { TypedEventEmitter } from "../backend/events";
-import { allStates, navState } from "../backend/types";
+import { navState } from "../backend/types";
 import { Node } from "../nodes/NodeClass";
 import { NavInterface } from "./NavInterface";
 
