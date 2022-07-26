@@ -8,7 +8,11 @@ export function SelectTile(props: {
     selectorState?: Selectable,
     setSelectorState?: Dispatch<SetStateAction<Selectable>>,
     onClick?: (tile: Selectable) => void
+    allowedStates?: Selectable[]
 }) {
+
+    const RenderArray = props.allowedStates ? props.allowedStates : SelectableArray
+
     return (
         <div style={{
             display: "flex",
@@ -20,7 +24,7 @@ export function SelectTile(props: {
         }}
         >
             {
-                SelectableArray.map((tile) => {
+                RenderArray.map((tile) => {
                     return (
                         <TileButton
                             key={`ToggleButton:${tile}`}
