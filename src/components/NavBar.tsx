@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { CgTimelapse } from "react-icons/cg"
 import { IoMdSkipForward, IoMdPlay, IoMdPause } from "react-icons/io"
 import { LayerManger } from "../2d/LayerManger"
@@ -17,22 +17,22 @@ export function NavBar(props: {
             StopPath()
     }, [props.runState])
 
-    let Timer: NodeJS.Timer | undefined
+    const [Timer, setTimer] = useState<NodeJS.Timer | undefined>(undefined)
 
     function RunPath() {
         if (!Timer) {
-            Timer = setInterval(() => {
+            setTimer(setInterval(() => {
                 if (props.nav.StepPath()) {
                     clearInterval(Timer)
-                    Timer = undefined
+                    setTimer(undefined)
                 }
-            }, 100)//TODO: pathfinder speed
+            }, 100))//TODO: pathfinder speed
         }
     }
 
     function StopPath() {
         clearInterval(Timer)
-        Timer = undefined
+        setTimer(undefined)
     }
 
     return (
