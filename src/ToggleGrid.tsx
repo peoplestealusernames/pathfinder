@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
 import { Selectable, SelectableFnc } from "./backend/types"
@@ -10,6 +10,7 @@ export function ToggleGrid(props: {
     selectorState: Selectable
     style?: React.CSSProperties
 }) {
+    const canvasRef = useRef(null)
 
     useEffect(() => {
         //TODO: pass along
@@ -21,7 +22,7 @@ export function ToggleGrid(props: {
 
 
         const mouseDown = (e: any) => {
-            e.preventDefault()
+            const canvas = canvasRef.current as unknown as HTMLCanvasElement
 
             const elemLeft = elem.offsetLeft + elem.clientLeft
             const elemTop = elem.offsetTop + elem.clientTop
@@ -60,7 +61,10 @@ export function ToggleGrid(props: {
                     flexWrap: "nowrap",
                     flexDirection: "row",
                 }
-            }} id="GridCanvas" />
+            }}
+                ref={canvasRef}
+                id="GridCanvas" className="DisplayGrid"
+            />
         </CenterDiv>
     )
 }
