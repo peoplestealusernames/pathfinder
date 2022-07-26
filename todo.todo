@@ -26,8 +26,13 @@
 //TODO: options
 // auto regen path
 // path finders
-// maze algorithm
 // 2d vs 3d
+ 
+//TODO: more generators
+// Perlin
+// function
+// Other mazes
+// Img upload?
 
 //TODO: custom weight add tool
 //TODO: details about thinking of it as a path of least weight
