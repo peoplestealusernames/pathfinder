@@ -11,6 +11,7 @@ export type baseState = (typeof baseArray[number] | undefined)
 export type navState = (typeof navArray[number] | undefined)
 
 export type Selectable = (typeof SelectableArray[number])
+export type Generatable = (typeof GeneratorArray[number])
 
 export type allStates = baseState | navState | "empty"
 export type keyLike = Exclude<allStates, undefined>
