@@ -5,7 +5,7 @@ export function TopBar(props: {
 }) {
 
     return (<div className='TopBar' style={{
-        display: "flex", position: "static", width: "100vw", height: "50px",
+        display: "flex", position: "fixed", width: "100vw", height: "50px",
         alignItems: "center",
         justifyItems: "center",
         justifyContent: "center",
