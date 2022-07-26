@@ -28,7 +28,7 @@ export function StyledTab(props: {
                     flexDirection: "row",
                     justifyContent: "center",
                 }}>
-                <p style={{
+                <span style={{
                     ...{
                         width: "fit-content",
                         color: "white",
@@ -41,7 +41,7 @@ export function StyledTab(props: {
                     }, ...props.titleStyle
                 }}>
                     {props.title}
-                </p>
+                </span>
             </div>}
             <div
                 style={{
