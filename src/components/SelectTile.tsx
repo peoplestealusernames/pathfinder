@@ -13,7 +13,9 @@ export function SelectTile(props: {
             display: "flex",
             width: "100%",
             height: "100%",
-            flexDirection: "row"
+            flexDirection: "row",
+            justifyContent: "center",
+            alignContent: "center"
         }}
         >
             {
