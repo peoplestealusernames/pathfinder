@@ -4,6 +4,7 @@ import { ContextButton } from "../components/ContextButton";
 import { StyledTab } from "../components/StyledTab";
 import { NavInterface } from "../pathfinders/NavInterface";
 import { RandomWall } from "./RandomWall";
+import { GiMaze } from "react-icons/gi";
 
 export function MazeMenu(props: {
     grid: LayerManger,
@@ -18,6 +19,7 @@ export function MazeMenu(props: {
                 }}
                     onMouseDown={() => { mazeGen(props.grid) }}
                 >
+                    <GiMaze size={35} />
                     Generate Maze!
                 </ContextButton>
             </div>
