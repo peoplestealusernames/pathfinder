@@ -10,15 +10,31 @@ export function ContextButton(props: {
     onMouseDown?: () => void
     setHoverState?: Dispatch<SetStateAction<boolean>>
     onHover?: (Hover: boolean) => void
+    pressedStyle?: React.CSSProperties
+    hoverStyle?: React.CSSProperties
 }) {
-    const [Hover, setHover] = useState<boolean>(false)
+    //TODO: toggle button option
+    const hoverStyle = props.hoverStyle ? props.hoverStyle : {}
+    const pressedStyle = props.pressedStyle ? props.pressedStyle : {}
 
-    useEffect(() => {
+    const [Hover, setHoverState] = useState<boolean>(false)
+    const [Pressed, setPressedState] = useState<boolean>(false)
+
+    function setHover(state: boolean) {
+        setHoverState(state)
         if (props.setHoverState)
-            props.setHoverState(Hover)
+            props.setHoverState(state)
         if (props.onHover)
-            props.onHover(Hover)
-    }, [Hover])
+            props.onHover(state)
+    }
+
+    function setPressed(state: boolean) {
+        setPressedState(state)
+        if (props.setButtonState)
+            props.setButtonState(state)
+        if (props.onMouseDown)
+            props.onMouseDown()
+    }
 
     return (
         <div style={{
@@ -33,16 +49,14 @@ export function ContextButton(props: {
                 justifyContent: "center",
                 borderRadius: "6px",
                 color: Hover ? "grey" : "white"
-            }, ...props.style
+            }, ...props.style,
+            ...Hover ? hoverStyle : {},
+            ...Pressed ? pressedStyle : {},
         }}
             onMouseEnter={() => { setHover(true) }}
             onMouseLeave={() => { setHover(false) }}
-            onMouseDown={() => {
-                if (props.setButtonState)
-                    props.setButtonState(true)
-                if (props.onMouseDown)
-                    props.onMouseDown()
-            }}
+            onMouseDown={() => { setPressed(true) }}
+            onMouseUp={() => { setPressed(false) }}
         >
             {props.children}
             {
