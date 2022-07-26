@@ -28,6 +28,7 @@ export function TileRender(props: {
         context.fillRect(1, 1, 8, 8)
 
         const scaleFactor = Math.min(canvas.width, canvas.height)
+        context.resetTransform()
         context.scale(scaleFactor / 10 * 2, scaleFactor / 10)
     }, [props.tile, canvasRef])
 
