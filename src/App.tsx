@@ -59,8 +59,9 @@ function App() {
     }
   )
 
-  //FIXME: allway enable in production
-  const [InfoPopupState, setInfoPopupState] = useState<boolean>(false)
+  const [InfoPopupState, setInfoPopupState] = useState<boolean>(
+    process.env.NODE_ENV === "production"
+  )
   const [SettingPopupState, setSettingPopupState] = useState<boolean>(false)
 
   const [TimerState, setTimerState] = useState<NodeJS.Timer | undefined>(undefined)
