@@ -16,18 +16,16 @@ export function ToggleGrid(props: {
     const canvasRef = useRef(null)
 
     useEffect(() => {
-        const elem = document.getElementById('GridCanvas') as HTMLCanvasElement
-        if (!elem)
+        const canvas = canvasRef.current as unknown as HTMLCanvasElement
+        if (!canvas)
             return
 
-        props.canvasMang.addCanvas(elem)
+        props.canvasMang.addCanvas(canvas)
 
 
         const mouseDown = (e: any) => {
-            const canvas = canvasRef.current as unknown as HTMLCanvasElement
-
-            const elemLeft = elem.offsetLeft + elem.clientLeft
-            const elemTop = elem.offsetTop + elem.clientTop
+            const elemLeft = canvas.offsetLeft + canvas.clientLeft
+            const elemTop = canvas.offsetTop + canvas.clientTop
             const xp = e.pageX - elemLeft
             const yp = e.pageY - elemTop
 
@@ -47,10 +45,10 @@ export function ToggleGrid(props: {
         }
 
         //TODO: drag
-        elem.addEventListener("mousedown", mouseDown)
+        canvas.addEventListener("mousedown", mouseDown)
 
         return (() => {
-            elem.removeEventListener("mousedown", mouseDown)
+            canvas.removeEventListener("mousedown", mouseDown)
         })
     })
 
