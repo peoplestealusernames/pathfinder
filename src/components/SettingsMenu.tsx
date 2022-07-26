@@ -13,6 +13,7 @@ export function SettingsMenu(props: {
             <button style={{ alignSelf: "center", display: "flex" }}
                 onMouseDown={() => { props.grid.clear(); }}
             >Reset</button>
+            MENU UNDER CONSTRUCTION
         </StyledTab>
     )
 }

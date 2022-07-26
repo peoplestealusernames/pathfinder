@@ -5,7 +5,7 @@ export function InfoMenu() {
     return (
         <StyledTab title="Pathfinder">
             <span style={{ color: "white" }}>
-
+                MENU UNDER CONSTRUCTION
             </span>
         </StyledTab>
     )
