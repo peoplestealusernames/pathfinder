@@ -5,7 +5,7 @@ export function ContextButton(props: {
     children: React.ReactNode
     context?: React.ReactNode
     contextStyle?: React.CSSProperties
-    buttonStyle?: React.CSSProperties
+    style?: React.CSSProperties
     setButtonState?: Dispatch<SetStateAction<boolean>>
     onMouseDown?: () => void
     setHoverState?: Dispatch<SetStateAction<boolean>>
@@ -33,7 +33,7 @@ export function ContextButton(props: {
                 justifyContent: "center",
                 borderRadius: "6px",
                 color: Hover ? "grey" : "white"
-            }, ...props.buttonStyle
+            }, ...props.style
         }}
             onMouseEnter={() => { setHover(true) }}
             onMouseLeave={() => { setHover(false) }}

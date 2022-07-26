@@ -48,7 +48,7 @@ export function NavBar(props: {
             }, ...props.style
         }}>
             <ContextButton
-                buttonStyle={Style}
+                style={Style}
                 context={ShowContext ? "Step Path" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { props.nav.StepPath() }}
@@ -56,7 +56,7 @@ export function NavBar(props: {
                 <IoMdSkipForward size={Size} />
             </ContextButton>
             <ContextButton
-                buttonStyle={{ ...Style, ...{ color: "green" } }}
+                style={{ ...Style, ...{ color: "green" } }}
                 context={ShowContext ? "Play pathfinder" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { RunPath() }}
@@ -64,7 +64,7 @@ export function NavBar(props: {
                 <IoMdPlay size={Size} />
             </ContextButton>
             <ContextButton
-                buttonStyle={{ ...Style, ...{ color: "red" } }}
+                style={{ ...Style, ...{ color: "red" } }}
                 context={ShowContext ? "Stop pathfinder" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { StopPath() }}
@@ -72,7 +72,7 @@ export function NavBar(props: {
                 <IoMdPause size={Size} />
             </ContextButton>
             <ContextButton
-                buttonStyle={Style}
+                style={Style}
                 context={ShowContext ? "Generate Path" : undefined}
                 contextStyle={{ bottom: "-100%" }}
                 onMouseDown={() => { props.nav.GeneratePath() }}

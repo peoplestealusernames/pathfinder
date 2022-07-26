@@ -57,7 +57,7 @@ function TileBuilder(props: {
 
     return (
         <ContextButton
-            buttonStyle={{
+            style={{
                 margin: "5px",
                 userSelect: "none"
             }}
