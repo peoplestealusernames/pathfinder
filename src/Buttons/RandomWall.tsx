@@ -1,13 +1,17 @@
 import { useState } from "react"
 import { LayerManger } from "../2d/LayerManger"
 import { getRandomInt, isReplaceable } from "../backend/misc"
-import { allStates, baseArray, baseState, GeneratorArray, Replaceable, SelectableArray } from "../backend/types"
+import { allStates, baseArray, baseState, Generatable, GeneratorArray, Replaceable, Selectable, SelectableArray } from "../backend/types"
 import { ContextButton } from "../components/ContextButton"
+import { Popup } from "../components/Popup"
+import { SelectTile } from "../components/Tiles/SelectTile"
+import { TileGrabber } from "../components/TileGrabber"
 
 export function RandomWall(props: { grid: LayerManger }) {
     let [WallCount, SetWallCount] = useState(1)
+    const [SelectedTile, SetSelectedTile] = useState<Selectable>("wall")
 
-    let allowOveride = false
+    const [Override, setOverride] = useState(false)
 
     return (
         <div style={{
@@ -23,16 +27,27 @@ export function RandomWall(props: { grid: LayerManger }) {
             borderRadius: "2px",
             fontSize: "20px",
         }}>
-            <p style={{
-                color: "white",
+            <ContextButton style={{
                 padding: "0px",
                 margin: "3px",
-                userSelect: "none",
                 fontSize: "23px",
                 borderBottom: "2px solid white",
-            }}>
+                borderRadius: "0px",
+            }}
+                context={
+                    `Generate ${WallCount}x random ${SelectedTile} tiles`
+                }
+                contextStyle={{
+                    bottom: "-100%"
+                }}
+                onMouseDown={
+                    () => {
+                        SetRandomTile(SelectedTile as baseState, props.grid, Override)
+                    }
+                }
+            >
                 Generate
-            </p>
+            </ContextButton>
             <input
                 type="number"
                 value={WallCount}
@@ -54,27 +69,10 @@ export function RandomWall(props: { grid: LayerManger }) {
                     border: "2px solid white",
                 }} />
             {
-                GeneratorArray.map((tile) => {
-                    return (
-                        <ContextButton
-                            style={{
-                                width: "100%",
-                                textAlign: "center",
-                                padding: "1px",
-                                margin: "3px",
-                                border: "1px solid white",
-                            }}
-                            onMouseDown={() => {
-                                for (let i = 0; i < WallCount; i++)
-                                    SetRandomTile(tile as baseState, props.grid)
-                            }}
-                        >
-                            {tile}
-                        </ContextButton>
-                    )
-                })
+                <TileGrabber selectorState={SelectedTile} setSelectorState={SetSelectedTile} />
             }
             <ContextButton
+                setButtonState={setOverride}
                 toggle={true}
                 context={
                     "Allow tiles to overide they're own type"
@@ -100,12 +98,12 @@ export function RandomWall(props: { grid: LayerManger }) {
     )
 }
 
-function SetRandomTile(setTo: baseState, grid: LayerManger) {
-    for (let loop = 0; loop < 100; loop++) {
+function SetRandomTile(setTo: baseState, grid: LayerManger, allowOveride: boolean) {
+    for (let loop = 0; loop < 1000; loop++) {
         const x = getRandomInt(grid.getWidth())
         const y = getRandomInt(grid.getHeight())
         const tile = grid.getTop(x, y)
-        if (isReplaceable(tile) && tile !== setTo)
+        if (isReplaceable(tile) && (allowOveride || tile !== setTo))
             return grid.BaseGrid.set(x, y, setTo)
     }
 }
