@@ -107,7 +107,11 @@ function App() {
           position: "absolute",
           top: "53px"
         }}>
-          <NavBar grid={Grid} nav={Nav} timerState={[TimerState, setTimerState]} />
+          <NavBar
+            grid={Grid}
+            nav={Nav}
+            timerState={[TimerState, setTimerState]}
+            showContext={false} />
         </div>
 
         {PopupMenus.map((Menu, i) => {
