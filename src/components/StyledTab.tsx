@@ -36,7 +36,8 @@ export function StyledTab(props: {
                         fontSize: "30px",
                         padding: "0px",
                         margin: "14px",
-                        fontWeight: "bold"
+                        fontWeight: "bold",
+                        userSelect: "none",
                     }, ...props.titleStyle
                 }}>
                     {props.title}
