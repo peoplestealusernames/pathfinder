@@ -8,6 +8,7 @@ import { CloseButton } from "./CloseButton";
 export function Popup(props: {
     active: boolean,
     setActive: Dispatch<SetStateAction<boolean>>,
+    dissableCloseButton?: JSX.Element;
     children?: React.ReactNode
 }) {
 
@@ -45,7 +46,10 @@ export function Popup(props: {
                             width: "fit-content",
                             height: "fit-content"
                         }}>
-                            <CloseButton onClose={() => { props.setActive(false) }} />
+                            {
+                                !props.dissableCloseButton &&
+                                <CloseButton onClose={() => { props.setActive(false) }} />
+                            }
                             {props.children}
                         </span>
                     </CenterDiv>
