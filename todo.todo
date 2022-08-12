@@ -1,6 +1,12 @@
+//TODO: Non-display version
+// Make a version that only uses generate
+// This will be the implimentation for later uses
+// Use recursive function instead of loops and so on
+
 //TODO: Node improvements
 // custom bais for changeing direction
 // tiles that are harder to walk on
+// time trial between using recursive node refrence and object table refrence
 
 //TODO: Scale when scaling
 // Options:
