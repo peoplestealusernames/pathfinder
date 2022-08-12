@@ -9,15 +9,17 @@ export type Nav2dEvents<T> = {
     reset: () => void
 }
 
+export type StepFNC2d<Data extends xy> = (
+    Qued: Node<Data>[],
+    goal: Node<Data>,
+    CheckedTable: { [key: string]: boolean },
+    WeightTable: { [key: string]: number }
+) => [solved: boolean, newQued: Node<Data>[], checked: Node<Data>[]]
+
 export class Navigator2d
     <
     Data extends xy,
-    TPathfinder extends (
-        Qued: Node<Data>[],
-        goal: Node<Data>,
-        CheckedTable: { [key: string]: boolean },
-        WeightTable: { [key: string]: number }
-    ) => [solved: boolean, newQued: Node<Data>[], checked: Node<Data>[]]
+    TPathfinder extends StepFNC2d<Data>
     >
     extends TypedEventEmitter<Nav2dEvents<Data>> implements NavInterface<Data>
 {
