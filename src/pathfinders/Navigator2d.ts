@@ -85,11 +85,11 @@ export class Navigator2d
 
         [this.solved, this.Qued, Checked] = this.pathfinder(this.Qued, this.GoalNode, this.CheckedTable, this.WeightTable)
 
-        Checked.forEach(node => {
-            this.emit("update", node, "checked")
-        });
         this.Qued.forEach(node => {
             this.emit("update", node, "qued")
+        });
+        Checked.forEach(node => {
+            this.emit("update", node, "checked")
         });
 
         if (this.solved) {
