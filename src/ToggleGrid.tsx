@@ -22,8 +22,16 @@ export function ToggleGrid(props: {
 
         props.canvasMang.addCanvas(canvas)
 
+        const StartPlace = (e: any) => {
+            canvas.addEventListener("mousemove", Place)
+        }
 
-        const mouseDown = (e: any) => {
+        const EndPlace = (e: any) =>
+            canvas.removeEventListener("mousemove", Place)
+
+        const Place = (e: any) => {
+            console.log("a");
+
             const elemLeft = canvas.offsetLeft + canvas.clientLeft
             const elemTop = canvas.offsetTop + canvas.clientTop
             const xp = e.pageX - elemLeft
@@ -35,20 +43,24 @@ export function ToggleGrid(props: {
             const tile = props.grid.getTop(x, y)
 
             if (tile === false)
-                throw new Error(`Selection is out of bounds`)
+                return console.error(`Selection is out of bounds`)
 
             if (props.selectorState === tile)
-                throw new Error(`Update blocked {${x},${y}} is already a ${tile}`)
+                return console.error(`Update blocked {${x},${y}} is already a ${tile}`)
 
             if (SelectableFnc[props.selectorState])
                 SelectableFnc[props.selectorState](x, y, props.grid, tile)
         }
 
         //TODO: drag
-        canvas.addEventListener("mousedown", mouseDown)
+        canvas.addEventListener("mousedown", StartPlace)
+        canvas.addEventListener("mouseup", EndPlace)
+        canvas.addEventListener("mouseleave", EndPlace)
 
         return (() => {
-            canvas.removeEventListener("mousedown", mouseDown)
+            canvas.removeEventListener("mousedown", StartPlace)
+            canvas.removeEventListener("mouseup", EndPlace)
+            canvas.removeEventListener("mouseleave", EndPlace)
         })
     })
 
