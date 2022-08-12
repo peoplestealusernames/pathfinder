@@ -26,6 +26,22 @@ export class Navigator2d
     private solved: boolean = false;
     private StartNode: Node<Data>
     private GoalNode: Node<Data>
+    private Timer: NodeJS.Timer | undefined
+
+    RunPath() {
+        if (!this.Timer) {
+            this.Timer = (setInterval(() => {
+                if (this.StepPath()) {
+                    this.StopPath()
+                }
+            }, 100))
+        }
+    }
+
+    StopPath() {
+        clearInterval(this.Timer)
+        this.Timer = undefined
+    }
 
     setStart(node: Node<Data>) {
         this.StartNode = node

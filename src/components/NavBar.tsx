@@ -10,26 +10,8 @@ export function NavBar(props: {
     nav: NavInterface<any>,
     style?: React.CSSProperties,
     showContext?: boolean
-    timerState: [NodeJS.Timer | undefined, Dispatch<SetStateAction<NodeJS.Timer | undefined>>],
 }) {
     const ShowContext = props.showContext !== undefined ? props.showContext : true
-
-    const [Timer, setTimer] = props.timerState
-
-    function RunPath() {
-        if (!Timer) {
-            setTimer(setInterval(() => {
-                if (props.nav.StepPath()) {
-                    StopPath()
-                }
-            }, 100))
-        }
-    }
-
-    function StopPath() {
-        clearInterval(Timer)
-        setTimer(undefined)
-    }
 
     const Style = {
         margin: "2px",
@@ -60,7 +42,7 @@ export function NavBar(props: {
                 hoverStyle={{ color: "darkgreen" }}
                 context={ShowContext ? "Play pathfinder" : undefined}
                 contextStyle={{ bottom: "-100%" }}
-                onMouseDown={() => { RunPath() }}
+                onMouseDown={() => { props.nav.RunPath() }}
             >
                 <IoMdPlay size={Size} />
             </ContextButton>
@@ -69,7 +51,7 @@ export function NavBar(props: {
                 hoverStyle={{ color: "darkred" }}
                 context={ShowContext ? "Stop pathfinder" : undefined}
                 contextStyle={{ bottom: "-100%" }}
-                onMouseDown={() => { StopPath() }}
+                onMouseDown={() => { props.nav.StopPath() }}
             >
                 <IoMdPause size={Size} />
             </ContextButton>

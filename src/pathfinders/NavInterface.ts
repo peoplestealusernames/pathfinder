@@ -11,5 +11,8 @@ export interface NavInterface<Data extends any> {
 
     StepPath(): boolean
 
+    RunPath(): void
+    StopPath(): void
+
     reset(): void
 }

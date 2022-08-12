@@ -64,14 +64,6 @@ function App() {
   )
   const [SettingPopupState, setSettingPopupState] = useState<boolean>(false)
 
-  const [TimerState, setTimerState] = useState<NodeJS.Timer | undefined>(undefined)
-  useEffect(() => {
-
-    return (() => {
-      clearInterval(TimerState)
-    })
-  }, [TimerState])
-
   const [SelectorState, setSelectorState] = useState<Selectable>("empty")
 
   const [Grid, CanvasMang, Nav] = useMemo(() => { return setup() }, [])
@@ -80,8 +72,7 @@ function App() {
     grid: Grid,
     nav: Nav,
     selectorState: SelectorState,
-    setSelectorState: setSelectorState,
-    timerState: [TimerState, setTimerState]
+    setSelectorState: setSelectorState
   }
 
   return (
@@ -119,7 +110,6 @@ function App() {
           <NavBar
             grid={Grid}
             nav={Nav}
-            timerState={[TimerState, setTimerState]}
             showContext={false} />
         </div>
 
