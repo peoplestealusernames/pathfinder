@@ -101,6 +101,11 @@ export class Navigator2d
             this.emit("update", node, "qued")
         });
 
+        if (this.solved) {
+            this.SolutionPath = this.MakePath(Checked[0])
+            this.emit("solved", this.SolutionPath)
+        }
+
         return false
     }
 
