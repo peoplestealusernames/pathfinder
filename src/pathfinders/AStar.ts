@@ -21,7 +21,7 @@ export function AStarStepPath
 
     const checked: thisNode[] = [element]
 
-    const Children = element.getChildren().filter((e) => !WeightTable[e.id]) as thisNode[]
+    const Children = element.getChildren().filter((e) => WeightTable[e.id] === undefined) as thisNode[]
 
 
     if (Children.length > 0) {
