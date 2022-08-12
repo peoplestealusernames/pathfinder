@@ -82,10 +82,11 @@ export class Navigator2d
             return true
 
         let Checked: Node<Data>[] = [];
+        let NewQued: Node<Data>[] = [];
 
-        [this.solved, this.Qued, Checked] = this.pathfinder(this.Qued, this.GoalNode, this.CheckedTable, this.WeightTable)
+        [this.solved, NewQued, Checked] = this.pathfinder(this.Qued, this.GoalNode, this.CheckedTable, this.WeightTable)
 
-        this.Qued.forEach(node => {
+        NewQued.forEach(node => {
             this.emit("update", node, "qued")
         });
         Checked.forEach(node => {

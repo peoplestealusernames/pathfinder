@@ -36,5 +36,6 @@ export function FloodFillStepPath
 
     console.log(`FloodFill:Step finish:${newQue.length} nodes now qued`);
 
+    Qued = newQue
     return [false, newQue, checked]
 }
