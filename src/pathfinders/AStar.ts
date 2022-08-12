@@ -12,7 +12,7 @@ export function AStarStepPath
         WeightTable: { [key: string]: number }
     ): [solved: boolean, newQued: thisNode[], checked: thisNode[]] {
 
-    console.log(`A*:Step start:${Qued.length} nodes to process`);
+    console.log(`A*:Step start:${Qued.length} in que`);
     const element = Qued.pop()
     if (!element) {
         console.error("A*: Attemped to run but nothing was qued")
