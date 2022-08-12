@@ -20,7 +20,6 @@ export function AStarStepPath
     }
 
     const checked: thisNode[] = [element]
-    const newQued: thisNode[] = []
 
     const Children = element.getChildren().filter((e) => !(WeightTable[e.id] > 0)) as thisNode[]
 
@@ -45,14 +44,12 @@ export function AStarStepPath
             console.log("A*:Step solution found");
             return [true, [], [child, ...checked]]
         }
-
-        newQued.push(child)
+        Qued.push(element, child)
     }
-    Qued.push(element, ...newQued)
 
     console.log(`A*:Step finish:${Qued.length} nodes now qued`);
 
-    return [false, newQued, checked]
+    return [false, Children, checked]
 }
 
 function DistanceToFinish
