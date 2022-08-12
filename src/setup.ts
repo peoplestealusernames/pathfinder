@@ -2,6 +2,7 @@ import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
 import { xy } from "./backend/types"
 import { GridToNode2d } from "./nodes/gridToNode"
+import { AStar } from "./pathfinders/AStar"
 import { FloodFill } from "./pathfinders/floodfill"
 import { NavInterface } from "./pathfinders/NavInterface"
 
@@ -24,7 +25,7 @@ export function setup(): [LayerManger, CanvasManager, NavInterface<xy>] {
         throw new Error("no start or finish")
     }
 
-    const Nav = new FloodFill(
+    const Nav = new AStar(
         Start,
         Finish
     )
