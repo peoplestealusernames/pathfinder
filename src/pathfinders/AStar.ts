@@ -25,7 +25,7 @@ export function AStarStepPath
 
     CheckedTable[element.id] = true
 
-    for (const child of Children) {
+    for (const child of Children.reverse()) {
         const pathWeight = WeightTable[element.id] + child.weight
         if (child.id in WeightTable)
             continue //Only returns true when it was already checked
