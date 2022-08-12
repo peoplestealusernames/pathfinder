@@ -43,6 +43,10 @@ export class Navigator2d
         this.Timer = undefined
     }
 
+    setPathFinder(pathfinder: TPathfinder): void {
+        this.pathfinder = pathfinder
+    }
+
     setStart(node: Node<Data>) {
         this.StartNode = node
         this.reset()

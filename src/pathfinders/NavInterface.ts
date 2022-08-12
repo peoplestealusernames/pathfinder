@@ -14,5 +14,6 @@ export interface NavInterface<Data extends any> {
     RunPath(): void
     StopPath(): void
 
+    setPathFinder(pathfinder: (...args: any[]) => any): void
     reset(): void
 }
