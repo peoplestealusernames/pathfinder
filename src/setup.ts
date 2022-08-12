@@ -3,7 +3,6 @@ import { LayerManger } from "./2d/LayerManger"
 import { xy } from "./backend/types"
 import { GridToNode2d } from "./nodes/gridToNode"
 import { AStarStepPath } from "./pathfinders/AStar"
-import { FloodFill } from "./pathfinders/floodfill"
 import { Navigator2d } from "./pathfinders/Navigator2d"
 import { NavInterface } from "./pathfinders/NavInterface"
 
