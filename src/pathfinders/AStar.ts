@@ -33,7 +33,7 @@ export function AStarStepPath
 
         if (child === goal) {
             console.log("A*:Step solution found");
-            return [true, [], [child]]
+            return [true, [], [child, ...checked]]
         }
 
         newQue.push(child)
