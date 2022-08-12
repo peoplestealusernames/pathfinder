@@ -56,7 +56,8 @@ export function ContextButton(props: {
                 justifyContent: "center",
                 borderRadius: "6px",
                 color: Hover ? "grey" : "white",
-                userSelect: "none"
+                userSelect: "none",
+                cursor: "pointer"
             }, ...props.style,
             ...Hover ? hoverStyle : {},
             ...Pressed ? pressedStyle : {},
