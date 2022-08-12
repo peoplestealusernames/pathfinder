@@ -12,24 +12,33 @@ export function AStarStepPath
         WeightTable: { [key: string]: number }
     ): [solved: boolean, newQued: thisNode[], checked: thisNode[]] {
 
+    console.log(`A*:Step start:${Qued.length} nodes to process`);
     const element = Qued.pop()
     if (!element) {
         console.error("A*: Attemped to run but nothing was qued")
         return [false, Qued, []]
     }
 
-    const newQue: thisNode[] = []
     const checked: thisNode[] = [element]
+    const newQued: thisNode[] = []
 
-    const Children = element.getChildren().sort((a, b) => DistanceToFinish(a, goal) - DistanceToFinish(b, goal)) as thisNode[]
+    const Children = element.getChildren().filter((e) => !(WeightTable[e.id] > 0)) as thisNode[]
 
-    CheckedTable[element.id] = true
+    if (Children.length > 0) {
+        let child = Children.pop()
+        if (!child)
+            throw new Error("Impossible")
+        let best = DistanceToFinish(child, goal)
+        Children.forEach(e => {
+            const current = DistanceToFinish(e, goal)
+            if (current < best) {
+                best = current
+                child = e
+            }
+        })
 
-    console.log(`A*:Step start:${Qued.length} nodes to process`);
-    for (const child of Children.reverse()) {
+        CheckedTable[element.id] = true
         const pathWeight = WeightTable[element.id] + child.weight
-        if (child.id in WeightTable)
-            continue //Only returns true when it was already checked
         WeightTable[child.id] = pathWeight
 
         if (child === goal) {
@@ -37,13 +46,13 @@ export function AStarStepPath
             return [true, [], [child, ...checked]]
         }
 
-        newQue.push(child)
-    };
+        newQued.push(child)
+    }
+    Qued.push(element, ...newQued)
 
-    Qued.push(...newQue)
     console.log(`A*:Step finish:${Qued.length} nodes now qued`);
 
-    return [false, Qued, checked]
+    return [false, newQued, checked]
 }
 
 function DistanceToFinish
@@ -56,4 +65,5 @@ function DistanceToFinish
         +
         Math.pow((goalNode.data.y - node.data.y), 2)
     )
+
 }
