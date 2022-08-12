@@ -47,6 +47,7 @@ export class FloodFill<Data extends any> extends TypedEventEmitter<FloodFillEven
     }
 
     private WeightTable: { [key: string]: number } = {}
+    private CheckedTable: { [key: string]: boolean } = {}
     private Qued: Node<Data>[] = []
     private SolutionPath: Node<Data>[] = []
 
@@ -69,6 +70,7 @@ export class FloodFill<Data extends any> extends TypedEventEmitter<FloodFillEven
 
         console.log(`FloodFill:Step start:${this.Qued.length} nodes to process`);
         for (const element of this.Qued) {
+            this.CheckedTable[element.id] = true
             for (const child of element.getChildren()) {
                 const pathWeight = this.WeightTable[element.id] + child.weight
                 if (child.id in this.WeightTable)
@@ -115,17 +117,15 @@ export class FloodFill<Data extends any> extends TypedEventEmitter<FloodFillEven
 
 
     private LeastHeavyParent(node: Node<Data>) {
-        const parents = node.getParents()
-        let weight = this.WeightTable[parents[0].id]
-        let best = parents[0]
-        for (const Parent of parents) {
-            const nodeWeight = this.WeightTable[Parent.id]
-            if (weight > nodeWeight) {
-                best = Parent
-                weight = nodeWeight
-            }
-        }
+        const arr = node.getParents().filter((e) => this.CheckedTable[e.id]).sort((a, b) => {
+            return this.WeightTable[a.id] - this.WeightTable[b.id]
+        })
+        console.log(arr);
 
-        return best
+
+        if (!arr[0])
+            throw new Error("PathfindingBacktrack: Chain was broken")
+
+        return arr[0]
     }
 }
