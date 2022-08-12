@@ -25,6 +25,7 @@ export function AStarStepPath
 
     CheckedTable[element.id] = true
 
+    console.log(`A*:Step start:${Qued.length} nodes to process`);
     for (const child of Children.reverse()) {
         const pathWeight = WeightTable[element.id] + child.weight
         if (child.id in WeightTable)
@@ -39,8 +40,8 @@ export function AStarStepPath
         newQue.push(child)
     };
 
-    console.log(`A*:Step finish:${newQue.length} nodes now qued`);
     Qued.push(...newQue)
+    console.log(`A*:Step finish:${Qued.length} nodes now qued`);
 
     return [false, Qued, checked]
 }
