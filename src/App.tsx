@@ -96,7 +96,7 @@ function App() {
       height: "fit-content",
     }}>
       <TopBar>
-        <div className='LeftSide' style={{
+        <div className='RightSide' style={{
           display: "flex", position: "absolute", width: "100vw", height: "50px",
           alignItems: "center",
           justifyItems: "center",
