@@ -16,17 +16,19 @@ export function AStarStepPath
     const element = Qued.pop()
     if (!element) {
         console.error("A*: Attemped to run but nothing was qued")
-        return [false, Qued, []]
+        return [false, [], []]
     }
 
     const checked: thisNode[] = [element]
 
-    const Children = element.getChildren().filter((e) => !(WeightTable[e.id] > 0)) as thisNode[]
+    const Children = element.getChildren().filter((e) => !WeightTable[e.id]) as thisNode[]
+
 
     if (Children.length > 0) {
-        let child = Children.pop()
-        if (!child)
+        const pop = Children.pop()
+        if (!pop)
             throw new Error("Impossible")
+        let child = pop
         let best = DistanceToFinish(child, goal)
         Children.forEach(e => {
             const current = DistanceToFinish(e, goal)
@@ -35,6 +37,7 @@ export function AStarStepPath
                 child = e
             }
         })
+        Children.push(pop)
 
         CheckedTable[element.id] = true
         const pathWeight = WeightTable[element.id] + child.weight
@@ -49,6 +52,7 @@ export function AStarStepPath
 
     console.log(`A*:Step finish:${Qued.length} nodes now qued`);
 
+    console.log(Children);
     return [false, Children, checked]
 }
 
