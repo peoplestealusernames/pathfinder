@@ -111,14 +111,6 @@ export class Navigator2d
         return Ret
     }
 
-    private DistanceToFinish(node: Node<Data>) {
-        return Math.sqrt(
-            Math.pow((this.StartNode.data.x - node.data.x), 2)
-            +
-            Math.pow((this.StartNode.data.y - node.data.y), 2)
-        )
-    }
-
     private LeastHeavyParent(node: Node<Data>) {
         const arr = node.getParents().filter((e) => this.CheckedTable[e.id]).sort((a, b) => {
             return this.WeightTable[a.id] - this.WeightTable[b.id]
