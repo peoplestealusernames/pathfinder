@@ -123,8 +123,6 @@ export class Navigator2d
         const arr = node.getParents().filter((e) => this.CheckedTable[e.id]).sort((a, b) => {
             return this.WeightTable[a.id] - this.WeightTable[b.id]
         })
-        console.log(arr);
-
 
         if (!arr[0])
             throw new Error("PathfindingBacktrack: Chain was broken")
