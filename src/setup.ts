@@ -2,9 +2,9 @@ import { CanvasManager } from "./2d/canvasManger"
 import { LayerManger } from "./2d/LayerManger"
 import { xy } from "./backend/types"
 import { GridToNode2d } from "./nodes/gridToNode"
-import { AStar } from "./pathfinders/AStar"
+import { AStarStepPath } from "./pathfinders/AStar"
 import { FloodFill } from "./pathfinders/floodfill"
-import { NavInterface } from "./pathfinders/NavInterface"
+import { Navigator2d, NavInterface } from "./pathfinders/NavInterface"
 
 const Movement: [number, number][] = [
     [1, 0],
@@ -25,7 +25,8 @@ export function setup(): [LayerManger, CanvasManager, NavInterface<xy>] {
         throw new Error("no start or finish")
     }
 
-    const Nav = new AStar(
+    const Nav = new Navigator2d(
+        AStarStepPath,
         Start,
         Finish
     )
